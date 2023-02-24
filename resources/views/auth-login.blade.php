@@ -32,21 +32,35 @@
                 <h2 class="uppercase">It’s Great To See You!</h2>
                 <h4 class="uppercase">Login Here</h4>
             </div>
-            <form class="card mt-5 p-5 md:p-10" action="index.html">
+            <form class="card mt-5 p-5 md:p-10" action="/login" method="POST">
+                @csrf
                 <div class="mb-5">
                     <label class="label block mb-2" for="email">Email</label>
-                    <input id="email" class="form-control" placeholder="example@example.com">
+                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="example@example.com" required autocomplete="email" autofocus>
+
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
+
                 <div class="mb-5">
                     <label class="label block mb-2" for="password">Password</label>
                     <label class="form-control-addon-within">
-                        <input id="password" type="password" class="form-control border-none" value="12345">
+                        <input id="password" type="password" class="form-control border-none @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                         <span class="flex items-center ltr:pr-4 rtl:pl-4">
                             <button type="button"
                                 class="text-gray-300 dark:text-gray-700 la la-eye text-xl leading-none"
                                 data-toggle="password-visibility"></button>
                         </span>
                     </label>
+                    
+                    @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <div class="flex items-center">
                     <a href="{{ url('pages/auth/forgot-password') }}" class="text-sm uppercase">Forgot Password?</a>

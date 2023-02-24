@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,165 +15,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Dahboard
-Route::get('/', function () {
-    return view('index');
-});
+Route::middleware('central')->group(function () {
+    Route::get('/', function () {
+        return view('welcome');
+    })->name('home');
 
-// UI
-Route::prefix('ui')->group(function () {
-
-    // Form
-    Route::prefix('form')->group(function () {
-        Route::get('/components', function () {
-            return view('form-components');
-        });
-        Route::get('/input-groups', function () {
-            return view('form-input-groups');
-        });
-        Route::get('/layout', function () {
-            return view('form-layout');
-        });
-        Route::get('/validations', function () {
-            return view('form-validations');
-        });
-        Route::get('/wizards', function () {
-            return view('form-wizards');
-        });
+    // Guest routes
+    Route::middleware('guest')->group(function () {
+        Route::get('/register', [RegisterController::class, 'show'])->name('register');
+        Route::post('/register', [RegisterController::class, 'store']);
     });
 
-    // Components
-    Route::prefix('components')->group(function () {
-        Route::get('/alerts', function () {
-            return view('components-alerts');
-        });
-        Route::get('/avatars', function () {
-            return view('components-avatars');
-        });
-        Route::get('/badges', function () {
-            return view('components-badges');
-        });
-        Route::get('/buttons', function () {
-            return view('components-buttons');
-        });
-        Route::get('/cards', function () {
-            return view('components-cards');
-        });
-        Route::get('/collapse', function () {
-            return view('components-collapse');
-        });
-        Route::get('/colors', function () {
-            return view('components-colors');
-        });
-        Route::get('/dropdowns', function () {
-            return view('components-dropdowns');
-        });
-        Route::get('/modal', function () {
-            return view('components-modal');
-        });
-        Route::get('/popovers-tooltips', function () {
-            return view('components-popovers-tooltips');
-        });
-        Route::get('/tables', function () {
-            return view('components-tables');
-        });
-        Route::get('/tabs', function () {
-            return view('components-tabs');
-        });
-        Route::get('/toasts', function () {
-            return view('components-toasts');
-        });
-    });
+    // Authentication routes
+    Route::get('/login', [AuthController::class, 'show'])->name('login');
+    Route::post('/login', [AuthController::class, 'store']);
 
-    // Extras
-    Route::prefix('extras')->group(function () {
-        Route::get('/carousel', function () {
-            return view('extras-carousel');
-        });
-        Route::get('/charts', function () {
-            return view('extras-charts');
-        });
-        Route::get('/editors', function () {
-            return view('extras-editors');
-        });
-        Route::get('/sortable', function () {
-            return view('extras-sortable');
-        });
+    Route::middleware('auth')->group(function () {
+        Route::get('/redirect-user/{globalUserId}/to-tenant/{tenant}', [AuthController::class, 'redirectUserToTenant'])->name('redirect-user-to-tenant');
+        Route::get('/central-logout', [AuthController::class, 'centralLogout'])->name('central-logout');
     });
-});
-
-// Applications
-Route::prefix('applications')->group(function () {
-    Route::get('/chat', function () {
-        return view('applications-chat');
-    });
-    Route::get('/media-library', function () {
-        return view('applications-media-library');
-    });
-    Route::get('/point-of-sale', function () {
-        return view('applications-point-of-sale');
-    });
-    Route::get('/to-do', function () {
-        return view('applications-to-do');
-    });
-});
-
-// Pages
-Route::prefix('pages')->group(function () {
-    Route::prefix('auth')->group(function () {
-        Route::get('/login', function () {
-            return view('auth-login');
-        });
-        Route::get('/forgot-password', function () {
-            return view('auth-forgot-password');
-        });
-        Route::get('/register', function () {
-            return view('auth-register');
-        });
-    });
-    Route::prefix('blog')->group(function () {
-        Route::get('/list', function () {
-            return view('blog-list');
-        });
-        Route::get('/list-card-rows', function () {
-            return view('blog-list-card-rows');
-        });
-        Route::get('/list-card-columns', function () {
-            return view('blog-list-card-columns');
-        });
-        Route::get('/add', function () {
-            return view('blog-add');
-        });
-    });
-    Route::prefix('errors')->group(function () {
-        Route::get('/403', function () {
-            return view('errors-403');
-        });
-        Route::get('/404', function () {
-            return view('errors-404');
-        });
-        Route::get('/500', function () {
-            return view('errors-500');
-        });
-        Route::get('/under-maintenance', function () {
-            return view('errors-under-maintenance');
-        });
-    });
-    Route::get('/pricing', function () {
-        return view('pages-pricing');
-    });
-    Route::get('/faqs-layout-1', function () {
-        return view('pages-faqs-layout-1');
-    });
-    Route::get('/faqs-layout-2', function () {
-        return view('pages-faqs-layout-2');
-    });
-    Route::get('/invoice', function () {
-        return view('pages-invoice');
-    });
-});
-
-// Blank
-Route::get('/blank', function () {
-    return view('blank');
 });
