@@ -17,16 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('central')->group(function () {
     Route::get('/', function () {
-        return view('welcome');
+        return view('central.welcome');
     })->name('home');
 
-    // Guest routes
-    Route::middleware('guest')->group(function () {
-        Route::get('/register', [RegisterController::class, 'show'])->name('register');
-        Route::post('/register', [RegisterController::class, 'store']);
-    });
-
     // Authentication routes
+    Route::get('/register', [RegisterController::class, 'show'])->name('register');
+    Route::post('/register', [RegisterController::class, 'store']);
     Route::get('/login', [AuthController::class, 'show'])->name('login');
     Route::post('/login', [AuthController::class, 'store']);
 

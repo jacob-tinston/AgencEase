@@ -1,16 +1,6 @@
-@extends('layouts.master', ['title' => 'Dashboard'])
+@extends('tenant.layouts.app', ['title' => 'Dashboard'])
 
 @section('workspace')
-
-    <!-- Breadcrumb -->
-    <section class="breadcrumb">
-        <h1>Dashboard</h1>
-        <ul>
-            <li><a href="#no-link">Login</a></li>
-            <li class="divider la la-arrow-right"></li>
-            <li>Dashboard</li>
-        </ul>
-    </section>
 
     <div class="grid lg:grid-cols-2 gap-5">
 
@@ -172,7 +162,6 @@
 @endsection
 
 @section('scripts')
-
     <script src="{{ asset('build/js/chart.min.js') }}"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1"></script> -->
 

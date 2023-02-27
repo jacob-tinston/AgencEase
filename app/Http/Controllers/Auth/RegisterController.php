@@ -16,9 +16,10 @@ class RegisterController extends Controller
     {
         // Get currently authenticated user
         if ($user = $request->user()) {
+            return redirect()->route('login');
         }
 
-        return view('auth.register');
+        return view('central.auth.register');
     }
 
     public function store(Request $request)

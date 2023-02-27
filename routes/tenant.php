@@ -26,11 +26,15 @@ Route::middleware('tenant')->group(function () {
     })->name('impersonate');
     
     Route::middleware('auth')->group(function () {
-        Route::post('/logout', [AuthController::class, 'destroy'])->name('logout');
+        Route::get('/logout', [AuthController::class, 'destroy'])->name('logout');
 
         // Dahboard
+        Route::get('/', function () {
+            return redirect()->route('dashboard');
+        });
+
         Route::get('/dashboard', function () {
-            return view('index');
+            return view('tenant.dashboard');
         })->name('dashboard');
 
         // UI
@@ -133,17 +137,6 @@ Route::middleware('tenant')->group(function () {
 
         // Pages
         Route::prefix('pages')->group(function () {
-            Route::prefix('auth')->group(function () {
-                Route::get('/login', function () {
-                    return view('auth-login');
-                });
-                Route::get('/forgot-password', function () {
-                    return view('auth-forgot-password');
-                });
-                Route::get('/register', function () {
-                    return view('auth-register');
-                });
-            });
             Route::prefix('blog')->group(function () {
                 Route::get('/list', function () {
                     return view('blog-list');
@@ -156,20 +149,6 @@ Route::middleware('tenant')->group(function () {
                 });
                 Route::get('/add', function () {
                     return view('blog-add');
-                });
-            });
-            Route::prefix('errors')->group(function () {
-                Route::get('/403', function () {
-                    return view('errors-403');
-                });
-                Route::get('/404', function () {
-                    return view('errors-404');
-                });
-                Route::get('/500', function () {
-                    return view('errors-500');
-                });
-                Route::get('/under-maintenance', function () {
-                    return view('errors-under-maintenance');
                 });
             });
             Route::get('/pricing', function () {

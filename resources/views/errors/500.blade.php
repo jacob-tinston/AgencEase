@@ -1,14 +1,6 @@
-@extends('layouts.blank', ['title' => '500 Error - Errors'])
+@extends('central.layouts.main', ['title' => '500 Error - Errors'])
 
 @section('body')
-
-    <!-- Top Bar -->
-    <section class="top-bar">
-
-        <!-- Brand -->
-        <span class="brand">Yeti</span>
-    </section>
-
     <div class="container flex items-center justify-center mt-20 py-10">
         <div class="w-full md:w-1/2 xl:w-1/3">
             <div class="mx-5 md:mx-10 text-center uppercase">
@@ -20,5 +12,4 @@
             </div>
         </div>
     </div>
-
 @endsection

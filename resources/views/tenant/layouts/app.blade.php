@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        
+        @if ($title)
+            <title>{{ $title }} - {{ config('app.name') }}</title>
+        @else
+            <title>{{ config('app.name') }}</title>
+        @endif
+
+        @vite(['resources/css/app.css'])
+    </head>
+
+    <body>
+        @include('tenant.partials._header')
+
+        <!-- Workspace -->
+        <main class="workspace @hasSection('sidebar') workspace_with-sidebar @endif {{ $workspaceClasses ?? '' }}">
+            @yield('workspace')
+
+            @if(!isset($footer) or $footer)
+                @include('tenant.partials._footer')
+            @endif
+        </main>
+
+        @hasSection('sidebar')
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+
+                <!-- Toggler - Mobile -->
+                <button class="sidebar-toggler la la-ellipsis-v" data-toggle="sidebar"></button>
+
+                @yield('sidebar')
+
+            </aside>
+
+        @endif
+
+        <!-- Scripts -->
+        <script src="{{ asset('build/js/vendor.js') }}"></script>
+
+        @yield('scripts')
+
+        {{-- <script src="{{ asset('build/js/script.js') }}"></script> --}}
+
+        <script src="/build/js/script.js"></script>
+
+        @vite(['resources/js/script.js'])
+
+    </body>
+</html>

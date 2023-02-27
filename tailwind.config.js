@@ -330,7 +330,7 @@ module.exports = {
         900: hexToRGB(colors.stone[900]),
       },
       secondary: {
-        DEFAULT: hexToRGB(colors.gray[600]),
+        DEFAULT: hexToRGB(colors.slate[600]),
       },
     },
     colors: {

@@ -1,5 +1,5 @@
 // Menu
-const menu = () => {
+export const menu = () => {
   const root = document.documentElement;
 
   const menuBar = document.querySelector(".menu-bar");
@@ -249,3 +249,5 @@ const showActivePage = () => {
 };
 
 showActivePage();
+
+console.log('menu');

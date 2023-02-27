@@ -1,31 +1,6 @@
-@extends('layouts.blank', ['title' => 'Login'])
+@extends('central.layouts.main', ['title' => 'Login'])
 
 @section('body')
-
-    <!-- Top Bar -->
-    <section class="top-bar">
-
-        <!-- Brand -->
-        <span class="brand">Yeti</span>
-
-        <nav class="flex items-center ltr:ml-auto rtl:mr-auto">
-
-            <!-- Dark Mode -->
-            <label class="switch switch_outlined" data-toggle="tooltip" data-tippy-content="Toggle Dark Mode">
-                <input id="darkModeToggler" type="checkbox">
-                <span></span>
-            </label>
-
-            <!-- Fullscreen -->
-            <button id="fullScreenToggler"
-                class="hidden lg:inline-block ltr:ml-5 rtl:mr-5 text-2xl leading-none la la-expand-arrows-alt"
-                data-toggle="tooltip" data-tippy-content="Fullscreen"></button>
-
-            <!-- Register -->
-            <a href="{{ url('pages/auth/register') }}" class="btn btn_primary uppercase ltr:ml-5 rtl:mr-5">Register</a>
-        </nav>
-    </section>
-
     <div class="container flex items-center justify-center mt-20 py-10">
         <div class="w-full md:w-1/2 xl:w-1/3">
             <div class="mx-5 md:mx-10">
@@ -34,28 +9,26 @@
             </div>
             <form class="card mt-5 p-5 md:p-10" action="/login" method="POST">
                 @csrf
+                
                 <div class="mb-5">
                     <label class="label block mb-2" for="email">Email</label>
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="example@example.com" required autocomplete="email" autofocus>
-
+                    <input id="email" name="email" type="email" class="form-control @error('email')is-invalid @enderror" value="{{ old('email') }}" placeholder="johndoe@example.com" required autofocus autocomplete="email">
                     @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
                 </div>
-
                 <div class="mb-5">
                     <label class="label block mb-2" for="password">Password</label>
                     <label class="form-control-addon-within">
-                        <input id="password" type="password" class="form-control border-none @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                        <input id="password" name="password" type="password" class="form-control border-none @error('password')is-invalid @enderror" required autocomplete="current-password">
                         <span class="flex items-center ltr:pr-4 rtl:pl-4">
                             <button type="button"
                                 class="text-gray-300 dark:text-gray-700 la la-eye text-xl leading-none"
                                 data-toggle="password-visibility"></button>
                         </span>
                     </label>
-                    
                     @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -63,11 +36,13 @@
                     @enderror
                 </div>
                 <div class="flex items-center">
-                    <a href="{{ url('pages/auth/forgot-password') }}" class="text-sm uppercase">Forgot Password?</a>
-                    <button class="btn btn_primary ltr:ml-auto rtl:mr-auto uppercase">Login</button>
+                    @if (Route::has('forgot-password'))
+                        <a href="{{ route('forgot-password') }}" class="text-sm uppercase">Forgot Password?</a>
+                    @endif
+
+                    <button type="submit" class="btn btn_primary ltr:ml-auto rtl:mr-auto uppercase">Login</button>
                 </div>
             </form>
         </div>
     </div>
-
 @endsection

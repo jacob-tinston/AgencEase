@@ -19,7 +19,7 @@ class AuthController extends Controller
             return $this->redirectUserToTenantOrShowTenantSelector($user);
         }
 
-        return view('auth-login');
+        return view('central.auth.login');
     }
 
     public function store(Request $request)

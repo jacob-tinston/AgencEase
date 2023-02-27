@@ -5,7 +5,7 @@
     <button class="menu-toggler la la-bars" data-toggle="menu"></button>
 
     <!-- Brand -->
-    <span class="brand">Yeti</span>
+    <span class="brand"><a href="{{ route('home' )}}">{{ config('app.name') }}</a></span>
 
     <!-- Search -->
     <form class="hidden md:block ltr:ml-10 rtl:mr-10">
@@ -123,7 +123,7 @@
                 </div>
                 <hr>
                 <div class="p-5">
-                    <a href="/logout" class="flex items-center text-normal hover:text-primary">
+                    <a href="#no-link" class="flex items-center text-normal hover:text-primary">
                         <span class="la la-power-off text-2xl leading-none ltr:mr-2 rtl:ml-2"></span>
                         Logout
                     </a>
@@ -463,4 +463,4 @@
     </div>
 </aside>
 
-@include('partials._customizer')
+@include('tenant.partials._customizer')
