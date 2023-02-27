@@ -1,4 +1,5 @@
-// Tabs
+import {on} from '../helpers';
+
 const tabs = () => {
   let toggling = false;
 
@@ -58,4 +59,4 @@ const tabs = () => {
   });
 };
 
-tabs();
+export default tabs;

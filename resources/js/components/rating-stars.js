@@ -1,6 +1,7 @@
-// Rating Stars
+import {on} from '../helpers';
+
 const ratingStars = () => {
-  rateStars = (event) => {
+  const rateStars = (event) => {
     const starsContainer = event.target.closest(".rating-stars");
     const stars = Array.from(starsContainer.children);
     const totalStars = stars.length;
@@ -19,4 +20,4 @@ const ratingStars = () => {
   });
 };
 
-ratingStars();
+export default ratingStars;

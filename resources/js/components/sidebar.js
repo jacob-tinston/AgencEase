@@ -1,4 +1,5 @@
-// Sidebar
+import {on, animateCSS} from '../helpers';
+
 const sidebar = () => {
   const sidebar = document.querySelector(".sidebar:not(.sidebar_customizer)");
 
@@ -54,4 +55,4 @@ const sidebar = () => {
   });
 };
 
-sidebar();
+export default sidebar;

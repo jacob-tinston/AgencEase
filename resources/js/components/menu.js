@@ -1,3 +1,5 @@
+import {on} from '../helpers';
+
 // Menu
 export const menu = () => {
   const root = document.documentElement;
@@ -217,10 +219,8 @@ export const menu = () => {
   });
 };
 
-menu();
-
 // Show Active Page
-const showActivePage = () => {
+export const showActivePage = () => {
   const pageUrl = window.location.href.split(/[?#]/)[0];
 
   const pageLinkSelector = ".menu-bar a";
@@ -247,7 +247,3 @@ const showActivePage = () => {
     }
   });
 };
-
-showActivePage();
-
-console.log('menu');

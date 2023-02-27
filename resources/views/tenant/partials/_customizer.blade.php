@@ -7,9 +7,12 @@
             <button class="toggler" data-toggle="customizer">
                 <span class="la la-gear animate-spin-slow"></span>
             </button>
+
+            <!--
             <button class="randomizer mt-2" data-toggle="randomizer">
                 <span class="la la-random"></span>
             </button>
+            -->
         </div>
     </div>
 

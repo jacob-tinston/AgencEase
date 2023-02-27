@@ -20,10 +20,8 @@
         @yield('body')
     
         <!-- Scripts -->
-        <script src="{{ asset('/build/js/vendor.js') }}"></script>
+        @vite(['resources/js/app.js'])
 
         @yield('scripts')
-
-        <script src="{{ asset('/build/js/script.js') }}"></script>
     </body>
 </html>

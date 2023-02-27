@@ -41,15 +41,9 @@
         @endif
 
         <!-- Scripts -->
-        <script src="{{ asset('build/js/vendor.js') }}"></script>
+        @vite(['resources/js/app.js'])
 
         @yield('scripts')
-
-        {{-- <script src="{{ asset('build/js/script.js') }}"></script> --}}
-
-        <script src="/build/js/script.js"></script>
-
-        @vite(['resources/js/script.js'])
 
     </body>
 </html>

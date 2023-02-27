@@ -1,8 +1,8 @@
-// Tippy
+import tippy from 'tippy.js';
+
 const customTippy = () => {
   // Menu tooltip
-  tippy.delegate("body", {
-    target: '.menu-icon-only [data-toggle="tooltip-menu"]',
+  tippy('[data-toggle="tooltip-menu"]', {
     touch: ["hold", 500],
     theme: "light-border tooltip",
     offset: [0, 12],
@@ -102,4 +102,4 @@ const customTippy = () => {
   });
 };
 
-customTippy();
+export default customTippy;

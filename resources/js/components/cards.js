@@ -1,24 +1,25 @@
-// Cards
+import {on} from '../helpers';
+
 const cards = () => {
-  // Toggle Card Selection
-  const toggleCardSelection = (event) => {
-    const card = event.target.closest(".card");
-    card.classList.toggle("card_selected");
-  };
+    // Toggle Card Selection
+    const toggleCardSelection = (event) => {
+        const card = event.target.closest(".card");
+        card.classList.toggle("card_selected");
+    };
 
-  // Toggle Row Selection
-  const toggleRowSelection = (event) => {
-    const row = event.target.closest("tr");
-    row.classList.toggle("row_selected");
-  };
+    // Toggle Row Selection
+    const toggleRowSelection = (event) => {
+        const row = event.target.closest("tr");
+        row.classList.toggle("row_selected");
+    };
 
-  on("body", "click", '[data-toggle="cardSelection"]', (event) => {
-    toggleCardSelection(event);
-  });
+    on("body", "click", '[data-toggle="cardSelection"]', (event) => {
+        toggleCardSelection(event);
+    });
 
-  on("body", "click", '[data-toggle="rowSelection"]', (event) => {
-    toggleRowSelection(event);
-  });
+    on("body", "click", '[data-toggle="rowSelection"]', (event) => {
+        toggleRowSelection(event);
+    });
 };
 
-cards();
+export default cards;

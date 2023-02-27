@@ -1,4 +1,5 @@
-// Show Password
+import {on} from '../helpers';
+
 const showPassword = () => {
   // Toggle Show Password
   const toggleShowPassword = (showPasswordBtn) => {
@@ -25,4 +26,4 @@ const showPassword = () => {
   });
 };
 
-showPassword();
+export default showPassword;

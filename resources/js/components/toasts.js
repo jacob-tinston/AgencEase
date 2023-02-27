@@ -1,4 +1,5 @@
-// Toasts
+import {on, animateCSS} from '../helpers';
+
 const toasts = () => {
   const toastsContainer = document.getElementById("toasts-container");
 
@@ -63,4 +64,4 @@ const toasts = () => {
   });
 };
 
-toasts();
+export default toasts;

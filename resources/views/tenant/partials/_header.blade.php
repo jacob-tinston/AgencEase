@@ -123,7 +123,7 @@
                 </div>
                 <hr>
                 <div class="p-5">
-                    <a href="#no-link" class="flex items-center text-normal hover:text-primary">
+                    <a href="{{ route('logout') }}" class="flex items-center text-normal hover:text-primary">
                         <span class="la la-power-off text-2xl leading-none ltr:mr-2 rtl:ml-2"></span>
                         Logout
                     </a>
@@ -134,7 +134,7 @@
 </header>
 
 <!-- Menu Bar -->
-<aside class="menu-bar menu-sticky">
+<aside class="menu-bar menu-sticky menu-wide">
     <div class="menu-items">
         <div class="menu-header hidden">
             <a href="{{ url('/') }}" class="flex items-center mx-8 mt-8">

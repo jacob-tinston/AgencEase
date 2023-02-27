@@ -1,4 +1,5 @@
-// Modal
+import {on, animateCSS, showBackdrop, hideBackdrop} from '../helpers';
+
 const modal = () => {
   const selector = '[data-toggle="modal"]';
 
@@ -39,4 +40,4 @@ const modal = () => {
   });
 };
 
-modal();
+export default modal;
