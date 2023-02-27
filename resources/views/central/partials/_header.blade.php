@@ -2,7 +2,7 @@
 <header class="top-bar">
 
     <!-- Brand -->
-    <span class="brand"><a href="{{ route('home' )}}">{{ config('app.name') }}</a></span>
+    @include('partials._logo')
 
     <nav class="flex items-center ltr:ml-auto rtl:mr-auto">
 

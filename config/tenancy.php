@@ -14,7 +14,7 @@ return [
      * Only relevant if you're using the domain or subdomain identification middleware.
      */
     'central_domains' => [
-        'yeti.test',
+        'agencease.test',
     ],
 
     /**
@@ -22,7 +22,7 @@ return [
      *
      * Only relevant if you're using the domain or subdomain identification middleware.
      */
-    'main_domain' => 'yeti.test',
+    'main_domain' => 'agencease.test',
 
     /**
      * Tenancy bootstrappers are executed when tenancy is initialized.
