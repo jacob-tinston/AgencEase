@@ -5,7 +5,7 @@
     <button class="menu-toggler la la-bars" data-toggle="menu"></button>
 
     <!-- Brand -->
-    @include('partials._logo')
+    @include('tenant.partials._logo')
 
     <!-- Search -->
     <form class="hidden md:block ltr:ml-10 rtl:mr-10">
@@ -55,7 +55,7 @@
             <button class="relative flex items-center h-full ltr:ml-1 rtl:mr-1 px-2 text-2xl leading-none la la-bell"
                 data-toggle="custom-dropdown-menu" data-tippy-arrow="true" data-tippy-placement="bottom-end">
                 <span
-                    class="absolute top-0 right-0 rounded-full border border-primary -mt-1 -mr-1 px-2 leading-tight text-xs font-body text-primary">3</span>
+                    class="absolute top-0 right-0 rounded-full border border-primary -mt-1 -mr-1 px-2 leading-tight text-xs font-body text-primary">0</span>
             </button>
             <div class="custom-dropdown-menu">
                 <div class="flex items-center px-5 py-2">
@@ -107,15 +107,15 @@
 <aside class="menu-bar menu-sticky menu-wide">
     <div class="menu-items">
         <div class="menu-header hidden">
-            <a href="{{ url('/') }}" class="flex items-center mx-8 mt-8">
+            <div class="flex items-center mx-8 mt-8">
                 <span class="avatar w-16 h-16">{{ tenant('initials') }}</span>
                 <div class="ltr:ml-4 rtl:mr-4 ltr:text-left rtl:text-right">
                     <h5>{{ tenant('organization') }}</h5>
                 </div>
-            </a>
+            </div>
             <hr class="mx-8 my-4">
         </div>
-        <a href="{{ url('/') }}" class="link" data-toggle="tooltip-menu" data-tippy-content="Dashboard">
+        <a href="{{ url('/') }}" class="link">
             <span class="icon la la-laptop"></span>
             <span class="title">Dashboard</span>
         </a>

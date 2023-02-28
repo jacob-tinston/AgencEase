@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('central')->group(function () {
     Route::get('/', function () {
-        return view('central.welcome');
+        return view('central.homepage');
     })->name('home');
 
     // Authentication routes

@@ -2,7 +2,7 @@
 <header class="top-bar">
 
     <!-- Brand -->
-    @include('partials._logo')
+    @include('central.partials._logo')
 
     <nav class="flex items-center ltr:ml-auto rtl:mr-auto">
 

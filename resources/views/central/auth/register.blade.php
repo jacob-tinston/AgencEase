@@ -40,7 +40,7 @@
                 <div class="mb-5">
                     <label class="label block mb-2" for="domain">Domain</label>
                     <label class="form-control-addon-within">
-                        <input id="domain" name="domain" class="form-control border-none @error('domain')is-invalid @enderror" value="{{ old('domain') }}" placeholder="john-doe" required autocomplete="domain"
+                        <input id="domain" name="domain" maxlength="63" class="form-control border-none @error('domain')is-invalid @enderror" value="{{ old('domain') }}" placeholder="john-doe" required autocomplete="domain"
                             oninput="this.value = this.value.toLowerCase().trim().replace(/\s+/g, '-');">
                         <span class="flex items-center ltr:pr-4 rtl:pl-4">
                             .{{ config('tenancy.main_domain') }}
