@@ -5,7 +5,9 @@
     <button class="menu-toggler la la-bars" data-toggle="menu"></button>
 
     <!-- Brand -->
-    @include('tenant.partials._logo')
+    <div class="hidden md:block">
+        @include('tenant.partials._logo')
+    </div>
 
     <!-- Search -->
     <form class="hidden md:block ltr:ml-10 rtl:mr-10">
@@ -82,11 +84,11 @@
                 </div>
                 <hr>
                 <div class="p-5">
-                    <a href="#no-link" class="flex items-center text-normal hover:text-primary">
+                    <a href="{{ route('profile') }}" class="flex items-center text-normal hover:text-primary">
                         <span class="la la-user-circle text-2xl leading-none ltr:mr-2 rtl:ml-2"></span>
-                        View Profile
+                        My Profile
                     </a>
-                    <a href="#no-link" class="flex items-center text-normal hover:text-primary mt-5">
+                    <a href="{{ route('change-password') }}" class="flex items-center text-normal hover:text-primary mt-5">
                         <span class="la la-key text-2xl leading-none ltr:mr-2 rtl:ml-2"></span>
                         Change Password
                     </a>

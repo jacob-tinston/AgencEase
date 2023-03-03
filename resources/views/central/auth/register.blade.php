@@ -39,13 +39,12 @@
                 </div>
                 <div class="mb-5">
                     <label class="label block mb-2" for="domain">Domain</label>
-                    <label class="form-control-addon-within">
-                        <input id="domain" name="domain" maxlength="63" class="form-control border-none @error('domain')is-invalid @enderror" value="{{ old('domain') }}" placeholder="john-doe" required autocomplete="domain"
+
+                    <div class="input-group">
+                        <input id="domain" name="domain" maxlength="63" class="form-control input-group-item @error('domain')is-invalid @enderror" value="{{ old('domain') }}" placeholder="john-doe" required autocomplete="domain"
                             oninput="this.value = this.value.toLowerCase().trim().replace(/\s+/g, '-');">
-                        <span class="flex items-center ltr:pr-4 rtl:pl-4">
-                            .{{ config('tenancy.main_domain') }}
-                        </span>
-                    </label>
+                        <div class="input-addon input-addon-append input-group-item">.{{ config('tenancy.main_domain') }}</div>
+                    </div>
                     @error('domain')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

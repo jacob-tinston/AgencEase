@@ -818,6 +818,7 @@ Buttons
   @apply inline-flex items-center rounded-full px-5 py-2 border border-transparent font-bold;
   @apply text-component !important;
   @apply transition-all duration-200 ease-linear;
+  @apply whitespace-nowrap;
 
   &:hover {
     @apply text-component;
