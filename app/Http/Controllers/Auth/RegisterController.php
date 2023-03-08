@@ -14,7 +14,6 @@ class RegisterController extends Controller
 {
     public function show(Request $request)
     {
-        // Get currently authenticated user
         if (auth()->user()) {
             return redirect()->route('login');
         }
@@ -49,7 +48,6 @@ class RegisterController extends Controller
             'is_primary' => true,
         ]);
 
-        // return redirect(tenant_route($domain . '.' . config('tenancy.main_domain'), 'dashboard'));
-        return redirect()->back();
+        return redirect(tenant_route($domain . '.' . config('tenancy.main_domain'), 'dashboard'));
     }
 }

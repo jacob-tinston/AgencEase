@@ -1,4 +1,4 @@
-@extends('central.layouts.main', ['title' => '404 Error - Errors'])
+@extends('central.layouts.main', ['title' => 'Building Admin'])
 
 @section('body')
     <div class="container flex items-center justify-center mt-20 py-10">
