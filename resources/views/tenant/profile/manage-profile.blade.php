@@ -21,7 +21,7 @@
                     <h4 class="mb-4 whitespace-nowrap">Your Avatar</h4>
 
                     <div class="flex flex-col items-center justify-center">
-                        <span class="avatar w-20 h-20 text-4xl">{{ auth()->user()->initials }}</span>
+                        <span class="avatar w-20 h-20 text-4xl">{{ initials(auth()->user()->name) }}</span>
 
                         <div class="mt-4">
                             <button class="btn btn_outlined btn_secondary uppercase">Add Image</button>
@@ -69,7 +69,7 @@
                     <h4 class="mb-4 whitespace-nowrap">Organization Avatar</h4>
 
                     <div class="flex flex-col items-center justify-center">
-                        <span class="avatar w-20 h-20 text-4xl">{{ tenant('initials') }}</span>
+                        <span class="avatar w-20 h-20 text-4xl">{{ initials(tenant('organization')) }}</span>
 
                         <div class="mt-4">
                             <button class="btn btn_outlined btn_secondary uppercase">Add Image</button>
