@@ -17,14 +17,14 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'name' => 'string|max:255',
             'email' => 'string|email|max:255|unique:users',
         ]);
 
-        $data = $request->all();
+        $user = User::find(auth()->user()->id);
 
-        User::whereId(auth()->user()->id)->update([
+        $user->update([
             'name' => $data['name'],
             'email' => $data['email']
         ]);
@@ -34,15 +34,15 @@ class ProfileController extends Controller
 
     public function updateOrganization(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'organization' => 'string|max:255',
         ]);
 
-        $data = $request->all();
+        $tenant = Tenant::find(tenant('id'));
 
-        tenant()->organization = $data['organization'];
-
-        tenant()->save();
+        $tenant->update([
+            'organization' => $data['organization']
+        ]);
         
         return back()->with('success', 'Organization Updated');
     }
@@ -54,18 +54,18 @@ class ProfileController extends Controller
 
     public function updatePassword(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'current_password' => 'required|string|min:8',
             'password' => 'required|string|min:8|confirmed',
         ]);
-
-        $data = $request->all();
 
         if(! Hash::check($data['current_password'], auth()->user()->password)){
             return back()->with("error", "Old Password Doesn't match");
         }
 
-        User::whereId(auth()->user()->id)->update([
+        $user = User::find(auth()->user()->id);
+
+        $user->update([
             'password' => Hash::make($data['password'])
         ]);
 

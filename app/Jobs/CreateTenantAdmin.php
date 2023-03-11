@@ -26,7 +26,7 @@ class CreateTenantAdmin implements ShouldQueue
     public function handle()
     {
         $this->tenant->run(function ($tenant) {
-            User::create(
+            $user = User::create(
                 $tenant->only(['global_id', 'name', 'email', 'password'])
             );
 
@@ -35,6 +35,10 @@ class CreateTenantAdmin implements ShouldQueue
                 'email' => '',
                 'password' => '',
                 'ready' => true,
+            ]);
+
+            $user->update([
+                'name' => 'test',
             ]);
         });
     }

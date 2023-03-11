@@ -18,7 +18,7 @@ if (! function_exists('initials')) {
                 mb_substr(end($words), 0, 1, 'UTF-8'), 
             'UTF-8');
         }
-        return $this->makeInitialsFromSingleWord($name);
+        return makeInitialsFromSingleWord($name);
     }
 
     /**
