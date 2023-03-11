@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\CentralUser;
 use App\Models\Tenant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class RegisterController extends Controller
@@ -46,6 +46,11 @@ class RegisterController extends Controller
         $tenant->domains()->create([
             'domain' => $domain,
             'is_primary' => true,
+        ]);
+
+        Auth::attempt([
+            'email' => $data['email'],
+            'password' => $data['password'],
         ]);
 
         return redirect(tenant_route($domain . '.' . config('tenancy.main_domain'), 'dashboard'));
