@@ -10,6 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Spatie\Permission\Models\Role;
 
 class CreateTenantAdmin implements ShouldQueue
 {
@@ -26,9 +27,13 @@ class CreateTenantAdmin implements ShouldQueue
     public function handle()
     {
         $this->tenant->run(function ($tenant) {
+            Role::create(['name' => 'admin']);
+
             $user = User::create(
                 $tenant->only(['global_id', 'name', 'email', 'password'])
             );
+
+            $user->assignRole('admin');
 
             $tenant->update([
                 'name' => '',
