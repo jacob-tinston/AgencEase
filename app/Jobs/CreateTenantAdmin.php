@@ -36,10 +36,6 @@ class CreateTenantAdmin implements ShouldQueue
                 'password' => '',
                 'ready' => true,
             ]);
-
-            $user->update([
-                'name' => 'test',
-            ]);
         });
     }
 }
