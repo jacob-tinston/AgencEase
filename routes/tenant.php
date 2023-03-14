@@ -28,22 +28,38 @@ Route::middleware('tenant')->group(function () {
     
     Route::middleware('auth')->group(function () {
         // Auth
-        Route::get('/logout', [AuthController::class, 'destroy'])->name('logout');
+        Route::name('auth.')->group(function () {
+            Route::get('/logout', [AuthController::class, 'destroy'])->name('logout');
+        });
 
         // Dashboard
         Route::get('/', function () {
             return redirect()->route('dashboard');
         });
-
         Route::get('/dashboard', function () {
             return view('tenant.dashboard');
         })->name('dashboard');
 
-        // Profile
-        Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
-        Route::post('/profile/update-profile', [ProfileController::class, 'update'])->name('update-profile');
-        Route::post('/profile/update-organization-profile', [ProfileController::class, 'updateOrganization'])->name('update-organization-profile');
-        Route::get('/profile/change-password', [ProfileController::class, 'changePassword'])->name('change-password');
-        Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('update-password');
+        // Settings
+        Route::prefix('settings')->group(function () {
+            // Profile
+            Route::name('profile.')->group(function () {
+                Route::get('/profile', [ProfileController::class, 'show'])->name('manage');
+                Route::post('/profile/update-profile', [ProfileController::class, 'update'])->name('update');
+                Route::get('/profile/change-password', [ProfileController::class, 'changePassword'])->name('manage-password');
+                Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('update-password');
+
+                Route::group(['middleware' => ['can:manage organization']], function () {
+                    Route::post('/profile/update-organization-profile', [ProfileController::class, 'updateOrganization'])->name('update-organization');
+                });
+            });
+
+            // Users
+            Route::name('users.')->group(function () {
+                Route::group(['middleware' => ['can:manage users']], function () {
+                    //
+                });
+            });
+        });
     });
 });

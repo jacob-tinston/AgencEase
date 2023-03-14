@@ -14,7 +14,6 @@ class AuthController extends Controller
 {
     public function show(Request $request)
     {
-        // Get currently authenticated user
         if ($user = $request->user()) {
             return $this->redirectUserToTenantOrShowTenantSelector($user);
         }
@@ -24,8 +23,9 @@ class AuthController extends Controller
 
     public function store(Request $request)
     {
-        // Attempt authentication using the email and password from the request
-        $this->authenticate($request->get('email'), $request->get('password'));
+        if (! $this->authenticate($request->get('email'), $request->get('password'))) {
+            return redirect()->back()->with('error', 'Email or Password Incorrect.');
+        }
 
         return $this->show($request);
     }
@@ -34,7 +34,7 @@ class AuthController extends Controller
     {
         Session::flush();
 
-        return redirect()->route('central-logout');
+        return redirect()->route('auth.central-logout');
     }
 
     public function centralLogout(Request $request)

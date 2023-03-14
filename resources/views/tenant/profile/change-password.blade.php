@@ -11,7 +11,7 @@
     </section>
 
     <div class="flex flex-col gap-y-8 items-center justify-center mt-5">
-        <form action="{{ route('update-password') }}" method="POST" class="card card_row p-6 flex flex-col max-w-4xl">
+        <form action="{{ route('profile.update-password') }}" method="POST" class="card card_row p-6 flex flex-col max-w-4xl">
             @csrf
 
             <h2 class="mb-6">Change Your Password</h2>

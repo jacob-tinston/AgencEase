@@ -7,8 +7,16 @@
                 <h2 class="uppercase">It’s Great To See You!</h2>
                 <h4 class="uppercase">Login Here</h4>
             </div>
-            <form class="card mt-5 p-5 md:p-10" action="/login" method="POST">
+            <form class="card mt-5 p-5 md:p-10" action="{{ route('auth.login-user') }}" method="POST">
                 @csrf
+
+                @if(session('error'))
+                    <div class="alert alert_danger w-fit pr-12 mb-4">
+                        <strong class="uppercase"><bdi>Error!</bdi></strong>
+                        {!! session('error') !!}
+                        <div class="dismiss la la-times" data-dismiss="alert"></div>
+                    </div>
+                @endif
                 
                 <div class="mb-5">
                     <label class="label block mb-2" for="email">Email</label>
@@ -36,8 +44,8 @@
                     @enderror
                 </div>
                 <div class="flex items-center">
-                    @if (Route::has('forgot-password'))
-                        <a href="{{ route('forgot-password') }}" class="text-sm uppercase">Forgot Password?</a>
+                    @if (Route::has('auth.forgot-password'))
+                        <a href="{{ route('auth.forgot-password') }}" class="text-sm uppercase">Forgot Password?</a>
                     @endif
 
                     <button type="submit" class="btn btn_primary ltr:ml-auto rtl:mr-auto uppercase">Login</button>

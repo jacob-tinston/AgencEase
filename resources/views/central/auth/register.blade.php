@@ -7,7 +7,7 @@
                 <h2 class="uppercase">Create Your Account</h2>
                 <h4 class="uppercase">Let's Roll</h4>
             </div>
-            <form class="card mt-5 p-5 md:p-10" action="/register" method="POST">
+            <form class="card mt-5 p-5 md:p-10" action="{{ route('auth.register-user') }}" method="POST">
                 @csrf
 
                 <div class="mb-5">
@@ -79,8 +79,8 @@
                     </label>
                 </div>
                 <div class="flex items-center">
-                    @if (Route::has('login'))
-                        <a href="{{ route('login') }}" class="text-sm uppercase">Already have an account?</a>
+                    @if (Route::has('auth.login'))
+                        <a href="{{ route('auth.login') }}" class="text-sm uppercase">Already have an account?</a>
                     @endif
 
                     <button type="submit" class="btn btn_primary ltr:ml-auto rtl:mr-auto uppercase">Register</button>

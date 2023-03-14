@@ -84,18 +84,18 @@
                 </div>
                 <hr>
                 <div class="p-5">
-                    <a href="{{ route('profile') }}" class="flex items-center text-normal hover:text-primary">
+                    <a href="{{ route('profile.manage') }}" class="flex items-center text-normal hover:text-primary">
                         <span class="la la-user-circle text-2xl leading-none ltr:mr-2 rtl:ml-2"></span>
                         My Profile
                     </a>
-                    <a href="{{ route('change-password') }}" class="flex items-center text-normal hover:text-primary mt-5">
+                    <a href="{{ route('profile.manage-password') }}" class="flex items-center text-normal hover:text-primary mt-5">
                         <span class="la la-key text-2xl leading-none ltr:mr-2 rtl:ml-2"></span>
                         Change Password
                     </a>
                 </div>
                 <hr>
                 <div class="p-5">
-                    <a href="{{ route('logout') }}" class="flex items-center text-normal hover:text-primary">
+                    <a href="{{ route('auth.logout') }}" class="flex items-center text-normal hover:text-primary">
                         <span class="la la-power-off text-2xl leading-none ltr:mr-2 rtl:ml-2"></span>
                         Logout
                     </a>

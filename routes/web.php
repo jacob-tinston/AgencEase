@@ -21,14 +21,17 @@ Route::middleware('central')->group(function () {
         return view('central.homepage');
     })->name('home');
 
-    // Authentication routes
-    Route::get('/register', [RegisterController::class, 'show'])->name('register');
-    Route::post('/register', [RegisterController::class, 'store']);
-    Route::get('/login', [AuthController::class, 'show'])->name('login');
-    Route::post('/login', [AuthController::class, 'store']);
+    // Auth
+    Route::name('auth.')->group(function () {
+        Route::get('/register', [RegisterController::class, 'show'])->name('register');
+        Route::post('/register', [RegisterController::class, 'store'])->name('register-user');
 
-    Route::middleware('auth')->group(function () {
-        Route::get('/redirect-user/{globalUserId}/to-tenant/{tenant}', [AuthController::class, 'redirectUserToTenant'])->name('redirect-user-to-tenant');
-        Route::get('/central-logout', [AuthController::class, 'centralLogout'])->name('central-logout');
+        Route::get('/login', [AuthController::class, 'show'])->name('login');
+        Route::post('/login', [AuthController::class, 'store'])->name('login-user');
+
+        Route::middleware('auth')->group(function () {
+            Route::get('/redirect-user/{globalUserId}/to-tenant/{tenant}', [AuthController::class, 'redirectUserToTenant'])->name('redirect-user-to-tenant');
+            Route::get('/central-logout', [AuthController::class, 'centralLogout'])->name('central-logout');
+        });
     });
 });

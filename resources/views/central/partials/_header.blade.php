@@ -13,8 +13,8 @@
         </label>
 
         <!-- Login -->
-        @if (Route::has('register'))
-            <a href="{{ route('register') }}" class="btn btn_primary uppercase ltr:ml-5 rtl:mr-5">Get Started</a>
+        @if (Route::has('auth.register'))
+            <a href="{{ route('auth.register') }}" class="btn btn_primary uppercase ltr:ml-5 rtl:mr-5">Get Started</a>
         @endif
     </nav>
 </header>
