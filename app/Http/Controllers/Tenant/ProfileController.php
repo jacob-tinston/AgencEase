@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Tenant;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use App\Models\Tenant;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -26,9 +26,9 @@ class ProfileController extends Controller
 
         $user->update([
             'name' => $data['name'],
-            'email' => $data['email']
+            'email' => $data['email'],
         ]);
-        
+
         return back()->with('success', 'Profile Updated');
     }
 
@@ -41,9 +41,9 @@ class ProfileController extends Controller
         $tenant = Tenant::find(tenant('id'));
 
         $tenant->update([
-            'organization' => $data['organization']
+            'organization' => $data['organization'],
         ]);
-        
+
         return back()->with('success', 'Organization Updated');
     }
 
@@ -59,14 +59,14 @@ class ProfileController extends Controller
             'password' => 'required|string|min:8|confirmed',
         ]);
 
-        if(! Hash::check($data['current_password'], auth()->user()->password)){
-            return back()->with("error", "Old Password Doesn't match");
+        if (! Hash::check($data['current_password'], auth()->user()->password)) {
+            return back()->with('error', "Old Password Doesn't match");
         }
 
         $user = User::find(auth()->user()->id);
 
         $user->update([
-            'password' => Hash::make($data['password'])
+            'password' => Hash::make($data['password']),
         ]);
 
         return back()->with('success', 'Password Changed');

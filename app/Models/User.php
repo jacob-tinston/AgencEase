@@ -17,6 +17,7 @@ class User extends Authenticatable implements Syncable
     use HasRoles, ResourceSyncing;
 
     protected $guarded = [];
+
     public $timestamps = false;
 
     protected $fillable = [

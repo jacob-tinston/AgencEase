@@ -52,7 +52,7 @@ class Kernel extends HttpKernel
             'web',
             \Stancl\Tenancy\Middleware\InitializeTenancyBySubdomain::class,
             \Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains::class,
-        ]
+        ],
     ];
 
     /**

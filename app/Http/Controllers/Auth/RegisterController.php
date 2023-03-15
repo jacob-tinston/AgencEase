@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\CentralUser;
 use App\Models\Tenant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,7 +23,7 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         $request->domain = Str::slug($request->domain, '-');
-        
+
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -53,6 +52,6 @@ class RegisterController extends Controller
             'password' => $data['password'],
         ]);
 
-        return redirect(tenant_route($domain . '.' . config('tenancy.main_domain'), 'dashboard'));
+        return redirect(tenant_route($domain.'.'.config('tenancy.main_domain'), 'dashboard'));
     }
 }

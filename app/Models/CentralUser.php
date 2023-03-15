@@ -14,7 +14,9 @@ class CentralUser extends Authenticatable implements SyncMaster
     use ResourceSyncing, CentralConnection;
 
     protected $guarded = [];
+
     public $timestamps = false;
+
     public $table = 'users';
 
     protected $fillable = [

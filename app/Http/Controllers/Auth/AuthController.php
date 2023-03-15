@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Models\CentralUser;
 use App\Models\Tenant;
 use App\Models\User;
-use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
@@ -68,7 +68,7 @@ class AuthController extends Controller
 
         // If $user is not an instance of User, assume $user is the global user ID
         $globalUserId = $user instanceof User ? $user->global_id : $user;
-        $tenantUser = $tenant->run(fn() => User::firstWhere('global_id', $globalUserId));
+        $tenantUser = $tenant->run(fn () => User::firstWhere('global_id', $globalUserId));
 
         return redirect($tenant->impersonationUrl($tenantUser->id));
     }

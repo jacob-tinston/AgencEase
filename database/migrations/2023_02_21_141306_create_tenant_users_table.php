@@ -29,4 +29,4 @@ class CreateTenantUsersTable extends Migration
     {
         Schema::dropIfExists('tenant_users');
     }
-};
+}
