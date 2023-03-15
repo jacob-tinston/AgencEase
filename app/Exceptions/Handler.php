@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Request;
 use Illuminate\View\ViewException;
 use Stancl\Tenancy\Exceptions\TenantDatabaseDoesNotExistException;
 use Throwable;
@@ -46,13 +47,13 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function (Throwable $exception) {
+        $this->renderable(function (Throwable $exception, Request $request) {
             if (
                 ($exception instanceof TenantDatabaseDoesNotExistException) ||
                 (tenant() && (! tenant('ready')) && $exception instanceof QueryException) ||
                 (tenant() && (! tenant('ready')) && $exception instanceof ViewException && $exception->getPrevious() instanceof QueryException)
             ) {
-                return response()->view('errors.building');
+                return response()->view('errors.building', [], 500);
             }
         });
     }

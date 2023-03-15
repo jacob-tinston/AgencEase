@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\Tenant;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -47,11 +46,12 @@ class RegisterController extends Controller
             'is_primary' => true,
         ]);
 
-        Auth::attempt([
-            'email' => $data['email'],
-            'password' => $data['password'],
-        ]);
+        $domain = $domain.'.'.config('tenancy.main_domain');
 
-        return redirect(tenant_route($domain.'.'.config('tenancy.main_domain'), 'dashboard'));
+        // $token = tenancy()->impersonate($tenant, 1, tenant_route($domain, 'dashboard'), 'web')->token;
+
+        // return redirect(tenant_route($domain, 'impersonate', ['token' => $token]));
+
+        return redirect(tenant_route($domain, 'dashboard'));
     }
 }
