@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\CentralUser;
 use App\Models\Tenant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -37,6 +40,12 @@ class RegisterController extends Controller
         $domain = $data['domain'];
         unset($data['domain']);
 
+        Auth::login(
+            CentralUser::create(
+                Arr::only($data, ['global_id', 'name', 'email', 'password'])
+            )
+        );
+
         $tenant = Tenant::create($data + [
             'ready' => false,
         ]);
@@ -47,10 +56,6 @@ class RegisterController extends Controller
         ]);
 
         $domain = $domain.'.'.config('tenancy.main_domain');
-
-        // $token = tenancy()->impersonate($tenant, 1, tenant_route($domain, 'dashboard'), 'web')->token;
-
-        // return redirect(tenant_route($domain, 'impersonate', ['token' => $token]));
 
         return redirect(tenant_route($domain, 'dashboard'));
     }
