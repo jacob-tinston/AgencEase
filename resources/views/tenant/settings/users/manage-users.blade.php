@@ -3,7 +3,7 @@
 @section('workspace')
     <section class="breadcrumb lg:flex items-start">
         <div>
-            <h1>Manage Users</h1>
+            <h1>Manage Your Users</h1>
             <ul>
                 <a href="#">Settings</a>
                 <li class="divider la la-arrow-right"></li>
@@ -31,7 +31,7 @@
                     </div>
                 </div>
 
-                <a href="{{ route('users.invite') }}" class="btn btn_primary uppercase">Add New</a>
+                <a href="{{ route('users.create') }}" class="btn btn_primary uppercase">Add New</a>
             </div>
         </div>
     </section>
@@ -49,9 +49,9 @@
                         </th>
                         <th></th>
                         <th class="ltr:text-left rtl:text-right uppercase">Full Name</th>
-                        <th class="text-center uppercase">Views</th>
-                        <th class="text-center uppercase">Date</th>
+                        <th class="text-center uppercase">Email</th>
                         <th class="text-center uppercase">Role</th>
+                        <th class="text-center uppercase">Status</th>
                         <th class="uppercase"></th>
                     </tr>
                 </thead>
@@ -68,16 +68,18 @@
                                 <span class="avatar">{{ initials($user->name) }}</span>
                             </td>
                             <td class="w-1/3">{{ $user->name }}</td>
-                            <td class="text-center">100</td>
-                            <td class="text-center">December 15, 2019</td>
+                            <td class="text-center">{{ $user->email }}</td>
                             <td class="text-center">
                                 @foreach ($user->roles as $role)
-                                <div class="badge badge_outlined badge_secondary uppercase">{{ $role->name }}</div>
+                                    <span>{{ $role->name }}</span>
                                 @endforeach
+                            </td>
+                            <td class="text-center">
+                                <div class="badge badge_outlined badge_success uppercase">Active</div>
                             </td>
                             <td class="ltr:text-right rtl:text-left whitespace-nowrap">
                                 <div class="inline-flex ltr:ml-auto rtl:mr-auto">
-                                    <a href="#no-link" class="btn btn-icon btn_outlined btn_secondary">
+                                    <a href="{{ route('users.edit', ['id' => $user->id]) }}" class="btn btn-icon btn_outlined btn_secondary">
                                         <span class="la la-pen-fancy"></span>
                                     </a>
                                     <a href="#no-link" class="btn btn-icon btn_outlined btn_danger ltr:ml-2 rtl:mr-2">

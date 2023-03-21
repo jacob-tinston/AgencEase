@@ -59,7 +59,9 @@ Route::middleware('tenant')->group(function () {
             Route::name('users.')->group(function () {
                 Route::group(['middleware' => ['can:manage users']], function () {
                     Route::get('/users', [UserController::class, 'show'])->name('manage');
-                    Route::get('/users/invite', [UserController::class, 'create'])->name('invite');
+                    Route::get('/users/invite', [UserController::class, 'create'])->name('create');
+                    Route::post('/users/invite', [UserController::class, 'store'])->name('invite');
+                    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('edit');
                 });
             });
         });
