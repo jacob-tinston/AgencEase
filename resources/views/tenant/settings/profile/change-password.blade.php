@@ -1,4 +1,4 @@
-@extends('tenant.layouts.app', ['title' => 'Change Password - My Profile'])
+@extends('tenant.layouts.app', ['title' => 'Change Password'])
 
 @section('workspace')
     <section class="breadcrumb">

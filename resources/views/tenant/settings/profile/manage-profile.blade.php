@@ -1,8 +1,8 @@
-@extends('tenant.layouts.app', ['title' => 'Manage - My Profile'])
+@extends('tenant.layouts.app', ['title' => 'My Profile'])
 
 @section('workspace')
     <section class="breadcrumb">
-        <h1>Profile Information</h1>
+        <h1>Manage Profile</h1>
         <ul>
             <a href="#">Settings</a>
             <li class="divider la la-arrow-right"></li>

@@ -12,7 +12,7 @@ class ProfileController extends Controller
 {
     public function show(Request $request)
     {
-        return view('tenant.profile.manage-profile');
+        return view('tenant.settings.profile.manage-profile');
     }
 
     public function update(Request $request)
@@ -49,7 +49,7 @@ class ProfileController extends Controller
 
     public function changePassword(Request $request)
     {
-        return view('tenant.profile.change-password');
+        return view('tenant.settings.profile.change-password');
     }
 
     public function updatePassword(Request $request)

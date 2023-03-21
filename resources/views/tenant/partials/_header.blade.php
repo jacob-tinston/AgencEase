@@ -44,10 +44,13 @@
                         <span class="block la la-cog text-5xl leading-none"></span>
                         <span>Settings</span>
                     </a>
-                    <a href="#no-link" class="p-5 text-normal hover:text-primary">
-                        <span class="block la la-users text-5xl leading-none"></span>
-                        <span>Users</span>
-                    </a>
+
+                    @can('manage users')
+                        <a href="{{ route('users.manage') }}" class="p-5 text-normal hover:text-primary">
+                            <span class="block la la-users text-5xl leading-none"></span>
+                            <span>Users</span>
+                        </a>
+                    @endcan
                 </div>
             </div>
         </div>
