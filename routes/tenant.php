@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Tenant\ProfileController;
+use App\Http\Controllers\Tenant\UserController;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Features\UserImpersonation;
 
@@ -57,7 +58,8 @@ Route::middleware('tenant')->group(function () {
             // Users
             Route::name('users.')->group(function () {
                 Route::group(['middleware' => ['can:manage users']], function () {
-                    //
+                    Route::get('/users', [UserController::class, 'show'])->name('manage');
+                    Route::get('/users/invite', [UserController::class, 'create'])->name('invite');
                 });
             });
         });
