@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\InviteController;
 use App\Http\Controllers\Tenant\ProfileController;
 use App\Http\Controllers\Tenant\UserController;
 use Illuminate\Support\Facades\Route;
@@ -22,10 +23,10 @@ use Stancl\Tenancy\Features\UserImpersonation;
 
 Route::middleware('tenant')->group(function () {
     // Authentication routes
-
     Route::get('/impersonate/{token}', function ($token) {
         return UserImpersonation::makeResponse($token);
     })->name('impersonate');
+    Route::get('/invitation/accept/{token}', [InviteController::class, 'store'])->name('accept-invitation');
 
     Route::middleware('auth')->group(function () {
         // Auth
@@ -59,8 +60,8 @@ Route::middleware('tenant')->group(function () {
             Route::name('users.')->group(function () {
                 Route::group(['middleware' => ['can:manage users']], function () {
                     Route::get('/users', [UserController::class, 'show'])->name('manage');
-                    Route::get('/users/invite', [UserController::class, 'create'])->name('create');
-                    Route::post('/users/invite', [UserController::class, 'store'])->name('invite');
+                    Route::get('/users/invite', [InviteController::class, 'show'])->name('create');
+                    Route::post('/users/invite', [InviteController::class, 'create'])->name('invite');
                     Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('edit');
                 });
             });
