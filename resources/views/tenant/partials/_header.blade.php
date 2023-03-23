@@ -83,7 +83,7 @@
             <div class="custom-dropdown-menu w-64">
                 <div class="p-5">
                     <h5 class="uppercase">{{ auth()->user()->name }}</h5>
-                    <p>Admin</p>
+                    <p>{{ auth()->user()->roles()->first()->name }}</p>
                 </div>
                 <hr>
                 <div class="p-5">

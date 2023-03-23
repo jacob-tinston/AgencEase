@@ -82,7 +82,8 @@
                                     <a href="{{ route('users.edit', ['id' => $user->id]) }}" class="btn btn-icon btn_outlined btn_secondary">
                                         <span class="la la-pen-fancy"></span>
                                     </a>
-                                    <a href="#no-link" class="btn btn-icon btn_outlined btn_danger ltr:ml-2 rtl:mr-2">
+
+                                    <a href="{{ route('users.delete', ['id' => $user->id]) }}" class="btn btn-icon btn_outlined btn_danger ltr:ml-2 rtl:mr-2">
                                         <span class="la la-trash-alt"></span>
                                     </a>
                                 </div>

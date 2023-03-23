@@ -26,7 +26,8 @@ Route::middleware('tenant')->group(function () {
     Route::get('/impersonate/{token}', function ($token) {
         return UserImpersonation::makeResponse($token);
     })->name('impersonate');
-    Route::get('/invitation/accept/{token}', [InviteController::class, 'store'])->name('accept-invitation');
+    Route::get('/invitation/accept/{token}', [InviteController::class, 'show'])->name('accept-invitation');
+    Route::post('/invitation/accept/{token}', [InviteController::class, 'store'])->name('create-user');
 
     Route::middleware('auth')->group(function () {
         // Auth
@@ -63,6 +64,7 @@ Route::middleware('tenant')->group(function () {
                     Route::get('/users/invite', [InviteController::class, 'show'])->name('create');
                     Route::post('/users/invite', [InviteController::class, 'create'])->name('invite');
                     Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('edit');
+                    Route::get('/users/{id}/delete', [UserController::class, 'destroy'])->name('delete');
                 });
             });
         });

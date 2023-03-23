@@ -44,7 +44,7 @@
 
                     <div class="mt-5">
                         <label class="label block mb-2" for="message">Custom Message</label>
-<textarea id="message" name="message" class="form-control @error('message')is-invalid @enderror" rows="5" style="height: 115px;">Hi there!
+<textarea id="message" name="message" class="form-control @error('message')is-invalid @enderror" rows="5" style="height: 200px;">Hi there!
 
 We'd like to invite you to collaborate with us. Please click on the link below to create your account now. 
 

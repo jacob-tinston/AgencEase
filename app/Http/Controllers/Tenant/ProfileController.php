@@ -19,8 +19,14 @@ class ProfileController extends Controller
     {
         $data = $request->validate([
             'name' => 'string|max:255',
-            'email' => 'string|email|max:255|unique:users',
+            'email' => 'string|email|max:255',
         ]);
+
+        if ($request->email !== auth()->user()->email) {
+            $request->validate([
+                'email' => 'unique:users',
+            ]);
+        }
 
         $user = User::find(auth()->user()->id);
 

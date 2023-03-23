@@ -22,4 +22,16 @@ class UserController extends Controller
             return redirect()->route('profile.manage');
         }
     }
+
+    public function destroy($id)
+    {
+        $user = User::find($id);
+
+        if ($user->id == auth()->user()->id || in_array('Super Admin', $user->roles->pluck('name')->toArray())) {
+            return redirect()->back()->with('error', 'Cannot delete this user.');
+        }
+
+        $user->delete();
+        return redirect()->back()->with('success', 'User deleted successfully.');
+    }
 }
