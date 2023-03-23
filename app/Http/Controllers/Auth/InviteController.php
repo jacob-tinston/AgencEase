@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\CentralUser;
-use App\Models\User;
 use App\Http\Controllers\Controller;
-use App\Models\Invite;
 use App\Mail\InviteCreated;
-use Illuminate\Support\Facades\Mail;
+use App\Models\Invite;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Spatie\Permission\Models\Role;
 
@@ -21,19 +20,19 @@ class InviteController extends Controller
             $roles = Role::all()->pluck('name');
 
             return view('tenant.settings.users.invite-user')->with([
-                'roles' => $roles
+                'roles' => $roles,
             ]);
         }
 
         $invite = Invite::where('token', $token)->first();
 
-        if (!$invite || auth()->user()) {
+        if (! $invite || auth()->user()) {
             abort(404);
         }
 
         return view('tenant.settings.users.accept-invitation')->with('token', $token);
     }
-    
+
     public function create(Request $request)
     {
         $request->validate([
@@ -42,20 +41,19 @@ class InviteController extends Controller
 
         do {
             $token = Str::random();
-        }
-        while (Invite::where('token', $token)->first());
-     
+        } while (Invite::where('token', $token)->first());
+
         $invite = Invite::create([
             'role' => $request->role,
             'email' => $request->get('email'),
-            'token' => $token
+            'token' => $token,
         ]);
-     
+
         Mail::to($request->get('email'))->send(new InviteCreated($invite));
 
         return redirect()->route('users.manage')->with('success', 'User Invited Successfully');
     }
-    
+
     public function store(Request $request, $token)
     {
         if (! $invite = Invite::where('token', $token)->first()) {
@@ -69,14 +67,12 @@ class InviteController extends Controller
 
         $data['email'] = $invite->email;
         $data['password'] = Hash::make($data['password']);
-
-        $global_id = CentralUser::where('email', $data['email'])->pluck('global_id')->first();
-        $data['global_id'] = $global_id ?? Str::random(20);
+        $data['global_id'] = Str::random(20);
 
         User::create($data)->assignRole($invite->role);
-     
+
         $invite->delete();
-     
+
         return redirect()->route('dashboard');
     }
 }
