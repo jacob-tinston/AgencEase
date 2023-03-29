@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Mail\InviteCreated;
+use App\Jobs\SendInvite;
 use App\Models\Invite;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 use Spatie\Permission\Models\Role;
 
@@ -49,7 +48,7 @@ class InviteController extends Controller
             'token' => $token,
         ]);
 
-        Mail::to($request->get('email'))->send(new InviteCreated($invite));
+        dispatch(new SendInvite($invite, $request->get('email')));
 
         return redirect()->route('users.manage')->with('success', 'User Invited Successfully');
     }
