@@ -11,6 +11,7 @@ import customFileInput from './components/file-input';
 import fullscreen from './components/fullscreen';
 import {menu, showActivePage} from './components/menu';
 import modal from './components/modal';
+import notifications from './components/notifications';
 import ratingStars from './components/rating-stars';
 import showPassword from './components/show-password';
 import sidebar from './components/sidebar';
@@ -33,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     customFileInput();
     fullscreen();
     menu();
+    notifications();
     showActivePage();
     modal();
     ratingStars();

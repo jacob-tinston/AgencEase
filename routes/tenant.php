@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\InviteController;
 use App\Http\Controllers\Tenant\ProfileController;
 use App\Http\Controllers\Tenant\UserController;
+use App\Http\Controllers\Tenant\NotificationsController;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Features\UserImpersonation;
 
@@ -48,10 +49,8 @@ Route::middleware('tenant')->group(function () {
         Route::prefix('settings')->group(function () {
             // Notifications
             Route::name('notifications.')->group(function () {
-                Route::get('/notifications/clear-all', function() {
-                    auth()->user()->unreadNotifications()->update(['read_at' => now()]);
-                    return redirect()->back();
-                })->name('clear-all');
+                Route::get('/notifications/broadcast', [NotificationsController::class, 'broadcast'])->name('broadcast');
+                Route::get('/notifications/clear-all', [NotificationsController::class, 'clearAll'])->name('clear-all');
             });
 
             // Profile

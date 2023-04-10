@@ -4,22 +4,23 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class Test extends Notification implements ShouldQueue
+class Test extends Notification implements ShouldBroadcast
 {
-    use Queueable;
+    public string $message;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(string $message)
     {
-        //
+        $this->message = $message;
     }
 
     /**
@@ -30,7 +31,7 @@ class Test extends Notification implements ShouldQueue
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['broadcast', 'database'];
     }
 
     /**
@@ -42,7 +43,7 @@ class Test extends Notification implements ShouldQueue
     public function toArray($notifiable)
     {
         return [
-            'text' => 'test'
+            'message' => $this->message
         ];
     }
 
@@ -52,7 +53,7 @@ class Test extends Notification implements ShouldQueue
     public function toBroadcast($notifiable)
     {
         return new BroadcastMessage([
-            'text' => 'test'
+            'message' => $this->message
         ]);
     }
 }

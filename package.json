@@ -1,7 +1,7 @@
 {
-    "name": "yeti-laravel",
+    "name": "AgencEase",
     "version": "3.3.0",
-    "author": "yetithemes",
+    "author": "AgencEase",
     "private": true,
     "scripts": {
         "dev": "vite",

@@ -32,6 +32,3 @@ window.Echo = new Echo({
     wssPort: 6001,
     disableStats: true,
 });
-
-window.Echo.channel('events')
-    .listen('Test', (e) => console.log('Test: ' + e.message));

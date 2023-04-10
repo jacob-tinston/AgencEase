@@ -59,7 +59,7 @@
         <div class="dropdown self-stretch">
             <button class="relative flex items-center h-full ltr:ml-1 rtl:mr-1 px-2 text-2xl leading-none la la-bell"
                 data-toggle="custom-dropdown-menu" data-tippy-arrow="true" data-tippy-placement="bottom-end">
-                <span
+                <span id="notification-count"
                     class="absolute top-0 right-0 rounded-full border border-primary -mt-1 -mr-1 px-2 leading-tight text-xs font-body text-primary">{{ count(auth()->user()->unreadNotifications) }}</span>
             </button>
             <div class="custom-dropdown-menu">
@@ -70,19 +70,21 @@
 
                 <hr>
 
-                @if (count(auth()->user()->unreadNotifications))
-                    @foreach (auth()->user()->unreadNotifications as $notification)
-                        <div class="p-5 hover:bg-primary hover:bg-opacity-5">
-                            <h6 class="uppercase">Heading One</h6>
-                            <p>{{ $notification->data["text"] }}</p>
-                            <small>Today</small>
+                <div id="notification-list">
+                    @if (count(auth()->user()->unreadNotifications))
+                        @foreach (auth()->user()->unreadNotifications as $notification)
+                            <div class="p-5 hover:bg-primary hover:bg-opacity-5">
+                                <h6 class="uppercase">Heading One</h6>
+                                <p>{{ $notification->data["message"] }}</p>
+                                <small>Today</small>
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="p-5">
+                            <p>No notifications.</p>
                         </div>
-                    @endforeach
-                @else
-                    <div class="p-5">
-                        <p>No notifications.</p>
-                    </div>
-                @endif
+                    @endif
+                </div>
             </div>
         </div>
 
