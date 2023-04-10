@@ -30,7 +30,7 @@ return [
             'path' => env('PUSHER_APP_PATH'),
             'capacity' => null,
             'enable_client_messages' => false,
-            'enable_statistics' => env('APP_ENV') == 'production' ? false : true,
+            'enable_statistics' => true,
         ],
     ],
 
@@ -127,7 +127,7 @@ return [
         /*
          * Passphrase with which your local_cert file was encoded.
          */
-        'passphrase' => null,
+        'passphrase' => env('LARAVEL_WEBSOCKETS_SSL_PASSPHRASE', null),
     
         'verify_peer' => false,
     ],
