@@ -40,11 +40,20 @@ Route::middleware('tenant')->group(function () {
             return redirect()->route('dashboard');
         });
         Route::get('/dashboard', function () {
+            // auth()->user()->notify(new \App\Notifications\Test());
             return view('tenant.dashboard');
         })->name('dashboard');
 
         // Settings
         Route::prefix('settings')->group(function () {
+            // Notifications
+            Route::name('notifications.')->group(function () {
+                Route::get('/notifications/clear-all', function() {
+                    auth()->user()->unreadNotifications()->update(['read_at' => now()]);
+                    return redirect()->back();
+                })->name('clear-all');
+            });
+
             // Profile
             Route::name('profile.')->group(function () {
                 Route::get('/profile', [ProfileController::class, 'show'])->name('manage');
