@@ -2,7 +2,7 @@
 <header class="top-bar">
 
     <!-- Menu Toggler -->
-    <button class="menu-toggler la la-bars" data-toggle="menu"></button>
+    <button class="menu-toggler la la-bars" onclick="document.querySelector('.menu-bar').classList.toggle('menu-hidden')"></button>
 
     <!-- Brand -->
     <div class="hidden md:block">
@@ -125,7 +125,7 @@
 <!-- Menu Bar -->
 <aside class="menu-bar menu-sticky menu-wide">
     <div class="menu-items">
-        <div class="menu-header hidden">
+        <div class="menu-header">
             <div class="flex items-center mx-8 mt-8">
                 <span class="avatar w-16 h-16">{{ initials(tenant('organization')) }}</span>
                 <div class="ltr:ml-4 rtl:mr-4 ltr:text-left rtl:text-right">
@@ -134,7 +134,8 @@
             </div>
             <hr class="mx-8 my-4">
         </div>
-        <a href="{{ url('/') }}" class="link">
+
+        <a href="/" class="link">
             <span class="icon la la-laptop"></span>
             <span class="title">Dashboard</span>
         </a>

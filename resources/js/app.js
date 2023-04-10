@@ -46,6 +46,5 @@ import './features/alerts';
 import './features/customizer';
 import './features/dark-mode';
 import './features/fullscreen';
-import './features/menu';
 import './features/show-password';
 import './features/tippy';

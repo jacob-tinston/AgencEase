@@ -20,27 +20,13 @@
             @include('tenant.partials._header')
 
             <!-- Workspace -->
-            <main class="workspace @hasSection('sidebar') workspace_with-sidebar @endif {{ $workspaceClasses ?? '' }}">
+            <main class="workspace">
                 @yield('workspace')
 
                 @if(!isset($footer) or $footer)
                     @include('tenant.partials._footer')
                 @endif
             </main>
-
-            @hasSection('sidebar')
-
-                <!-- Sidebar -->
-                <aside class="sidebar">
-
-                    <!-- Toggler - Mobile -->
-                    <button class="sidebar-toggler la la-ellipsis-v" data-toggle="sidebar"></button>
-
-                    @yield('sidebar')
-
-                </aside>
-
-            @endif
         </div>
 
         <!-- Scripts -->
