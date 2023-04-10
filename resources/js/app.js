@@ -1,4 +1,4 @@
-// import "./bootstrap";
+import "./bootstrap";
 import alerts from './components/alerts';
 import cards from './components/cards';
 import carousel from './components/carousel';
