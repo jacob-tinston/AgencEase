@@ -127,7 +127,7 @@ Custom Checkbox
         &:after {
           @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
           background-color: theme("colors.primary.DEFAULT");
-          mask: url(../images/check.svg) no-repeat 100% 100%;
+          /* mask: url(../images/check.svg) no-repeat 100% 100%; */
           mask-size: cover;
           width: 10px;
           height: 10px;
@@ -141,7 +141,7 @@ Custom Checkbox
       + span {
         &:after {
           background-color: theme("colors.primary.DEFAULT");
-          mask: url(../images/check-partial.svg) no-repeat 100% 100%;
+          /* mask: url(../images/check-partial.svg) no-repeat 100% 100%; */
           mask-size: cover;
         }
       }

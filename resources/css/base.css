@@ -6,7 +6,7 @@ html {
   @apply font-body;
 }
 
-body {
+body, #app {
   @apply relative flex w-full min-h-screen bg-background text-normal text-sm;
 
   &.backdrop-show {

@@ -1,6 +1,6 @@
 import tippy from 'tippy.js';
 
-const customTippy = () => {
+document.addEventListener('DOMContentLoaded', () => {
   // Menu tooltip
   tippy('[data-toggle="tooltip-menu"]', {
     touch: ["hold", 500],
@@ -31,11 +31,11 @@ const customTippy = () => {
     trigger: "click",
     animation: "shift-toward-extreme",
     content: (reference) => {
-      const title = reference.dataset.popoverTitle;
-      const content = reference.dataset.popoverContent;
-      const popover =
-        "<h5>" + title + "</h5>" + '<div class="mt-5">' + content + "</div>";
-      return popover;
+        const title = reference.dataset.popoverTitle;
+        const content = reference.dataset.popoverContent;
+        const popover =
+          "<h5>" + title + "</h5>" + '<div class="mt-5">' + content + "</div>";
+        return popover;
     },
     appendTo: () => document.body,
   });
@@ -50,11 +50,11 @@ const customTippy = () => {
     allowHTML: true,
     animation: "shift-toward-extreme",
     content: (reference) => {
-      let dropdownMenu = reference
-        .closest(".dropdown")
-        .querySelector(".dropdown-menu");
-      dropdownMenu = dropdownMenu.outerHTML;
-      return dropdownMenu;
+        let dropdownMenu = reference
+          .closest(".dropdown")
+          .querySelector(".dropdown-menu");
+        dropdownMenu = dropdownMenu.outerHTML;
+        return dropdownMenu;
     },
     appendTo: () => document.body,
   });
@@ -69,11 +69,11 @@ const customTippy = () => {
     allowHTML: true,
     animation: "shift-toward-extreme",
     content: (reference) => {
-      let dropdownMenu = reference
-        .closest(".dropdown")
-        .querySelector(".custom-dropdown-menu");
-      dropdownMenu = dropdownMenu.outerHTML;
-      return dropdownMenu;
+        let dropdownMenu = reference
+          .closest(".dropdown")
+          .querySelector(".custom-dropdown-menu");
+        dropdownMenu = dropdownMenu.outerHTML;
+        return dropdownMenu;
     },
     appendTo: () => document.body,
   });
@@ -90,16 +90,14 @@ const customTippy = () => {
     allowHTML: true,
     animation: "shift-toward-extreme",
     content: (reference) => {
-      let dropdownMenu = reference
-        .closest(".search-select")
-        .querySelector(".search-select-menu");
-      dropdownMenu = dropdownMenu.outerHTML;
-      return dropdownMenu;
+        let dropdownMenu = reference
+          .closest(".search-select")
+          .querySelector(".search-select-menu");
+        dropdownMenu = dropdownMenu.outerHTML;
+        return dropdownMenu;
     },
     appendTo(reference) {
-      return reference.closest(".search-select");
+        return reference.closest(".search-select");
     },
   });
-};
-
-export default customTippy;
+})

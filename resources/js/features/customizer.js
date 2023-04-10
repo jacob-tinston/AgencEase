@@ -1,7 +1,7 @@
 import {on} from '../helpers';
 
-const customizer = () => {
-    const root = document.documentElement;
+document.addEventListener('DOMContentLoaded', () => {
+  const root = document.documentElement;
 
     const customizer = document.getElementById("customizer");
     const menuBar = document.querySelector(".menu-bar");
@@ -673,6 +673,4 @@ const customizer = () => {
     });
 
     checkSettings();
-};
-
-export default customizer;
+})

@@ -15,9 +15,11 @@
     </head>
 
     <body>
-        @include('central.partials._header')
+        <div id="app">
+            @include('central.partials._header')
     
-        @yield('body')
+            @yield('body')
+        </div>
     
         <!-- Scripts -->
         @vite(['resources/js/app.js'])

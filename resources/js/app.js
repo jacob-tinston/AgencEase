@@ -1,47 +1,51 @@
-import "./bootstrap";
-import alerts from './components/alerts';
-import cards from './components/cards';
-import carousel from './components/carousel';
-import charts from './components/charts';
-import ckeditor from './components/ckeditor';
-import collapse from './components/collapse';
-import customizer from './components/customizer';
-import darkMode from './components/dark-mode';
-import customFileInput from './components/file-input';
-import fullscreen from './components/fullscreen';
-import {menu, showActivePage} from './components/menu';
-import modal from './components/modal';
-import notifications from './components/notifications';
-import ratingStars from './components/rating-stars';
-import showPassword from './components/show-password';
-import sidebar from './components/sidebar';
-import sortable from './components/sortable';
-import tabs from './components/tabs';
-import customTippy from './components/tippy';
-import toasts from './components/toasts';
+/**
+ * First we will load all of this project's JavaScript dependencies which
+ * includes Vue and other libraries. It is a great starting point when
+ * building robust, powerful web applications using Vue and Laravel.
+ */
 
-// import.meta.glob(["../images/**"]);
+import './bootstrap';
+import { createApp } from 'vue';
 
-document.addEventListener('DOMContentLoaded', () => {
-    alerts();
-    cards();
-    carousel();
-    // charts();
-    ckeditor();
-    collapse();
-    customizer();
-    darkMode();
-    customFileInput();
-    fullscreen();
-    menu();
-    notifications();
-    showActivePage();
-    modal();
-    ratingStars();
-    showPassword();
-    sidebar();
-    sortable();
-    tabs();
-    customTippy();
-    toasts();
-})
+/**
+ * Next, we will create a fresh Vue application instance. You may then begin
+ * registering components with the application instance so they are ready
+ * to use in your application's views. An example is included for you.
+ */
+
+const app = createApp({});
+
+// import ExampleComponent from './components/ExampleComponent.vue';
+// app.component('example-component', ExampleComponent);
+
+/**
+ * The following block of code may be used to automatically register your
+ * Vue components. It will recursively scan this directory for the Vue
+ * components and automatically register them with their "basename".
+ *
+ * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
+ */
+
+Object.entries(import.meta.glob('./**/*.vue', { eager: true })).forEach(([path, definition]) => {
+    app.component(path.split('/').pop().replace(/\.\w+$/, ''), definition.default);
+});
+
+/**
+ * We will attach the application instance to a HTML element with
+ * an "id" attribute of "app". This element is included with the "auth"
+ * scaffolding. Otherwise, you will need to add an element yourself.
+ */
+
+app.mount('#app');
+
+/**
+ * Finally, we will import the application features
+ */
+
+import './features/alerts';
+import './features/customizer';
+import './features/dark-mode';
+import './features/fullscreen';
+import './features/menu';
+import './features/show-password';
+import './features/tippy';
