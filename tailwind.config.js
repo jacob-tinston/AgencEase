@@ -1,6 +1,6 @@
 const colors = require("tailwindcss/colors");
 const defaultTheme = require("tailwindcss/defaultTheme");
-const aspectRatio = require("@tailwindcss/aspect-ratio");
+// const aspectRatio = require("@tailwindcss/aspect-ratio");
 
 // Hex To RGB
 const hexToRGB = (h) => {
@@ -35,7 +35,7 @@ const withOpacityValue = (variable) => {
 };
 
 module.exports = {
-  content: ["resources/**/*.{blade.php,js}"],
+  content: ["resources/**/*.{blade.php,js,vue}"],
   darkMode: "class",
   theme: {
     container: {
@@ -409,5 +409,5 @@ module.exports = {
       },
     },
   },
-  plugins: [aspectRatio],
+  // plugins: [aspectRatio],
 };

@@ -20,7 +20,7 @@
 @import "animate.css/animate.css";
 
 /* Glide.js */
-@import "@glidejs/glide/dist/css/glide.core.css";
+/* @import "@glidejs/glide/dist/css/glide.core.css"; */
 
 /* Main */
 @import "tailwindcss/base.css";
