@@ -6,6 +6,7 @@
 
 import './bootstrap';
 import { createApp } from 'vue';
+import VueTippy from 'vue-tippy'
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -14,6 +15,25 @@ import { createApp } from 'vue';
  */
 
 const app = createApp({});
+
+app.use(
+    VueTippy,
+    // optional
+    {
+      directive: 'tippy', // => v-tippy
+      component: 'tippy', // => <tippy/>
+      componentSingleton: 'tippy-singleton', // => <tippy-singleton/>,
+      defaultProps: {
+        theme: "light-border",
+        offset: [0, 8],
+        arrow: true,
+        placement: 'bottom-end',
+        interactive: true,
+        allowHTML: true,
+        animation: "shift-toward-extreme",
+      }, // => Global default options * see all props
+    }
+  )
 
 // import ExampleComponent from './components/ExampleComponent.vue';
 // app.component('example-component', ExampleComponent);
