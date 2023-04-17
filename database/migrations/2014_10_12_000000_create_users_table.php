@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('global_id')->unique();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('avatar')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

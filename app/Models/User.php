@@ -24,6 +24,7 @@ class User extends Authenticatable implements Syncable
         'global_id',
         'name',
         'email',
+        'avatar',
         'password',
     ];
 
@@ -57,6 +58,7 @@ class User extends Authenticatable implements Syncable
             'name',
             'password',
             'email',
+            'avatar',
         ];
     }
 }

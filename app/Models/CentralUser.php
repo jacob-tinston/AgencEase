@@ -23,6 +23,7 @@ class CentralUser extends Authenticatable implements SyncMaster
         'global_id',
         'name',
         'email',
+        'avatar',
         'password',
     ];
 
@@ -67,6 +68,7 @@ class CentralUser extends Authenticatable implements SyncMaster
             'name',
             'password',
             'email',
+            'avatar',
         ];
     }
 }

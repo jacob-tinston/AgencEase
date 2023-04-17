@@ -5,7 +5,7 @@ export const on = (selector, eventType, childSelector, eventHandler) => {
     elements.forEach(element => {
         element.addEventListener(eventType, (eventOnElement) => {
             if (eventOnElement.target.closest(childSelector)) {
-              eventHandler(eventOnElement);
+              eventHandler(eventOnElement, element);
             }
         });
     })
