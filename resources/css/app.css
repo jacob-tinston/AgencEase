@@ -35,9 +35,9 @@
   /* Primary */
   --color-primary: theme("skin.indigo.DEFAULT");
   --color-primary-50: theme("skin.indigo.50");
+  --color-primary-100: theme("skin.indigo.100");
   --color-primary-200: theme("skin.indigo.200");
   --color-primary-300: theme("skin.indigo.300");
-  --color-primary-100: theme("skin.indigo.100");
   --color-primary-400: theme("skin.indigo.400");
   --color-primary-500: theme("skin.indigo.500");
   --color-primary-600: theme("skin.indigo.600");
@@ -46,16 +46,16 @@
   --color-primary-900: theme("skin.indigo.900");
 
   /* Gray */
-  --color-gray-50: theme("skin.gray.50");
-  --color-gray-100: theme("skin.gray.100");
-  --color-gray-200: theme("skin.gray.200");
-  --color-gray-300: theme("skin.gray.300");
-  --color-gray-400: theme("skin.gray.400");
-  --color-gray-500: theme("skin.gray.500");
-  --color-gray-600: theme("skin.gray.600");
-  --color-gray-700: theme("skin.gray.700");
-  --color-gray-800: theme("skin.gray.800");
-  --color-gray-900: theme("skin.gray.900");
+  --color-gray-50: theme("skin.slate.50");
+  --color-gray-100: theme("skin.slate.100");
+  --color-gray-200: theme("skin.slate.200");
+  --color-gray-300: theme("skin.slate.300");
+  --color-gray-400: theme("skin.slate.400");
+  --color-gray-500: theme("skin.slate.500");
+  --color-gray-600: theme("skin.slate.600");
+  --color-gray-700: theme("skin.slate.700");
+  --color-gray-800: theme("skin.slate.800");
+  --color-gray-900: theme("skin.slate.900");
 
   /* Secondary */
   --color-secondary: theme("skin.secondary.DEFAULT");
@@ -74,8 +74,8 @@
   --color-input: theme("skin.white");
 
   /* Fonts */
-  --font-body: "Nunito Sans";
-  --font-heading: "Nunito";
+  --font-body: "Poppins";
+  --font-heading: "Poppins";
 }
 
 .dark {
@@ -91,6 +91,19 @@
   --color-background: var(--color-gray-900);
   --color-foreground: var(--color-gray-800);
   --color-input: var(--color-gray-900);
+}
+
+.gray-pure {
+  --color-gray-50: theme("skin.gray.50");
+  --color-gray-100: theme("skin.gray.100");
+  --color-gray-200: theme("skin.gray.200");
+  --color-gray-300: theme("skin.gray.300");
+  --color-gray-400: theme("skin.gray.400");
+  --color-gray-500: theme("skin.gray.500");
+  --color-gray-600: theme("skin.gray.600");
+  --color-gray-700: theme("skin.gray.700");
+  --color-gray-800: theme("skin.gray.800");
+  --color-gray-900: theme("skin.gray.900");
 }
 
 .gray-slate {
@@ -143,6 +156,21 @@
   --color-gray-700: theme("skin.stone.700");
   --color-gray-800: theme("skin.stone.800");
   --color-gray-900: theme("skin.stone.900");
+}
+
+.theme-sky {
+  /* Primary */
+  --color-primary: theme("skin.sky.DEFAULT");
+  --color-primary-50: theme("skin.sky.50");
+  --color-primary-100: theme("skin.sky.100");
+  --color-primary-200: theme("skin.sky.200");
+  --color-primary-300: theme("skin.sky.300");
+  --color-primary-400: theme("skin.sky.400");
+  --color-primary-500: theme("skin.sky.500");
+  --color-primary-600: theme("skin.sky.600");
+  --color-primary-700: theme("skin.sky.700");
+  --color-primary-800: theme("skin.sky.800");
+  --color-primary-900: theme("skin.sky.900");
 }
 
 .theme-red {
@@ -383,6 +411,11 @@
   --color-primary-700: theme("skin.rose.700");
   --color-primary-800: theme("skin.rose.800");
   --color-primary-900: theme("skin.rose.900");
+}
+
+.font-nunito {
+  --font-heading: "Nunito Sans";
+  --font-body: "Nunito";
 }
 
 .font-montserrat {

@@ -1,6 +1,8 @@
 @extends('tenant.layouts.app', ['title' => 'My Profile'])
 
 @section('workspace')
+    @include('tenant.partials._customizer')
+
     <section class="breadcrumb">
         <h1>Manage Profile</h1>
         <ul>
@@ -107,7 +109,8 @@
 
                 <hr class="my-6">
 
-                <div class="flex justify-end pr-2 mb-5">
+                <div class="flex justify-between items-center pr-2 mb-5">
+                    <a href="#customizer" onclick="document.getElementById('toggle-customizer').click();" class="h-fit">Whitelabel Organization</a>
                     <button class="btn btn_primary uppercase">Save Changes</button>
                 </div>
             </form>

@@ -9,50 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!customizer) return;
 
-    // Menu Types Options
-    const menuTypes = [
-        {
-          id: "default",
-          label: "Default",
-        },
-        {
-          id: "hidden",
-          label: "Hidden",
-        },
-        {
-          id: "icon-only",
-          label: "Icon Only",
-        },
-        {
-          id: "wide",
-          label: "Wide",
-        },
-    ];
-
-    let menuTypesHTML = "";
-
-    menuTypes.forEach((item) => {
-        menuTypesHTML += `
-          <label class="custom-radio">
-            <input
-              type="radio"
-              name="menuType"
-              data-toggle="menu-type"
-              data-value=${item.id}
-            />
-            <span></span>
-            <span>${item.label}</span>
-          </label>`;
-    });
-
-    const menuTypesContainer = document.getElementById("customizerMenuTypes");
-
-    menuTypesContainer.innerHTML = menuTypesHTML;
-
     // Theme Options
     const themes = [
         {
-          id: "default",
+          id: "sky",
           label: "Sky",
           color: "#0284C7",
         },
@@ -107,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
           color: "#2563EB",
         },
         {
-          id: "indigo",
+          id: "default",
           label: "Indigo",
           color: "#4F46E5",
         },
@@ -155,12 +115,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Grays Options
     const grays = [
         {
-          id: "default",
+          id: "pure",
           label: "Pure",
           color: "#4B5563",
         },
         {
-          id: "slate",
+          id: "default",
           label: "Slate",
           color: "#475569",
         },
@@ -198,57 +158,57 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fonts Options
     const fontsList = [
         {
-          id: "default",
-          heading: "Nunito",
+          id: "nunito",
+          heading: "nunito",
           headingLabel: "Nunito",
           body: "Nunito_Sans",
           bodyLabel: "Nunito Sans",
         },
         {
           id: "montserrat",
-          heading: "Montserrat",
+          heading: "montserrat",
           headingLabel: "Montserrat",
           body: "Montserrat",
           bodyLabel: "Montserrat",
         },
         {
           id: "raleway",
-          heading: "Raleway",
+          heading: "raleway",
           headingLabel: "Raleway",
           body: "Raleway",
           bodyLabel: "Raleway",
         },
         {
-          id: "poppins",
-          heading: "Poppins",
+          id: "default",
+          heading: "poppins",
           headingLabel: "Poppins",
           body: "Poppins",
           bodyLabel: "Poppins",
         },
         {
           id: "oswald",
-          heading: "Oswald",
+          heading: "oswald",
           headingLabel: "Oswald",
           body: "Oswald",
           bodyLabel: "Oswald",
         },
         {
           id: "roboto-condensed-roboto",
-          heading: "Roboto Condensed",
+          heading: "roboto-condensed-roboto",
           headingLabel: "Roboto Condensed",
           body: "Roboto",
           bodyLabel: "Roboto",
         },
         {
           id: "inter",
-          heading: "Inter",
+          heading: "inter",
           headingLabel: "Inter",
           body: "Inter",
           bodyLabel: "Inter",
         },
         {
           id: "yantramanav",
-          heading: "Yantramanav",
+          heading: "yantramanav",
           headingLabel: "Yantramanav",
           body: "Yantramanav",
           bodyLabel: "Yantramanav",
@@ -260,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fontsList.forEach((item) => {
         fontsHTML += `
           <button data-toggle="font" data-value=${item.id}>
-            <h5 class="font-['${item.heading}']">${item.headingLabel}</h5>
+            <h5 class="font-${item.heading}">${item.headingLabel}</h5>
             <p class="font-['${item.body}']">${item.bodyLabel}</p>
           </button>`;
     });
@@ -284,21 +244,6 @@ document.addEventListener('DOMContentLoaded', () => {
           darkModeToggler.checked = false;
       }
 
-      // RTL
-      const dir = localStorage.getItem("dir");
-
-      if (dir) {
-          document.dir = dir;
-
-          const rtl = customizer.querySelector('[data-toggle="rtl"]');
-
-          if (dir === "rtl") {
-              rtl.checked = true;
-          } else {
-              rtl.checked = false;
-          }
-      }
-
       // Branded Menu
       let brandedMenu = localStorage.getItem("brandedMenu");
 
@@ -314,21 +259,6 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
           brandedMenuToggler.checked = false;
       }
-
-      // Menu Type
-      let menuType = localStorage.getItem("menuType");
-
-      if (menuType) {
-          menuType = menuType.replace("menu-", "");
-      } else {
-          menuType = "default";
-      }
-
-      const menuTypeInput = customizer.querySelector(
-          "[data-value='" + menuType + "']"
-      );
-
-      menuTypeInput.checked = true;
 
       // Theme
       let theme = localStorage.getItem("theme");
@@ -411,17 +341,6 @@ document.addEventListener('DOMContentLoaded', () => {
       darkModeToggler.click();
     };
 
-    // Toggle RTL
-    const toggleRTL = () => {
-      if (document.dir === "ltr") {
-        document.dir = "rtl";
-        localStorage.setItem("dir", "rtl");
-      } else {
-        document.dir = "ltr";
-        localStorage.setItem("dir", "ltr");
-      }
-    };
-
     // Toggle Branded Menu
     const toggleBrandedMenu = () => {
       if (root.classList.contains("menu_branded")) {
@@ -435,106 +354,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         localStorage.setItem("brandedMenu", "menu_branded");
       }
-    };
-
-    // Switch Menu Type
-    const switchMenuType = (id) => {
-      const openMenu = menuBar.querySelector(".menu-detail.open");
-
-      root.classList.remove("menu-icon-only");
-      menuBar.classList.remove("menu-icon-only");
-
-      root.classList.remove("menu-wide");
-      menuBar.classList.remove("menu-wide");
-      deactivateWide();
-
-      root.classList.remove("menu-hidden");
-      menuBar.classList.remove("menu-hidden");
-
-      switch (id) {
-        case "icon-only":
-          root.classList.add("menu-icon-only");
-          menuBar.classList.add("menu-icon-only");
-          localStorage.setItem("menuType", "menu-icon-only");
-
-          if (openMenu) {
-            showBackdrop(true);
-          }
-
-          break;
-        case "wide":
-          root.classList.add("menu-wide");
-          menuBar.classList.add("menu-wide");
-          localStorage.setItem("menuType", "menu-wide");
-
-          activateWide();
-
-          if (openMenu) {
-            hideBackdrop();
-          }
-
-          break;
-        case "hidden":
-          root.classList.add("menu-hidden");
-          menuBar.classList.add("menu-hidden");
-          localStorage.setItem("menuType", "menu-hidden");
-
-          hideMenuDetail();
-
-          break;
-        default:
-          localStorage.removeItem("menuType");
-
-          if (openMenu) {
-            showBackdrop(true);
-          }
-      }
-    };
-
-    // Activate Wide
-    const activateWide = () => {
-      menuBar.querySelector(".menu-header").classList.remove("hidden");
-
-      menuBar.querySelectorAll(".menu-items .link").forEach((menuLink) => {
-        const target = menuLink.dataset.target;
-
-        const selectedMenu = menuBar.querySelector(".menu-detail" + target);
-        if (selectedMenu) {
-          selectedMenu.classList.add("collapse");
-          menuLink.setAttribute("data-toggle", "collapse");
-          menuLink.after(selectedMenu);
-        }
-      });
-    };
-
-    // Deactivate Wide
-    const deactivateWide = () => {
-      root.classList.remove("menu-wide");
-      menuBar.classList.remove("menu-wide");
-
-      menuBar.querySelector(".menu-header").classList.add("hidden");
-
-      menuBar.querySelectorAll(".menu-items .link").forEach((menuLink) => {
-        const target = menuLink.dataset.target;
-
-        const selectedMenu = menuBar.querySelector(".menu-detail" + target);
-        if (selectedMenu) {
-          selectedMenu.classList.remove("collapse");
-          menuLink.removeAttribute("data-toggle", "collapse");
-          menuItems.after(selectedMenu);
-        }
-      });
-    };
-
-    // Hide Menu Detail
-    const hideMenuDetail = () => {
-      menuBar.querySelectorAll(".menu-detail.open").forEach((menuDetail) => {
-        hideBackdrop();
-
-        if (!menuBar.classList.contains("menu-wide")) {
-          menuDetail.classList.remove("open");
-        }
-      });
     };
 
     // Switch Theme
@@ -640,18 +459,8 @@ document.addEventListener('DOMContentLoaded', () => {
       toggleDarkMode();
     });
 
-    on("#customizer", "click", '[data-toggle="rtl"]', () => {
-      toggleRTL();
-    });
-
     on("#customizer", "click", '[data-toggle="branded-menu"]', () => {
       toggleBrandedMenu();
-    });
-
-    on("#customizer", "click", "[data-toggle='menu-type']", (event) => {
-      const menuTypeToggler = event.target.closest("[data-toggle='menu-type']");
-      const id = menuTypeToggler.dataset.value;
-      switchMenuType(id);
     });
 
     on("#customizer", "click", '[data-toggle="theme"]', (event) => {

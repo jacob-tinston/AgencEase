@@ -1,6 +1,5 @@
 const colors = require("tailwindcss/colors");
 const defaultTheme = require("tailwindcss/defaultTheme");
-// const aspectRatio = require("@tailwindcss/aspect-ratio");
 
 // Hex To RGB
 const hexToRGB = (h) => {

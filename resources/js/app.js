@@ -64,7 +64,6 @@ app.mount('#app');
 
 import './features/alerts';
 import './features/avatar-upload';
-import './features/customizer';
 import './features/dark-mode';
 import './features/fullscreen';
 import './features/show-password';

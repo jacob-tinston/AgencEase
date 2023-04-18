@@ -111,7 +111,3 @@
         </a>
     </div>
 </aside>
-
-@if (auth()->user())
-    @include('tenant.partials._customizer')
-@endif

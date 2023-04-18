@@ -31,6 +31,7 @@
 
         <!-- Scripts -->
         @vite(['resources/js/app.js'])
+        @vite(['resources/js/features/customizer.js'])
 
         @yield('scripts')
     </body>
