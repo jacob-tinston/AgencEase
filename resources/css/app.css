@@ -248,21 +248,6 @@
   --color-primary-900: theme("skin.lime.900");
 }
 
-.theme-green {
-  /* Primary */
-  --color-primary: theme("skin.green.DEFAULT");
-  --color-primary-50: theme("skin.green.50");
-  --color-primary-100: theme("skin.green.100");
-  --color-primary-200: theme("skin.green.200");
-  --color-primary-300: theme("skin.green.300");
-  --color-primary-400: theme("skin.green.400");
-  --color-primary-500: theme("skin.green.500");
-  --color-primary-600: theme("skin.green.600");
-  --color-primary-700: theme("skin.green.700");
-  --color-primary-800: theme("skin.green.800");
-  --color-primary-900: theme("skin.green.900");
-}
-
 .theme-emerald {
   /* Primary */
   --color-primary: theme("skin.emerald.DEFAULT");
@@ -438,7 +423,7 @@
   --font-body: "Oswald";
 }
 
-.font-roboto-condensed-roboto {
+.font-roboto {
   --font-heading: "Roboto Condensed";
   --font-body: "Roboto";
 }

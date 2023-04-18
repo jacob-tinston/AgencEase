@@ -23,7 +23,7 @@
 
         <!-- Dark Mode -->
         <label class="switch switch_outlined" data-toggle="tooltip" data-tippy-content="Toggle Dark Mode">
-            <input id="darkModeToggler" type="checkbox">
+            <input class="dark-mode-toggler" type="checkbox">
             <span></span>
         </label>
 

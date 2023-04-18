@@ -1,7 +1,9 @@
 @extends('tenant.layouts.app', ['title' => 'My Profile'])
 
 @section('workspace')
-    @include('tenant.partials._customizer')
+    @can('manage organization')
+        <Customizer></Customizer>
+    @endcan
 
     <section class="breadcrumb">
         <h1>Manage Profile</h1>

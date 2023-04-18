@@ -2,14 +2,18 @@ import {on} from '../helpers';
 
 document.addEventListener('DOMContentLoaded', () => {
     const root = document.documentElement;
-    const darkModeToggler = document.getElementById("darkModeToggler");
+    const darkModeTogglers = document.querySelectorAll(".dark-mode-toggler");
 
-    if (darkModeToggler) {
+    if (darkModeTogglers) {
         const scheme = localStorage.getItem("scheme");
 
         if (scheme) root.classList.add(scheme);
 
-        if (scheme === "dark") darkModeToggler.checked = "checked";
+        if (scheme === "dark") {
+            darkModeTogglers.forEach(toggler => {
+                toggler.checked = "checked"
+            })
+        };
 
         // Enable Dark Mode
         const enableDarkMode = () => {
@@ -30,8 +34,12 @@ document.addEventListener('DOMContentLoaded', () => {
             return root.classList.contains("dark");
         };
 
-        on("body", "change", "#darkModeToggler", () => {
+        on("body", "change", ".dark-mode-toggler", () => {
             checkDarkMode() ? disableDarkMode() : enableDarkMode();
+            
+            darkModeTogglers.forEach(toggler => {
+                toggler.checked = checkDarkMode();
+            })
         });
     }
 })
