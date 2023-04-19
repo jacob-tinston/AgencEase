@@ -250,6 +250,10 @@ Menu Bar
   }
 
   &.menu_branded {
+    .avatar {
+      @apply text-secondary;
+    }
+
     .menu-header {
       div {
         @apply text-component;
