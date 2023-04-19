@@ -62,6 +62,7 @@ Route::middleware('tenant')->group(function () {
 
                 Route::group(['middleware' => ['can:manage organization']], function () {
                     Route::post('/profile/update-organization-profile', [ProfileController::class, 'updateOrganization'])->name('update-organization');
+                    Route::post('/profile/update-customizer', [ProfileController::class, 'updateCustomizer'])->name('update-customizer');
                 });
             });
 

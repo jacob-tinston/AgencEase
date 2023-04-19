@@ -85,11 +85,13 @@
 
 <script>
     export default {
+        props: ['initialCustomizer'],
+
         data() {
             return {
                 root: document.documentElement,
                 open: false,
-                brandedMenu: false,
+                brandedMenu: this.initialCustomizer.brandedMenu ?? false,
 
                 themes: {
                     "Red": "#DC2626",
@@ -109,7 +111,7 @@
                     "Pink": "#DB2777",
                     "Rose": "#E11D48",
                 },
-                activeTheme: "Indigo",
+                activeTheme: this.initialCustomizer.theme ?? "Indigo",
 
                 grays: {
                     "Pure": "#4B5563",
@@ -118,7 +120,7 @@
                     "Neutral": "#525252",
                     "Stone": "#57534E",
                 },
-                activeGray: "Slate",
+                activeGray: this.initialCustomizer.gray ?? "Slate",
 
                 fonts: {
                     "Nunito": "Nunito Sans",
@@ -130,7 +132,7 @@
                     "Inter": "Inter",
                     "Yantramanav": "Yantramanav",
                 },
-                activeFont: "Poppins",
+                activeFont: this.initialCustomizer.font ?? "Poppins",
             }
         },
 
@@ -154,6 +156,8 @@
                     if (value.startsWith("theme-")) this.root.classList.remove(value);
                 });
                 this.root.classList.add("theme-" + theme.toLowerCase());
+
+                this.updateCustomizer();
             },
 
             toggleGray(gray) {
@@ -163,6 +167,8 @@
                     if (value.startsWith("gray-")) this.root.classList.remove(value);
                 });
                 this.root.classList.add("gray-" + gray.toLowerCase());
+
+                this.updateCustomizer();
             },
 
             toggleFont(font) {
@@ -172,6 +178,18 @@
                     if (value.startsWith("font-")) this.root.classList.remove(value);
                 });
                 this.root.classList.add("font-" + font.toLowerCase());
+
+                this.updateCustomizer();
+            },
+
+            updateCustomizer() {
+                window.axios.post('/settings/profile/update-customizer', {
+                    theme: this.activeTheme,
+                    gray: this.activeGray,
+                    font: this.activeFont,
+                }).catch(error => {
+                    console.error(error);
+                })
             },
         },
     }

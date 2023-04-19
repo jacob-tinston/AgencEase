@@ -88,4 +88,13 @@ class ProfileController extends Controller
 
         return back()->with('success', 'Password Changed');
     }
+
+    public function updateCustomizer(Request $request)
+    {
+        $tenant = Tenant::find(tenant('id'));
+
+        $tenant->update([
+            'customizer' => json_encode($request->all()),
+        ]);
+    }
 }

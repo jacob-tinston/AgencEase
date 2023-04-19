@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" 
+    class="theme-{{ strtolower(json_decode(tenant('customizer'))->theme ?? 'default') }} gray-{{ strtolower(json_decode(tenant('customizer'))->gray ?? 'default') }} font-{{ strtolower(json_decode(tenant('customizer'))->font ?? 'default') }}">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
