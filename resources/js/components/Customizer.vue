@@ -37,7 +37,7 @@
                     <small>Menu will be set to primary color</small>
                 </div>
                 <label class="switch switch_outlined">
-                    <input @click="toggleBrandedMenu" type="checkbox">
+                    <input @click="toggleBrandedMenu" type="checkbox" :checked="this.brandedMenu">
                     <span></span>
                 </label>
             </div>
@@ -91,7 +91,7 @@
             return {
                 root: document.documentElement,
                 open: false,
-                brandedMenu: this.initialCustomizer.brandedMenu ?? false,
+                brandedMenu: this.initialCustomizer.branded_menu ?? false,
 
                 themes: {
                     "Red": "#DC2626",
@@ -147,6 +147,8 @@
                 if (menuBar) {
                     (this.brandedMenu = !this.brandedMenu) ? menuBar.classList.add('menu_branded') : menuBar.classList.remove('menu_branded');
                 }
+
+                this.updateCustomizer();
             },
 
             toggleTheme(theme) {
@@ -184,6 +186,7 @@
 
             updateCustomizer() {
                 window.axios.post('/settings/profile/update-customizer', {
+                    branded_menu: this.brandedMenu,
                     theme: this.activeTheme,
                     gray: this.activeGray,
                     font: this.activeFont,

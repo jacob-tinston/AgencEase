@@ -93,7 +93,7 @@
 </header>
 
 <!-- Menu Bar -->
-<aside class="menu-bar menu-sticky menu-wide">
+<aside class="menu-bar menu-sticky menu-wide {{ json_decode(tenant('customizer'))->branded_menu ? 'menu_branded' : '' }}">
     <div class="menu-items">
         <div class="menu-header">
             <div class="flex items-center mx-8 mt-8">
