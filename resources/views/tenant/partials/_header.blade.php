@@ -110,9 +110,11 @@
             <span class="title">Dashboard</span>
         </a>
 
-        <a href="{{ route('clients.manage') }}" class="link">
-            <span class="icon la la-users"></span>
-            <span class="title">Clients</span>
-        </a>
+        @can('view clients')
+            <a href="{{ route('clients.manage') }}" class="link">
+                <span class="icon la la-users"></span>
+                <span class="title">Clients</span>
+            </a>
+        @endcan
     </div>
 </aside>

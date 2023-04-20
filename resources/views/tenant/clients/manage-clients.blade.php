@@ -36,6 +36,49 @@
         </div>
     </section>
 
+    <div class="grid lg:grid-cols-4 gap-5 mt-5">
+        <div class="card card_column">
+            <div class="image">
+                <div class="aspect-w-4 aspect-h-3">
+                </div>
+                <label class="custom-checkbox absolute top-0 ltr:left-0 rtl:right-0 mt-2 ltr:ml-2 rtl:mr-2">
+                    <input type="checkbox" data-toggle="cardSelection">
+                    <span></span>
+                </label>
+                <div class="badge badge_outlined badge_secondary uppercase absolute top-0 ltr:right-0 rtl:left-0 mt-2 ltr:mr-2 rtl:ml-2">
+                    Draft</div>
+            </div>
+            <div class="header">
+                <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h5>
+            </div>
+            <div class="body">
+                <h6 class="uppercase">Views</h6>
+                <p>100</p>
+                <h6 class="uppercase mt-4">Date Created</h6>
+                <p>December 15, 2019</p>
+            </div>
+            <div class="actions">
+                <a href="#no-link" class="btn btn-icon btn_outlined btn_secondary">
+                    <span class="la la-pen-fancy"></span>
+                </a>
+                <a href="#no-link" class="btn btn-icon btn_outlined btn_danger ltr:ml-2 rtl:mr-2">
+                    <span class="la la-trash-alt"></span>
+                </a>
+                <div class="dropdown ltr:ml-auto rtl:mr-auto ltr:-mr-3 rtl:-ml-3">
+                    <button data-toggle="dropdown-menu" aria-expanded="false">
+                        <span class="la la-ellipsis-v text-4xl leading-none"></span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="#no-link">Dropdown Action</a>
+                        <a href="#no-link">Link</a>
+                        <hr>
+                        <a href="#no-link">Something Else</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="mt-5">
         <!-- Pagination -->
         <div class="card lg:flex">

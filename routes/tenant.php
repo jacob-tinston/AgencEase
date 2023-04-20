@@ -88,12 +88,15 @@ Route::middleware('tenant')->group(function () {
 
         // CRM
         Route::group([
-            'middleware' => ['can:manage clients'],
+            'middleware' => ['can:view clients'],
             'prefix' => '/clients',
             'as' => 'clients.',
         ], function () {
             Route::get('/', [CRMController::class, 'show'])->name('manage');
-            Route::get('/create', [CRMController::class, 'show'])->name('create');
+
+            Route::middleware(['can:manage clients'])->group(function () {
+                Route::get('/create', [CRMController::class, 'show'])->name('create');
+            });
         });
     });
 });

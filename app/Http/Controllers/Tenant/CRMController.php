@@ -10,10 +10,10 @@ class CRMController extends Controller
 {
     public function show(Request $request)
     {
-        $users = User::all();
+        $clients = User::all();
 
         return view('tenant.clients.manage-clients')->with([
-            'users' => $users,
+            'clients' => $clients,
         ]);
     }
 }
