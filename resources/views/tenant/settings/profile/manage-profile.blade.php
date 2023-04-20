@@ -2,7 +2,7 @@
 
 @section('workspace')
     @can('manage organization')
-        <customizer :initial-customizer="{{ tenant('customizer') }}"></customizer>
+        <customizer :initial-customizer="{{ tenant('customizer') ?? '[]' }}"></customizer>
     @endcan
 
     <section class="breadcrumb">

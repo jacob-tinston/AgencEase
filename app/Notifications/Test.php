@@ -2,11 +2,8 @@
 
 namespace App\Notifications;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Notifications\Messages\BroadcastMessage;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class Test extends Notification implements ShouldBroadcast
@@ -43,7 +40,7 @@ class Test extends Notification implements ShouldBroadcast
     public function toArray($notifiable)
     {
         return [
-            'message' => $this->message
+            'message' => $this->message,
         ];
     }
 
@@ -53,7 +50,7 @@ class Test extends Notification implements ShouldBroadcast
     public function toBroadcast($notifiable)
     {
         return new BroadcastMessage([
-            'message' => $this->message
+            'message' => $this->message,
         ]);
     }
 }

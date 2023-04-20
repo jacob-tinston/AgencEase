@@ -117,18 +117,18 @@ return [
          * in a separate file specified by local_pk.
          */
         'local_cert' => '/Users/jacob/.config/valet/Certificates/'.env('APP_DOMAIN').'.crt',
-    
+
         /*
          * Path to local private key file on filesystem in case of separate files for
          * certificate (local_cert) and private key.
          */
         'local_pk' => '/Users/jacob/.config/valet/Certificates/'.env('APP_DOMAIN').'.key',
-    
+
         /*
          * Passphrase with which your local_cert file was encoded.
          */
         'passphrase' => env('LARAVEL_WEBSOCKETS_SSL_PASSPHRASE', null),
-    
+
         'verify_peer' => false,
     ],
 

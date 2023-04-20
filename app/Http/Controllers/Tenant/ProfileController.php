@@ -7,7 +7,6 @@ use App\Models\Tenant;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProfileController extends Controller
@@ -22,7 +21,7 @@ class ProfileController extends Controller
         $data = $request->validate([
             'name' => 'string|max:255',
             'email' => 'string|email|max:255',
-            'avatar' => 'mimes:jpg,jpeg,png'
+            'avatar' => 'mimes:jpg,jpeg,png',
         ]);
 
         $avatar = $request->file('avatar');
@@ -34,7 +33,7 @@ class ProfileController extends Controller
         }
 
         if ($request->hasFile('avatar') && $avatar->isValid()) {
-            $fileName = Str::random() . '.' . $avatar->extension();
+            $fileName = Str::random().'.'.$avatar->extension();
             $avatarPath = $request->avatar->storeAs('app/public/media', $fileName);
         }
 
@@ -43,7 +42,7 @@ class ProfileController extends Controller
         $user->update([
             'name' => $data['name'],
             'email' => $data['email'],
-            'avatar' => $avatarPath ?? null
+            'avatar' => $avatarPath ?? null,
         ]);
 
         return back()->with('success', 'Profile Updated');

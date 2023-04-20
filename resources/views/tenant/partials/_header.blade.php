@@ -93,7 +93,7 @@
 </header>
 
 <!-- Menu Bar -->
-<aside class="menu-bar menu-sticky menu-wide {{ json_decode(tenant('customizer'))->branded_menu ? 'menu_branded' : '' }}">
+<aside class="menu-bar menu-sticky menu-wide @if(tenant('customizer')){{ json_decode(tenant('customizer'))->branded_menu ? 'menu_branded' : '' }}@endif">
     <div class="menu-items">
         <div class="menu-header">
             <div class="flex items-center mx-8 mt-8">
@@ -105,9 +105,14 @@
             <hr class="mx-8 my-4">
         </div>
 
-        <a href="/" class="link">
+        <a href="{{ route('dashboard') }}" class="link">
             <span class="icon la la-laptop"></span>
             <span class="title">Dashboard</span>
+        </a>
+
+        <a href="{{ route('clients.manage') }}" class="link">
+            <span class="icon la la-users"></span>
+            <span class="title">Clients</span>
         </a>
     </div>
 </aside>

@@ -20,15 +20,22 @@ class RolesAndPermissionsSeeder extends Seeder
 
         // Create Permissions
         Permission::create(['name' => 'manage organization']);
+
+        Permission::create(['name' => 'view users']);
         Permission::create(['name' => 'manage users']);
+
+        Permission::create(['name' => 'view clients']);
+        Permission::create(['name' => 'manage clients']);
 
         // Create Roles
         $superAdmin = Role::create(['name' => 'Super Admin']);
         $admin = Role::create(['name' => 'Admin']);
         $user = Role::create(['name' => 'User']);
+        $client = Role::create(['name' => 'Client']);
 
         // Give Permissions to Roles
         $superAdmin->givePermissionTo(Permission::all());
-        $admin->givePermissionTo(['manage users']);
+        $admin->givePermissionTo(Permission::all()->where('name', '!=', 'manage organization'));
+        $user->givePermissionTo(['view clients']);
     }
 }

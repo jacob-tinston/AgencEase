@@ -3,7 +3,7 @@
 @section('workspace')
     <section class="breadcrumb lg:flex items-start">
         <div>
-            <h1>Manage Your Users</h1>
+            <h1>Manage Users</h1>
             <ul>
                 <a href="#">Settings</a>
                 <li class="divider la la-arrow-right"></li>

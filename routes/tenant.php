@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\InviteController;
+use App\Http\Controllers\Tenant\CRMController;
+use App\Http\Controllers\Tenant\NotificationsController;
 use App\Http\Controllers\Tenant\ProfileController;
 use App\Http\Controllers\Tenant\UserController;
-use App\Http\Controllers\Tenant\NotificationsController;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Features\UserImpersonation;
 
@@ -41,41 +42,58 @@ Route::middleware('tenant')->group(function () {
             return redirect()->route('dashboard');
         });
         Route::get('/dashboard', function () {
-            // auth()->user()->notify(new \App\Notifications\Test());
             return view('tenant.dashboard');
         })->name('dashboard');
 
         // Settings
         Route::prefix('settings')->group(function () {
             // Notifications
-            Route::name('notifications.')->group(function () {
-                Route::get('/notifications/broadcast', [NotificationsController::class, 'broadcast'])->name('broadcast');
-                Route::get('/notifications/clear-all', [NotificationsController::class, 'clearAll'])->name('clear-all');
+            Route::group([
+                'prefix' => '/notifications',
+                'as' => 'notifications.',
+            ], function () {
+                Route::get('/broadcast', [NotificationsController::class, 'broadcast'])->name('broadcast');
+                Route::get('/clear-all', [NotificationsController::class, 'clearAll'])->name('clear-all');
             });
 
             // Profile
-            Route::name('profile.')->group(function () {
-                Route::get('/profile', [ProfileController::class, 'show'])->name('manage');
-                Route::post('/profile/update-profile', [ProfileController::class, 'update'])->name('update');
-                Route::get('/profile/change-password', [ProfileController::class, 'changePassword'])->name('manage-password');
-                Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('update-password');
+            Route::group([
+                'prefix' => '/profile',
+                'as' => 'profile.',
+            ], function () {
+                Route::get('/', [ProfileController::class, 'show'])->name('manage');
+                Route::post('/update-profile', [ProfileController::class, 'update'])->name('update');
+                Route::get('/change-password', [ProfileController::class, 'changePassword'])->name('manage-password');
+                Route::post('/update-password', [ProfileController::class, 'updatePassword'])->name('update-password');
 
-                Route::group(['middleware' => ['can:manage organization']], function () {
-                    Route::post('/profile/update-organization-profile', [ProfileController::class, 'updateOrganization'])->name('update-organization');
-                    Route::post('/profile/update-customizer', [ProfileController::class, 'updateCustomizer'])->name('update-customizer');
+                Route::middleware(['can:manage organization'])->group(function () {
+                    Route::post('/update-organization-profile', [ProfileController::class, 'updateOrganization'])->name('update-organization');
+                    Route::post('/update-customizer', [ProfileController::class, 'updateCustomizer'])->name('update-customizer');
                 });
             });
 
             // Users
-            Route::name('users.')->group(function () {
-                Route::group(['middleware' => ['can:manage users']], function () {
-                    Route::get('/users', [UserController::class, 'show'])->name('manage');
-                    Route::get('/users/invite', [InviteController::class, 'show'])->name('create');
-                    Route::post('/users/invite', [InviteController::class, 'create'])->name('invite');
-                    Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('edit');
-                    Route::get('/users/{id}/delete', [UserController::class, 'destroy'])->name('delete');
-                });
+            Route::group([
+                'middleware' => ['can:manage users'],
+                'prefix' => '/users',
+                'as' => 'users.',
+            ], function () {
+                Route::get('/', [UserController::class, 'show'])->name('manage');
+                Route::get('/invite', [InviteController::class, 'show'])->name('create');
+                Route::post('/invite', [InviteController::class, 'create'])->name('invite');
+                Route::get('/{id}/edit', [UserController::class, 'edit'])->name('edit');
+                Route::get('/{id}/delete', [UserController::class, 'destroy'])->name('delete');
             });
+        });
+
+        // CRM
+        Route::group([
+            'middleware' => ['can:manage clients'],
+            'prefix' => '/clients',
+            'as' => 'clients.',
+        ], function () {
+            Route::get('/', [CRMController::class, 'show'])->name('manage');
+            Route::get('/create', [CRMController::class, 'show'])->name('create');
         });
     });
 });
