@@ -95,7 +95,8 @@ Route::middleware('tenant')->group(function () {
             Route::get('/', [CRMController::class, 'show'])->name('manage');
 
             Route::middleware(['can:manage clients'])->group(function () {
-                Route::get('/create', [CRMController::class, 'show'])->name('create');
+                Route::get('/create', [CRMController::class, 'create'])->name('create');
+                Route::post('/create', [CRMController::class, 'store'])->name('store');
             });
         });
     });
