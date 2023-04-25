@@ -6,7 +6,7 @@
         <ul>
             <p>Apps</p>
             <li class="divider la la-arrow-right"></li>
-            <a href="{{ route('clients.manage') }}">Clients</a>
+            <a href="{{ route('clients.index') }}">Clients</a>
             <li class="divider la la-arrow-right"></li>
             <li>Create Client</li>
         </ul>

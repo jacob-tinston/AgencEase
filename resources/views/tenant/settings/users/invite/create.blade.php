@@ -6,14 +6,14 @@
         <ul>
             <a href="#">Settings</a>
             <li class="divider la la-arrow-right"></li>
-            <a href="{{ route('users.manage') }}">Users</a>
+            <a href="{{ route('users.index') }}">Users</a>
             <li class="divider la la-arrow-right"></li>
             <li>Invite User</li>
         </ul>
     </section>
 
     <div class="flex flex-col gap-y-8 items-center justify-center mt-5">
-        <form action="{{ route('users.invite') }}" method="POST" class="card card_row p-6 flex flex-col max-w-4xl">
+        <form action="{{ route('users.invite.store') }}" method="POST" class="card card_row p-6 flex flex-col max-w-4xl">
             @csrf
 
             <h2 class="mb-6">Invite a New User</h2>

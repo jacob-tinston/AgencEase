@@ -85,7 +85,7 @@
 
 <script>
     export default {
-        props: ['initialCustomizer'],
+        props: ['initialCustomizer', 'updateRoute'],
 
         data() {
             return {
@@ -185,7 +185,7 @@
             },
 
             updateCustomizer() {
-                window.axios.post('/settings/profile/update-customizer', {
+                window.axios.post(this.updateRoute, {
                     branded_menu: this.brandedMenu,
                     theme: this.activeTheme,
                     gray: this.activeGray,

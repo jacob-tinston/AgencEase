@@ -2,7 +2,7 @@
 
 @section('workspace')
     @can('manage organization')
-        <customizer :initial-customizer="{{ tenant('customizer') ?? '[]' }}"></customizer>
+        <customizer :initial-customizer="{{ tenant('customizer') ?? '[]' }}" :update-route="'{{ route('organization.update-customizer') }}'"></customizer>
     @endcan
 
     <section class="breadcrumb">
@@ -71,7 +71,7 @@
         </form>
 
         @can('manage organization')
-            <form action="{{ route('profile.update-organization') }}" method="POST" enctype="multipart/form-data" class="card card_row p-6 flex flex-col max-w-5xl">
+            <form action="{{ route('organization.update') }}" method="POST" enctype="multipart/form-data" class="card card_row p-6 flex flex-col max-w-5xl">
                 @csrf
 
                 <h2 class="mb-6">Organization Profile</h2>

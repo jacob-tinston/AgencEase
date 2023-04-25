@@ -3,23 +3,23 @@
 namespace App\Http\Controllers\Tenant;
 
 use App\Http\Controllers\Controller;
-use App\Models\Central\Tenant\Client;
+use App\Models\Tenant\Client;
 use Illuminate\Http\Request;
 
-class CRMController extends Controller
+class ClientController extends Controller
 {
-    public function show(Request $request)
+    public function index(Request $request)
     {
         $clients = Client::all();
 
-        return view('tenant.clients.manage-clients')->with([
+        return view('tenant.clients.index')->with([
             'clients' => $clients,
         ]);
     }
 
     public function create(Request $request)
     {
-        return view('tenant.clients.create-client');
+        return view('tenant.clients.create');
     }
 
     public function store(Request $request)
@@ -30,10 +30,8 @@ class CRMController extends Controller
             'type' => 'required|string',
         ]);
 
-        // dump($data['type']);
-
         Client::create($data);
 
-        return redirect()->route('clients.manage')->with('success', 'Client Created Successfully');
+        return redirect()->route('clients.index')->with('success', 'Client Created Successfully');
     }
 }

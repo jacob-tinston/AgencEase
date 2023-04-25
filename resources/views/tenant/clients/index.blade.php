@@ -1,4 +1,4 @@
-@extends('tenant.layouts.app', ['title' => 'Users'])
+@extends('tenant.layouts.app', ['title' => 'Clients'])
 
 @section('workspace')
     <section class="breadcrumb lg:flex items-start">

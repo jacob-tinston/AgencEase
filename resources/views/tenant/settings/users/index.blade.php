@@ -31,7 +31,7 @@
                     </div>
                 </div>
 
-                <a href="{{ route('users.create') }}" class="btn btn_primary uppercase">Add New</a>
+                <a href="{{ route('users.invite.create') }}" class="btn btn_primary uppercase">Add New</a>
             </div>
         </div>
     </section>

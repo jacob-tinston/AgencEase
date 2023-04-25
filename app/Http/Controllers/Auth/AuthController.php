@@ -9,10 +9,11 @@ use App\Models\Tenant\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Stancl\Tenancy\Features\UserImpersonation;
 
 class AuthController extends Controller
 {
-    public function show(Request $request)
+    public function index(Request $request)
     {
         if ($user = $request->user()) {
             return $this->redirectUserToTenantOrShowTenantSelector($user);
@@ -27,7 +28,7 @@ class AuthController extends Controller
             return redirect()->back()->with('error', 'Email or Password Incorrect.');
         }
 
-        return $this->show($request);
+        return $this->index($request);
     }
 
     public function destroy(Request $request)
@@ -95,5 +96,10 @@ class AuthController extends Controller
         }
 
         return $this->redirectUserToTenant($user->global_id, $tenant);
+    }
+
+    public function impersonate($token)
+    {
+        return UserImpersonation::makeResponse($token);
     }
 }

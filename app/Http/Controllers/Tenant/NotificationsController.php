@@ -6,15 +6,11 @@ use App\Http\Controllers\Controller;
 
 class NotificationsController extends Controller
 {
-    public function broadcast()
+    public function destroy($id = null)
     {
-        auth()->user()->notify(new \App\Notifications\Test('Testing'));
-
-    }
-
-    public function clearAll()
-    {
-        auth()->user()->unreadNotifications()->update(['read_at' => now()]);
+        if (! $id) {
+            auth()->user()->unreadNotifications()->update(['read_at' => now()]);
+        }
 
         return redirect()->back();
     }

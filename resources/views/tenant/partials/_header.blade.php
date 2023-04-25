@@ -46,7 +46,7 @@
                     </a>
 
                     @can('manage users')
-                        <a href="{{ route('users.manage') }}" class="p-5 text-normal hover:text-primary">
+                        <a href="{{ route('users.index') }}" class="p-5 text-normal hover:text-primary">
                             <span class="block la la-users text-5xl leading-none"></span>
                             <span>Users</span>
                         </a>
@@ -56,7 +56,7 @@
         </div>
 
         <!-- Notifications -->
-        <notification-list :user-id="{{ auth()->user()->id }}" :initial-notifications="{{ auth()->user()->unreadNotifications }}" :clear-all-route="'{{ route('notifications.clear-all') }}'"></notification-list>
+        <notification-list :user-id="{{ auth()->user()->id }}" :initial-notifications="{{ auth()->user()->unreadNotifications }}" :clear-all-route="'{{ route('notifications.destroy') }}'"></notification-list>
 
         <!-- User Menu -->
         <div class="dropdown">
@@ -71,11 +71,11 @@
                 </div>
                 <hr>
                 <div class="p-5">
-                    <a href="{{ route('profile.manage') }}" class="flex items-center text-normal hover:text-primary">
+                    <a href="{{ route('profile.edit') }}" class="flex items-center text-normal hover:text-primary">
                         <span class="la la-user-circle text-2xl leading-none ltr:mr-2 rtl:ml-2"></span>
                         My Profile
                     </a>
-                    <a href="{{ route('profile.manage-password') }}" class="flex items-center text-normal hover:text-primary mt-5">
+                    <a href="{{ route('profile.edit-password') }}" class="flex items-center text-normal hover:text-primary mt-5">
                         <span class="la la-key text-2xl leading-none ltr:mr-2 rtl:ml-2"></span>
                         Change Password
                     </a>
@@ -111,7 +111,7 @@
         </a>
 
         @can('view clients')
-            <a href="{{ route('clients.manage') }}" class="link">
+            <a href="{{ route('clients.index') }}" class="link">
                 <span class="icon la la-users"></span>
                 <span class="title">Clients</span>
             </a>

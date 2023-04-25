@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Central\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,16 +17,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('central')->group(function () {
-    Route::get('/', function () {
-        return view('central.homepage');
-    })->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
 
     // Auth
     Route::name('auth.')->group(function () {
-        Route::get('/register', [RegisterController::class, 'show'])->name('register');
+        Route::get('/register', [RegisterController::class, 'index'])->name('register');
         Route::post('/register', [RegisterController::class, 'store'])->name('register-user');
 
-        Route::get('/login', [AuthController::class, 'show'])->name('login');
+        Route::get('/login', [AuthController::class, 'index'])->name('login');
         Route::post('/login', [AuthController::class, 'store'])->name('login-user');
 
         Route::middleware('auth')->group(function () {

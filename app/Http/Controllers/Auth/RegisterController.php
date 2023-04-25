@@ -13,7 +13,7 @@ use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
-    public function show(Request $request)
+    public function index(Request $request)
     {
         if (auth()->user()) {
             return redirect()->route('auth.login');
