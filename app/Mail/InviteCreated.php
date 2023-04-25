@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Models\Invite;
+use App\Models\Central\Tenant\Invite;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Address;

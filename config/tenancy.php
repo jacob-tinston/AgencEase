@@ -3,10 +3,10 @@
 declare(strict_types=1);
 
 return [
-    'tenant_model' => \App\Models\Tenant::class,
+    'tenant_model' => \App\Models\Central\Tenant::class,
+    '_model' => \App\Models\Central\Tenant::class,
     'id_generator' => Stancl\Tenancy\UUIDGenerator::class,
-
-    'domain_model' => \App\Models\Domain::class,
+    'domain_model' => \App\Models\Central\Domain::class,
 
     /**
      * The list of domains hosting your central app.
@@ -54,7 +54,7 @@ return [
          * Tenant database names are created like this:
          * prefix + tenant_id + suffix.
          */
-        'prefix' => 'tenant_',
+        'prefix' => 'org_',
         'suffix' => '',
 
         /**

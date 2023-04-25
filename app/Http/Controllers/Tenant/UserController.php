@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Tenant;
 
 use App\Http\Controllers\Controller;
-use App\Models\CentralUser;
-use App\Models\User;
+use App\Models\Central\CentralUser;
+use App\Models\Tenant\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller

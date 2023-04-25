@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Central;
 
+use App\Models\Tenant\User;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Stancl\Tenancy\Contracts\SyncMaster;
@@ -13,11 +14,9 @@ class CentralUser extends Authenticatable implements SyncMaster
 {
     use ResourceSyncing, CentralConnection;
 
-    protected $guarded = [];
+    public $table = 'users';
 
     public $timestamps = false;
-
-    public $table = 'users';
 
     protected $fillable = [
         'global_id',
@@ -30,10 +29,6 @@ class CentralUser extends Authenticatable implements SyncMaster
     protected $hidden = [
         'password',
         'remember_token',
-    ];
-
-    protected $casts = [
-        'email_verified_at' => 'datetime',
     ];
 
     public function tenants(): BelongsToMany
@@ -64,11 +59,6 @@ class CentralUser extends Authenticatable implements SyncMaster
 
     public function getSyncedAttributeNames(): array
     {
-        return [
-            'name',
-            'password',
-            'email',
-            'avatar',
-        ];
+        return $this->fillable;
     }
 }

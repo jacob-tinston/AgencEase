@@ -2,8 +2,8 @@
 
 namespace App\Jobs;
 
-use App\Models\Tenant;
-use App\Models\User;
+use App\Models\Central\Tenant;
+use App\Models\Tenant\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;

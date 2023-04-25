@@ -1,24 +1,21 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Tenant;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Central\CentralUser;
 // use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-// use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Stancl\Tenancy\Contracts\Syncable;
 use Stancl\Tenancy\Database\Concerns\ResourceSyncing;
 
 class User extends Authenticatable implements Syncable
 {
-    // use HasApiTokens, HasFactory;
+    // use HasFactory;
     use HasRoles, ResourceSyncing, Notifiable;
 
-    protected $guarded = [];
-
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'global_id',
@@ -31,10 +28,6 @@ class User extends Authenticatable implements Syncable
     protected $hidden = [
         'password',
         'remember_token',
-    ];
-
-    protected $casts = [
-        'email_verified_at' => 'datetime',
     ];
 
     public function getGlobalIdentifierKey()
@@ -54,11 +47,6 @@ class User extends Authenticatable implements Syncable
 
     public function getSyncedAttributeNames(): array
     {
-        return [
-            'name',
-            'password',
-            'email',
-            'avatar',
-        ];
+        return $this->fillable;
     }
 }

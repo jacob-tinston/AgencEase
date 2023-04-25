@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Tenant;
 
 use App\Http\Controllers\Controller;
-use App\Models\Client;
+use App\Models\Central\Tenant\Client;
 use Illuminate\Http\Request;
 
 class CRMController extends Controller

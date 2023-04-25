@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use App\Mail\InviteCreated;
-use App\Models\Invite;
+use App\Models\Central\Tenant\Invite;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
