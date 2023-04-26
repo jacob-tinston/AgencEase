@@ -101,6 +101,9 @@ Route::middleware('tenant')->group(function () {
             Route::middleware(['can:manage clients'])->group(function () {
                 Route::get('/create', [ClientController::class, 'create'])->name('create');
                 Route::post('/store', [ClientController::class, 'store'])->name('store');
+                Route::get('/{id}/edit', [ClientController::class, 'edit'])->name('edit');
+                Route::post('/{id}/edit', [ClientController::class, 'update'])->name('update');
+                Route::get('/{id}/delete', [ClientController::class, 'destroy'])->name('delete');
             });
         });
     });

@@ -64,10 +64,10 @@
                     <p>{{ $client->created_at->toFormattedDateString() }}</p>
                 </div>
                 <div class="actions">
-                    <a href="#no-link" class="btn btn-icon btn_outlined btn_secondary">
+                    <a href="{{ route('clients.edit', ['id' => $client->id]) }}" class="btn btn-icon btn_outlined btn_secondary">
                         <span class="la la-pen-fancy"></span>
                     </a>
-                    <a href="#no-link" class="btn btn-icon btn_outlined btn_danger ltr:ml-2 rtl:mr-2">
+                    <a href="{{ route('clients.delete', ['id' => $client->id]) }}" class="btn btn-icon btn_outlined btn_danger ltr:ml-2 rtl:mr-2">
                         <span class="la la-trash-alt"></span>
                     </a>
                     <div class="dropdown ltr:ml-auto rtl:mr-auto ltr:-mr-3 rtl:-ml-3">
@@ -75,10 +75,9 @@
                             <span class="la la-ellipsis-v text-4xl leading-none"></span>
                         </button>
                         <div class="dropdown-menu">
-                            <a href="#no-link">Dropdown Action</a>
-                            <a href="#no-link">Link</a>
+                            <a href="{{ route('clients.edit', ['id' => $client->id]) }}">Edit Client</a>
                             <hr>
-                            <a href="#no-link">Something Else</a>
+                            <a class="!text-danger" href="{{ route('clients.delete', ['id' => $client->id]) }}">Remove Client</a>
                         </div>
                     </div>
                 </div>

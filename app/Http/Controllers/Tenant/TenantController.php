@@ -20,7 +20,7 @@ class TenantController extends Controller
             'organization' => $data['organization'],
         ]);
 
-        return back()->with('success', 'Organization Updated');
+        return back()->with('success', 'Organization Updated Successfully.');
     }
 
     public function updateCustomizer(Request $request)

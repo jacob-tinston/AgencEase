@@ -88,7 +88,7 @@ class UserController extends Controller
             'avatar' => $avatarPath ?? null,
         ]);
 
-        return back()->with('success', 'Profile Updated');
+        return back()->with('success', 'Profile Updated Successfully.');
     }
 
     public function editPassword(Request $request)
@@ -113,7 +113,7 @@ class UserController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        return back()->with('success', 'Password Changed');
+        return back()->with('success', 'Password Changed Successfully.');
     }
 
     public function destroy($id)
@@ -128,6 +128,6 @@ class UserController extends Controller
         $user->delete();
         $central_user->delete();
 
-        return redirect()->back()->with('success', 'User deleted successfully.');
+        return redirect()->back()->with('success', 'User Deleted Successfully.');
     }
 }

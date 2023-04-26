@@ -38,6 +38,6 @@ class InviteController extends Controller
 
         dispatch(new SendInvite($invite, $request->get('email')));
 
-        return redirect()->route('users.index')->with('success', 'User Invited Successfully');
+        return redirect()->route('users.index')->with('success', 'User Invited Successfully.');
     }
 }
