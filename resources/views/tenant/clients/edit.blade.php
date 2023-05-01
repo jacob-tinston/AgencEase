@@ -66,7 +66,8 @@
                     </div>
 
                     <div id="tab-2" class="collapse">
-                        <p data-toggle="modal" class="btn btn_outlined btn_primary ml-auto">Create Contact</p>
+                        <p data-toggle="modal" data-target="add" class="btn btn_outlined btn_primary ml-auto">Add Contacts</p>
+                        <p data-toggle="modal" data-target="create" class="btn btn_outlined btn_primary ml-4">Create Contact</p>
 
                         <div class="w-full overflow-scroll">
                             <table class="table table_hoverable w-full mt-3 overflow-scroll">
@@ -95,9 +96,9 @@
                                                             <span class="la la-pen-fancy"></span>
                                                         </a>
                     
-                                                        <button data-toggle="modal" class="btn btn-icon btn_outlined btn_danger ltr:ml-2 rtl:mr-2">
+                                                        <a href="{{ route('contacts.detach', ['client_id' => $client->id, 'id' => $contact->id]) }}" class="btn btn-icon btn_outlined btn_danger ltr:ml-2 rtl:mr-2">
                                                             <span class="la la-trash-alt"></span>
-                                                        </button>
+                                                        </a>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -123,7 +124,43 @@
         </form>
     </div>
 
-    <div class="modal modal_aside" data-animations="fadeInRight, fadeOutRight">
+    <div class="modal add" data-animations="fadeInDown, fadeOutUp">
+        <div class="modal-dialog modal-dialog_centered max-w-2xl">
+            <form action="{{ route('contacts.attach', ['client_id' => $client->id]) }}" method="POST" class="modal-content w-full">
+                @csrf
+
+                <div class="modal-header">
+                    <h2 class="modal-title">Add Contacts</h2>
+                    <div class="close la la-times" data-dismiss="modal"></div>
+                </div>
+                <div class="modal-body">
+                    @if(count($contacts))
+                        <label class="label block mb-2" for="contacts">Contact emails</label>
+                        <input id="contacts" name="contacts" type="email" list="emails" multiple class="form-control @error('contacts')is-invalid @enderror" value="{{ old('contacts') }}" required>
+                        <datalist id="emails">
+                            @foreach($contacts as $contact)
+                                <option value="{{ $contact->email }}">{{ $contact->name }}</option>
+                            @endforeach
+                        </datalist>
+                        @error('contacts')
+                            <small class="block mt-2 invalid-feedback">{{ $message }}</small>
+                        @enderror
+                        <small class="block mt-2">Separate emails with a comma to select multiple.</small>
+                    @else
+                        <p>There are no available contacts.</p>
+                    @endif
+                </div>
+                <div class="modal-footer">
+                    <div class="flex ltr:ml-auto rtl:mr-auto">
+                        <p class="btn btn_secondary uppercase" data-dismiss="modal">Close</p>
+                        <button class="btn btn_primary ltr:ml-2 rtl:mr-2 uppercase">Add Contacts</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal modal_aside create" data-animations="fadeInRight, fadeOutRight">
         <div class="modal-dialog">
             <form action="{{ route('contacts.store', ['client_id' => $client->id]) }}" method="POST" class="modal-content">
                 @csrf

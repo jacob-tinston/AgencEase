@@ -39,9 +39,11 @@ class ClientController extends Controller
     public function edit($id)
     {
         $client = Client::find($id);
+        $contacts = Contact::whereNotIn('id', $client->contacts->pluck('id'))->get();
 
         return view('tenant.clients.edit')->with([
             'client' => $client,
+            'contacts' => $contacts,
         ]);
     }
 
@@ -73,5 +75,31 @@ class ClientController extends Controller
         $client->delete();
 
         return redirect()->back()->with('success', 'Client Deleted Successfully.');
+    }
+
+    public function attachContacts(Request $request, $client_id)
+    {
+        $data = $request->validate([
+            'contacts' => 'required|string',
+        ]);
+
+        $client = Client::find($client_id);
+
+        $contactEmails = explode(',', $data['contacts']);
+        $contacts = Contact::whereIn('email', $contactEmails)->pluck('id');
+
+        $client->contacts()->attach($contacts);
+
+        return redirect()->back()->with('success', 'Contacts Added Successfully');
+    }
+
+    public function detachContact(Request $request, $client_id, $id)
+    {
+        $client = Client::find($client_id);
+        $contact = Contact::find($id);
+
+        $client->contacts()->detach($contact);
+
+        return redirect()->back()->with('success', 'Contact Removed Successfully');
     }
 }

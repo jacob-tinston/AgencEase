@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   on("body", "click", '[data-toggle="modal"]', (event) => {
     const modalTrigger = event.target.closest('[data-toggle="modal"]');
-    const modal = document.querySelector('.' + modalTrigger.dataset.toggle);
+    const modal = document.querySelector('.' + (modalTrigger.dataset.target || modalTrigger.dataset.toggle));
     showModal(modal);
   });
 

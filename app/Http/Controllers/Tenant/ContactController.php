@@ -13,10 +13,10 @@ class ContactController extends Controller
     public function store(Request $request, $client_id)
     {
         $data = $request->validate([
-            'name' => 'string|max:255',
+            'name' => 'string|max:255|nullable',
             'email' => 'required|string|email|max:255|unique:contacts',
-            'phone' => 'string|max:255',
-            'role' => 'string|max:255',
+            'phone' => 'string|max:255|nullable',
+            'role' => 'string|max:255|nullable',
         ]);
         
         $client = Client::find($client_id);

@@ -112,9 +112,12 @@ Route::middleware('tenant')->group(function () {
 
             Route::group([
                 'middleware' => ['can:manage clients'],
+                'prefix' => '/{client_id}/contacts',
                 'as' => 'contacts.',
             ], function () {
-                Route::post('/{client_id}/contacts/store', [ContactController::class, 'store'])->name('store');
+                Route::post('/store', [ContactController::class, 'store'])->name('store');
+                Route::post('/attach', [ClientController::class, 'attachContacts'])->name('attach');
+                Route::get('/{id}/remove', [ClientController::class, 'detachContact'])->name('detach');
             });
         });
     });
