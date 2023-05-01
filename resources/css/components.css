@@ -577,6 +577,18 @@ Input Group
 /*
 Validation
 */
+.form-control-addon-within {
+  &.is-invalid {
+    @apply border-danger;
+  }
+}
+
+.input-group {
+  &.is-invalid {
+    @apply border-danger;
+  }
+}
+
 .form-control {
   &.is-invalid {
     @apply border-danger;

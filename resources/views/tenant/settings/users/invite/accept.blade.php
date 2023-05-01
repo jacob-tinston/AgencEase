@@ -14,15 +14,13 @@
                     <label class="label block mb-2" for="name">Name</label>
                     <input id="name" name="name" class="form-control @error('name')is-invalid @enderror" value="{{ old('name') }}" placeholder="John Doe" required autofocus autocomplete="name">
                     @error('name')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
+                        <small class="block mt-2 invalid-feedback">{{ $message }}</small>
                     @enderror
                 </div>
                 <div class="mb-5">
                     <label class="label block mb-2" for="password">Password</label>
-                    <label class="form-control-addon-within">
-                        <input id="password" name="password" type="password" class="form-control border-none @error('password')is-invalid @enderror" required autocomplete="new-password">
+                    <label class="form-control-addon-within @error('password')is-invalid @enderror">
+                        <input id="password" name="password" type="password" class="form-control border-none" required autocomplete="new-password">
                         <span class="flex items-center ltr:pr-4 rtl:pl-4">
                             <button type="button"
                                 class="text-gray-300 dark:text-gray-700 la la-eye text-xl leading-none"
@@ -30,14 +28,12 @@
                         </span>
                     </label>
                     @error('password')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
+                        <small class="block mt-2 invalid-feedback">{{ $message }}</small>
                     @enderror
                 </div>
                 <div class="mb-5">
                     <label class="label block mb-2" for="password-confirm">Confirm Password</label>
-                    <label class="form-control-addon-within">
+                    <label class="form-control-addon-within @error('password')is-invalid @enderror">
                         <input id="password-confirm" name="password_confirmation" type="password" class="form-control border-none" required autocomplete="new-password">
                         <span class="flex items-center ltr:pr-4 rtl:pl-4">
                             <button type="button"

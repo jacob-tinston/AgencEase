@@ -24,9 +24,7 @@
                         <label class="label block mb-2" for="email">To</label>
                         <input id="email" name="email" type="email" class="form-control @error('email')is-invalid @enderror">
                         @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <small class="block mt-2 invalid-feedback">{{ $message }}</small>
                         @enderror
                     </div>
 
@@ -40,6 +38,9 @@
                             </select>
                             <div class="custom-select-icon la la-caret-down"></div>
                         </div>
+                        @error('role')
+                            <small class="block mt-2 invalid-feedback">{{ $message }}</small>
+                        @enderror
                     </div>
 
                     <div class="mt-5">
@@ -53,6 +54,9 @@ Looking forward to working together!
 Kind Regards,
 {{ tenant('organization') }}
 </textarea>
+                        @error('message')
+                            <small class="block mt-2 invalid-feedback">{{ $message }}</small>
+                        @enderror
                     </div>
                 </div>
             </div>

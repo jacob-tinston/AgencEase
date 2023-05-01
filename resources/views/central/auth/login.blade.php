@@ -22,15 +22,13 @@
                     <label class="label block mb-2" for="email">Email</label>
                     <input id="email" name="email" type="email" class="form-control @error('email')is-invalid @enderror" value="{{ old('email') }}" placeholder="johndoe@example.com" required autofocus autocomplete="email">
                     @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
+                        <small class="block mt-2 invalid-feedback">{{ $message }}</small>
                     @enderror
                 </div>
                 <div class="mb-5">
                     <label class="label block mb-2" for="password">Password</label>
-                    <label class="form-control-addon-within">
-                        <input id="password" name="password" type="password" class="form-control border-none @error('password')is-invalid @enderror" required autocomplete="current-password">
+                    <label class="form-control-addon-within @error('password')is-invalid @enderror">
+                        <input id="password" name="password" type="password" class="form-control border-none" required autocomplete="current-password">
                         <span class="flex items-center ltr:pr-4 rtl:pl-4">
                             <button type="button"
                                 class="text-gray-300 dark:text-gray-700 la la-eye text-xl leading-none"
@@ -38,9 +36,7 @@
                         </span>
                     </label>
                     @error('password')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
+                        <small class="block mt-2 invalid-feedback">{{ $message }}</small>
                     @enderror
                 </div>
                 <div class="flex items-center">

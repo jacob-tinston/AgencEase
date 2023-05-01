@@ -14,47 +14,39 @@
                     <label class="label block mb-2" for="name">Name</label>
                     <input id="name" name="name" class="form-control @error('name')is-invalid @enderror" value="{{ old('name') }}" placeholder="John Doe" required autofocus autocomplete="name">
                     @error('name')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
+                        <small class="block mt-2 invalid-feedback">{{ $message }}</small>
                     @enderror
                 </div>
                 <div class="mb-5">
                     <label class="label block mb-2" for="email">Email</label>
                     <input id="email" name="email" type="email" class="form-control @error('email')is-invalid @enderror" value="{{ old('email') }}" placeholder="johndoe@example.com" required autocomplete="email">
                     @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
+                        <small class="block mt-2 invalid-feedback">{{ $message }}</small>
                     @enderror
                 </div>
                 <div class="mb-5">
                     <label class="label block mb-2" for="organization">Company Name</label>
                     <input id="organization" name="organization" class="form-control @error('organization')is-invalid @enderror" value="{{ old('organization') }}" placeholder="John Doe Ltd" required autocomplete="organization">
                     @error('organization')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
+                        <small class="block mt-2 invalid-feedback">{{ $message }}</small>
                     @enderror
                 </div>
                 <div class="mb-5">
                     <label class="label block mb-2" for="domain">Domain</label>
 
-                    <div class="input-group">
-                        <input id="domain" name="domain" maxlength="63" class="form-control input-group-item @error('domain')is-invalid @enderror" value="{{ old('domain') }}" placeholder="john-doe" required autocomplete="domain"
+                    <div class="input-group @error('domain')is-invalid @enderror">
+                        <input id="domain" name="domain" maxlength="63" class="form-control input-group-item" value="{{ old('domain') }}" placeholder="john-doe" required autocomplete="domain"
                             oninput="this.value = this.value.toLowerCase().trim().replace(/\s+/g, '-');">
                         <div class="input-addon input-addon-append input-group-item">.{{ config('tenancy.main_domain') }}</div>
                     </div>
                     @error('domain')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
+                        <small class="block mt-2 invalid-feedback">{{ $message }}</small>
                     @enderror
                 </div>
                 <div class="mb-5">
                     <label class="label block mb-2" for="password">Password</label>
-                    <label class="form-control-addon-within">
-                        <input id="password" name="password" type="password" class="form-control border-none @error('password')is-invalid @enderror" required autocomplete="new-password">
+                    <label class="form-control-addon-within @error('password')is-invalid @enderror">
+                        <input id="password" name="password" type="password" class="form-control border-none" required autocomplete="new-password">
                         <span class="flex items-center ltr:pr-4 rtl:pl-4">
                             <button type="button"
                                 class="text-gray-300 dark:text-gray-700 la la-eye text-xl leading-none"
@@ -62,14 +54,12 @@
                         </span>
                     </label>
                     @error('password')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
+                        <small class="block mt-2 invalid-feedback">{{ $message }}</small>
                     @enderror
                 </div>
                 <div class="mb-5">
                     <label class="label block mb-2" for="password-confirm">Confirm Password</label>
-                    <label class="form-control-addon-within">
+                    <label class="form-control-addon-within @error('password')is-invalid @enderror">
                         <input id="password-confirm" name="password_confirmation" type="password" class="form-control border-none" required autocomplete="new-password">
                         <span class="flex items-center ltr:pr-4 rtl:pl-4">
                             <button type="button"

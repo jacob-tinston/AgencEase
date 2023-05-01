@@ -20,8 +20,8 @@
                 <div class="w-full">
                     <div class="mb-5">
                         <label class="label block mb-2" for="current-password">Current Password</label>
-                        <label class="form-control-addon-within">
-                            <input id="current-password" name="current_password" type="password" class="form-control border-none @error('password')is-invalid @enderror" required autocomplete="password">
+                        <label class="form-control-addon-within @error('current_password')is-invalid @enderror">
+                            <input id="current-password" name="current_password" type="password" class="form-control border-none" required autocomplete="password">
                             <span class="flex items-center ltr:pr-4 rtl:pl-4">
                                 <button type="button"
                                     class="text-gray-300 dark:text-gray-700 la la-eye text-xl leading-none"
@@ -29,16 +29,14 @@
                             </span>
                         </label>
                         @error('current_password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <small class="block mt-2 invalid-feedback">{{ $message }}</small>
                         @enderror
                     </div>
                     
                     <div class="mb-5">
                         <label class="label block mb-2" for="password">New Password</label>
-                        <label class="form-control-addon-within">
-                            <input id="password" name="password" type="password" class="form-control border-none @error('password')is-invalid @enderror" required autocomplete="new-password">
+                        <label class="form-control-addon-within @error('password')is-invalid @enderror">
+                            <input id="password" name="password" type="password" class="form-control border-none" required autocomplete="new-password">
                             <span class="flex items-center ltr:pr-4 rtl:pl-4">
                                 <button type="button"
                                     class="text-gray-300 dark:text-gray-700 la la-eye text-xl leading-none"
@@ -46,15 +44,13 @@
                             </span>
                         </label>
                         @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <small class="block mt-2 invalid-feedback">{{ $message }}</small>
                         @enderror
                     </div>
 
                     <div class="mb-5">
                         <label class="label block mb-2" for="password-confirm">Confirm New Password</label>
-                        <label class="form-control-addon-within">
+                        <label class="form-control-addon-within @error('password')is-invalid @enderror">
                             <input id="password-confirm" name="password_confirmation" type="password" class="form-control border-none" required autocomplete="new-password">
                             <span class="flex items-center ltr:pr-4 rtl:pl-4">
                                 <button type="button"

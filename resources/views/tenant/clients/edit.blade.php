@@ -27,9 +27,7 @@
                             <label class="label block mb-2" for="name">Name</label>
                             <input id="name" name="name" type="text" class="form-control @error('name')is-invalid @enderror" value="{{ $client->name }}">
                             @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                                <small class="block mt-2 invalid-feedback">{{ $message }}</small>
                             @enderror
                         </div>
 
@@ -48,9 +46,7 @@
                                 </label>
                             </div>
                             @error('type')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                                <small class="block mt-2 invalid-feedback">{{ $message }}</small>
                             @enderror
                         </div>
                     </div>
@@ -59,9 +55,7 @@
                         <label class="label block mb-2" for="description">Description</label>
                         <textarea id="description" name="description" class="form-control @error('description')is-invalid @enderror" rows="5" style="height: 150px;">{{ $client->description }}</textarea>
                         @error('description')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <small class="block mt-2 invalid-feedback">{{ $message }}</small>
                         @enderror
                     </div>
                 </div>

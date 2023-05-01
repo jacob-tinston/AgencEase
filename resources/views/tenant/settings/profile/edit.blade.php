@@ -45,9 +45,7 @@
                         <label class="label block mb-2" for="name">Name</label>
                         <input id="name" name="name" class="form-control @error('name')is-invalid @enderror" value="{{ auth()->user()->name }}" autofocus autocomplete="name">
                         @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <small class="block mt-2 invalid-feedback">{{ $message }}</small>
                         @enderror
                     </div>
                     
@@ -55,9 +53,7 @@
                         <label class="label block mb-2" for="email">Email</label>
                         <input id="email" name="email" type="email" class="form-control @error('email')is-invalid @enderror" value="{{ auth()->user()->email }}" autocomplete="email">
                         @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                            <small class="block mt-2 invalid-feedback">{{ $message }}</small>
                         @enderror
                     </div>
                 </div>
@@ -101,9 +97,7 @@
                             <label class="label block mb-2" for="organization">Company Name</label>
                             <input id="organization" name="organization" class="form-control @error('organization')is-invalid @enderror" value="{{ tenant('organization') }}" autocomplete="organization">
                             @error('organization')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                                <small class="block mt-2 invalid-feedback">{{ $message }}</small>
                             @enderror
                         </div>
                     </div>
