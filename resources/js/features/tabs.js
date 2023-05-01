@@ -1,8 +1,6 @@
-import {on} from '../helpers';
+import {on, closeCollapse, openCollapse} from '../helpers';
 
-const tabs = () => {
-  let toggling = false;
-
+document.addEventListener('DOMContentLoaded', () => {
   on("body", "click", '[data-toggle="tab"]', (event) => {
     const trigger = event.target.closest('[data-toggle="tab"]');
 
@@ -10,6 +8,7 @@ const tabs = () => {
     const activeTabTrigger = tabs.querySelector(".tab-nav .active");
     const activeTab = tabs.querySelector(".collapse.open");
     const targetedTab = tabs.querySelector(trigger.dataset.target);
+    let toggling = false;
 
     if (toggling) return;
     if (activeTabTrigger === trigger) return;
@@ -57,6 +56,4 @@ const tabs = () => {
         break;
     }
   });
-};
-
-export default tabs;
+})

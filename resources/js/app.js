@@ -68,4 +68,5 @@ import './features/dark-mode';
 import './features/fullscreen';
 import './features/modal';
 import './features/show-password';
+import './features/tabs';
 import './features/tippy';
