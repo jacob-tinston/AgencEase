@@ -61,7 +61,8 @@
 
             <hr class="my-6">
 
-            <div class="flex justify-end pr-2 mb-5">
+            <div class="flex items-center justify-end pr-2 mb-5 gap-4">
+                <a class="text-normal" href="{{ route('clients.index') }}">Cancel</a>
                 <button class="btn btn_primary uppercase">Create Client</button>
             </div>
         </form>
