@@ -92,7 +92,7 @@
                                                 <td class="min-w-[150px]">@if($contact->last_contacted){{ $contact->last_contacted }}@else--@endif</td>
                                                 <td>
                                                     <div class="inline-flex ltr:ml-auto rtl:mr-auto">
-                                                        <a class="btn btn-icon btn_outlined btn_secondary">
+                                                        <a href="{{ route('contacts.edit', ['client_id' => $client->id, 'id' => $contact->id]) }}" class="btn btn-icon btn_outlined btn_secondary">
                                                             <span class="la la-pen-fancy"></span>
                                                         </a>
                     

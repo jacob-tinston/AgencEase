@@ -116,6 +116,8 @@ Route::middleware('tenant')->group(function () {
                 'as' => 'contacts.',
             ], function () {
                 Route::post('/store', [ContactController::class, 'store'])->name('store');
+                Route::get('/{id}/edit', [ContactController::class, 'edit'])->name('edit');
+                Route::post('/{id}/update', [ContactController::class, 'update'])->name('update');
                 Route::post('/attach', [ClientController::class, 'attachContacts'])->name('attach');
                 Route::get('/{id}/remove', [ClientController::class, 'detachContact'])->name('detach');
             });
