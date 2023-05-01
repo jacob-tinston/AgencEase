@@ -66,5 +66,6 @@ import './features/alerts';
 import './features/avatar-upload';
 import './features/dark-mode';
 import './features/fullscreen';
+import './features/modal';
 import './features/show-password';
 import './features/tippy';

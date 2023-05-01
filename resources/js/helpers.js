@@ -92,7 +92,7 @@ export const showBackdrop = (workspace) => {
   
 // Hide Backdrop
 export const hideBackdrop = () => {
-    backdropToRemove = document.querySelector(".backdrop");
+    const backdropToRemove = document.querySelector(".backdrop");
   
     if (!backdropToRemove) return;
   

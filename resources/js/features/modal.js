@@ -1,8 +1,6 @@
 import {on, animateCSS, showBackdrop, hideBackdrop} from '../helpers';
 
-const modal = () => {
-  const selector = '[data-toggle="modal"]';
-
+document.addEventListener('DOMContentLoaded', () => {
   // Show
   const showModal = (modal) => {
     showBackdrop();
@@ -28,9 +26,9 @@ const modal = () => {
     });
   };
 
-  on("body", "click", selector, (event) => {
-    const modalTrigger = event.target.closest(selector);
-    const modal = document.querySelector(modalTrigger.dataset.target);
+  on("body", "click", '[data-toggle="modal"]', (event) => {
+    const modalTrigger = event.target.closest('[data-toggle="modal"]');
+    const modal = document.querySelector('.' + modalTrigger.dataset.toggle);
     showModal(modal);
   });
 
@@ -38,6 +36,4 @@ const modal = () => {
     const modal = event.target.closest(".modal");
     closeModal(modal);
   });
-};
-
-export default modal;
+})
