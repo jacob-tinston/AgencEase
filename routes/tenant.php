@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\InviteController;
 use App\Http\Controllers\Tenant\ClientController;
+use App\Http\Controllers\Tenant\ContactController;
 use App\Http\Controllers\Tenant\DashboardController;
 use App\Http\Controllers\Tenant\NotificationsController;
 use App\Http\Controllers\Tenant\TenantController;
@@ -94,16 +95,26 @@ Route::middleware('tenant')->group(function () {
         Route::group([
             'middleware' => ['can:view clients'],
             'prefix' => '/clients',
-            'as' => 'clients.',
         ], function () {
-            Route::get('/', [ClientController::class, 'index'])->name('index');
+            Route::group([
+                'as' => 'clients.',
+            ], function () {
+                Route::get('/', [ClientController::class, 'index'])->name('index');
 
-            Route::middleware(['can:manage clients'])->group(function () {
-                Route::get('/create', [ClientController::class, 'create'])->name('create');
-                Route::post('/store', [ClientController::class, 'store'])->name('store');
-                Route::get('/{id}/edit', [ClientController::class, 'edit'])->name('edit');
-                Route::post('/{id}/edit', [ClientController::class, 'update'])->name('update');
-                Route::get('/{id}/delete', [ClientController::class, 'destroy'])->name('delete');
+                Route::middleware(['can:manage clients'])->group(function () {
+                    Route::get('/create', [ClientController::class, 'create'])->name('create');
+                    Route::post('/store', [ClientController::class, 'store'])->name('store');
+                    Route::get('/{id}/edit', [ClientController::class, 'edit'])->name('edit');
+                    Route::post('/{id}/edit', [ClientController::class, 'update'])->name('update');
+                    Route::get('/{id}/delete', [ClientController::class, 'destroy'])->name('delete');
+                });
+            });
+
+            Route::group([
+                'middleware' => ['can:manage clients'],
+                'as' => 'contacts.',
+            ], function () {
+                Route::post('/{client_id}/contacts/store', [ContactController::class, 'store'])->name('store');
             });
         });
     });

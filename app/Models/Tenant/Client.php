@@ -17,4 +17,9 @@ class Client extends Model
     protected $casts = [
         'created_at' => 'datetime',
     ];
+
+    public function contacts()
+    {
+        return $this->belongsToMany(Contact::class, 'clients_contacts', 'client_id', 'contact_id')->withPivot('role');
+    }
 }

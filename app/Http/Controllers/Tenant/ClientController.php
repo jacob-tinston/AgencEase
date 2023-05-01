@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Tenant;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tenant\Client;
+use App\Models\Tenant\Contact;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller

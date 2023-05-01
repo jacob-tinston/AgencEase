@@ -1449,7 +1449,7 @@ Modal
       }
 
       .modal-body {
-        @apply m-5;
+        @apply p-5;
       }
 
       .modal-footer {
@@ -1465,17 +1465,16 @@ Modal
   &_aside {
     .modal-dialog {
       @apply relative mr-0 h-full;
-      width: 320px;
 
       .modal-content {
-        @apply absolute flex flex-col top-0 right-0 bottom-0 rounded-none;
+        @apply absolute flex flex-col top-0 right-0 bottom-0 rounded-none w-[90vw] max-w-[400px];
 
         .modal-header {
           min-height: 5rem;
         }
 
         .modal-body {
-          @apply overflow-y-scroll;
+          @apply overflow-y-scroll h-full;
         }
 
         .modal-footer {

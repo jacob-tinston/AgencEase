@@ -64,104 +64,55 @@
                             @enderror
                         </div>
                     </div>
-                    <div id="tab-2" class="collapse overflow-scroll">
-                        <table class="table table_hoverable w-full mt-3">
-                            <thead>
-                                <tr>
-                                    <th class="ltr:text-left rtl:text-right uppercase">Name</th>
-                                    <th class="ltr:text-left rtl:text-right uppercase">Email</th>
-                                    <th class="ltr:text-left rtl:text-right uppercase">Phone Number</th>
-                                    <th class="ltr:text-left rtl:text-right uppercase">Role</th>
-                                    <th class="ltr:text-left rtl:text-right uppercase">Last Contacted</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="min-w-[150px]">John Doe</td>
-                                    <td class="min-w-[200px]">johndoe@gmail.com</td>
-                                    <td class="min-w-[200px]">01642 123123</td>
-                                    <td class="min-w-[200px]">Managing Director</td>
-                                    <td class="min-w-[150px]">04/02/2004</td>
-                                    <td>
-                                        <div class="inline-flex ltr:ml-auto rtl:mr-auto">
-                                            <a class="btn btn-icon btn_outlined btn_secondary">
-                                                <span class="la la-pen-fancy"></span>
-                                            </a>
-        
-                                            <button data-toggle="modal" class="btn btn-icon btn_outlined btn_danger ltr:ml-2 rtl:mr-2">
-                                                <span class="la la-trash-alt"></span>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                
-                                <tr>
-                                    <td class="min-w-[150px]">John Doe</td>
-                                    <td class="min-w-[200px]">johndoe@gmail.com</td>
-                                    <td class="min-w-[200px]">01642 123123</td>
-                                    <td class="min-w-[200px]">Managing Director</td>
-                                    <td class="min-w-[150px]">04/02/2004</td>
-                                    <td>
-                                        <div class="inline-flex ltr:ml-auto rtl:mr-auto">
-                                            <a class="btn btn-icon btn_outlined btn_secondary">
-                                                <span class="la la-pen-fancy"></span>
-                                            </a>
-        
-                                            <button data-toggle="modal" class="btn btn-icon btn_outlined btn_danger ltr:ml-2 rtl:mr-2">
-                                                <span class="la la-trash-alt"></span>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+
+                    <div id="tab-2" class="collapse">
+                        <p data-toggle="modal" class="btn btn_outlined btn_primary ml-auto">Create Contact</p>
+
+                        <div class="w-full overflow-scroll">
+                            <table class="table table_hoverable w-full mt-3 overflow-scroll">
+                                <thead>
+                                    <tr>
+                                        <th class="ltr:text-left rtl:text-right uppercase">Name</th>
+                                        <th class="ltr:text-left rtl:text-right uppercase">Email</th>
+                                        <th class="ltr:text-left rtl:text-right uppercase">Phone Number</th>
+                                        <th class="ltr:text-left rtl:text-right uppercase">Role</th>
+                                        <th class="ltr:text-left rtl:text-right uppercase">Last Contacted</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if(count($client->contacts))
+                                        @foreach($client->contacts as $contact)
+                                            <tr>
+                                                <td class="min-w-[150px]">@if($contact->name){{ $contact->name }}@else--@endif</td>
+                                                <td class="min-w-[200px]"><a href="mailto:{{ $contact->email }}">{{ $contact->email }}</a></td>
+                                                <td class="min-w-[200px]">@if($contact->phone)<a href="tel:{{ $contact->phone }}">{{ $contact->phone }}</a>@else--@endif</td>
+                                                <td class="min-w-[200px]">@if($contact->pivot->role){{ $contact->pivot->role }}@else--@endif</td>
+                                                <td class="min-w-[150px]">@if($contact->last_contacted){{ $contact->last_contacted }}@else--@endif</td>
+                                                <td>
+                                                    <div class="inline-flex ltr:ml-auto rtl:mr-auto">
+                                                        <a class="btn btn-icon btn_outlined btn_secondary">
+                                                            <span class="la la-pen-fancy"></span>
+                                                        </a>
+                    
+                                                        <button data-toggle="modal" class="btn btn-icon btn_outlined btn_danger ltr:ml-2 rtl:mr-2">
+                                                            <span class="la la-trash-alt"></span>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @else
+                                        <tr class="!bg-transparent">
+                                            <td>No Contacts</td>
+                                        </tr>
+                                    @endif
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <!--
-            <div class="xl:p-4">
-                <div class="w-full">
-                    <div class=" md:flex gap-6">
-                        <div class="mb-5 md:w-1/2">
-                            <label class="label block mb-2" for="name">Name</label>
-                            <input id="name" name="name" type="text" class="form-control @error('name')is-invalid @enderror" value="{{ $client->name }}">
-                            @error('name')
-                                <small class="block mt-2 invalid-feedback">{{ $message }}</small>
-                            @enderror
-                        </div>
-
-                        <div class="mb-5 md:w-1/2">
-                            <label class="label block mb-2" for="type">Client Type</label>
-                            <div class="flex gap-6 mt-4">
-                                <label class="custom-radio">
-                                    <input type="radio" name="type" value="Internal" @if($client->type == 'Internal')checked @endif>
-                                    <span></span>
-                                    <span>Internal</span>
-                                </label>
-                                <label class="custom-radio">
-                                    <input type="radio" name="type" value="External" @if($client->type == 'External')checked @endif>
-                                    <span></span>
-                                    <span>External</span>
-                                </label>
-                            </div>
-                            @error('type')
-                                <small class="block mt-2 invalid-feedback">{{ $message }}</small>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="mb-5">
-                        <label class="label block mb-2" for="description">Description</label>
-                        <textarea id="description" name="description" class="form-control @error('description')is-invalid @enderror" rows="5" style="height: 150px;">{{ $client->description }}</textarea>
-                        @error('description')
-                            <small class="block mt-2 invalid-feedback">{{ $message }}</small>
-                        @enderror
-                    </div>
-                </div>
-            </div>
-            -->
 
             <hr class="my-6">
 
@@ -170,5 +121,54 @@
                 <button class="btn btn_primary uppercase">Update Client</button>
             </div>
         </form>
+    </div>
+
+    <div class="modal modal_aside" data-animations="fadeInRight, fadeOutRight">
+        <div class="modal-dialog">
+            <form action="{{ route('contacts.store', ['client_id' => $client->id]) }}" method="POST" class="modal-content">
+                @csrf
+
+                <div class="modal-header">
+                    <h2 class="modal-title">Create Contact</h2>
+                    <div class="close la la-times" data-dismiss="modal"></div>
+                </div>
+
+                <div class="modal-body">
+                    <div class="mb-5">
+                        <label class="label block mb-2" for="name">Name</label>
+                        <input id="name" name="name" class="form-control @error('name')is-invalid @enderror" value="{{ old('name') }}" autofocus>
+                        @error('name')
+                            <small class="block mt-2 invalid-feedback">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="mb-5">
+                        <label class="label block mb-2" for="email">Email</label>
+                        <input id="email" name="email" type="email" class="form-control @error('email')is-invalid @enderror" value="{{ old('email') }}" required>
+                        @error('email')
+                            <small class="block mt-2 invalid-feedback">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="mb-5">
+                        <label class="label block mb-2" for="phone">Phone Number</label>
+                        <input id="phone" name="phone" type="tel" class="form-control @error('name')is-invalid @enderror" value="{{ old('phone') }}">
+                        @error('phone')
+                            <small class="block mt-2 invalid-feedback">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="mb-5">
+                        <label class="label block mb-2" for="role">Role</label>
+                        <input id="role" name="role" class="form-control @error('name')is-invalid @enderror" value="{{ old('role') }}">
+                        @error('role')
+                            <small class="block mt-2 invalid-feedback">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn_secondary uppercase" data-dismiss="modal">Close</button>
+                    <button class="btn btn_primary uppercase ltr:ml-2 rtl:mr-2">Create Contact</button>
+                </div>
+            </form>
+        </div>
     </div>
 @endsection
