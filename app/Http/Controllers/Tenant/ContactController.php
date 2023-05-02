@@ -18,7 +18,7 @@ class ContactController extends Controller
             'phone' => 'string|max:255|nullable',
             'role' => 'string|max:255|nullable',
         ]);
-        
+
         $client = Client::find($client_id);
 
         $contact = Contact::create(
@@ -26,7 +26,7 @@ class ContactController extends Controller
         );
 
         $client->contacts()->attach($contact->id, [
-            'role' => $data['role']
+            'role' => $data['role'],
         ]);
 
         return redirect()->back()->with('success', 'Contact Created Successfully');
@@ -51,7 +51,7 @@ class ContactController extends Controller
             'phone' => 'string|max:255|nullable',
             'role' => 'string|max:255|nullable',
         ]);
-        
+
         $client = Client::find($client_id);
 
         $contact = $client->contacts()->find($id);
@@ -67,7 +67,7 @@ class ContactController extends Controller
         );
 
         $contact = $client->contacts()->updateExistingPivot($id, [
-            'role' => $data['role']
+            'role' => $data['role'],
         ]);
 
         return redirect()->route('clients.edit', ['id' => $client_id])->with('success', 'Contact Updated Successfully');

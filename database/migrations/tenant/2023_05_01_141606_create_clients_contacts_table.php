@@ -18,7 +18,7 @@ class CreateClientsContactsTable extends Migration
             $table->unsignedBiginteger('contact_id')->unsigned();
             $table->string('role')->nullable();
             $table->timestamps();
-            
+
             $table->foreign('client_id')->references('id')->on('clients')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('contact_id')->references('id')->on('contacts')->onUpdate('cascade')->onDelete('cascade');
         });
@@ -33,4 +33,4 @@ class CreateClientsContactsTable extends Migration
     {
         Schema::dropIfExists('clients_contacts');
     }
-};
+}
