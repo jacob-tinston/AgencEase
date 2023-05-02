@@ -22,4 +22,9 @@ class Contact extends Model
     {
         return $this->belongsToMany(Client::class, 'clients_contacts', 'contact_id', 'client_id');
     }
+
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
 }

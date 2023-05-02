@@ -15,11 +15,14 @@ class CreateContactsTable extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBiginteger('user_id')->unsigned()->nullable();
             $table->string('name')->nullable();
             $table->string('email')->unique();
             $table->string('phone')->nullable();
             $table->timestamp('last_contacted', $precision = 0)->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

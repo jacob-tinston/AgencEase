@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Central\CentralUser;
 use App\Models\Tenant\Invite;
 use App\Models\Tenant\User;
+use App\Models\Tenant\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -47,7 +48,11 @@ class UserController extends Controller
         $data['password'] = Hash::make($data['password']);
         $data['global_id'] = Str::random(20);
 
-        User::create($data)->assignRole($invite->role);
+        $user = User::create($data)->assignRole($invite->role);
+
+        if($contact = Contact::where('email', $data['email'])->first()) {
+            $user->contact()->save($contact);
+        }
 
         $invite->delete();
 

@@ -49,4 +49,9 @@ class User extends Authenticatable implements Syncable
     {
         return $this->fillable;
     }
+
+    public function contact()
+    {
+        return $this->hasOne(Contact::class);
+    }
 }
