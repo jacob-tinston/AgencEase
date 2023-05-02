@@ -22,7 +22,7 @@
                 <div class="w-full">
                     <div class="mb-5">
                         <label class="label block mb-2" for="email">To</label>
-                        <input id="email" name="email" type="email" class="form-control @error('email')is-invalid @enderror">
+                        <input id="email" name="email" type="email" class="form-control @error('email')is-invalid @enderror" @if($email) value="{{ $email }}" readonly @endif required>
                         @error('email')
                             <small class="block mt-2 invalid-feedback">{{ $message }}</small>
                         @enderror
@@ -31,7 +31,7 @@
                     <div class="mt-5">
                         <label class="label block mb-2" for="role">Role</label>
                         <div class="custom-select">
-                            <select id="role" name="role" class="form-control @error('role')is-invalid @enderror">
+                            <select id="role" name="role" class="form-control @error('role')is-invalid @enderror" @if(count($roles) == 1) readonly @endif required>
                                 @foreach ($roles as $role)
                                     <option value="{{ $role }}">{{ $role }}</option>
                                 @endforeach

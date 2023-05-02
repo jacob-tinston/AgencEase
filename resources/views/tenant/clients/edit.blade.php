@@ -92,11 +92,15 @@
                                                 <td class="min-w-[150px]">@if($contact->last_contacted){{ $contact->last_contacted }}@else--@endif</td>
                                                 <td>
                                                     <div class="inline-flex ltr:ml-auto rtl:mr-auto">
+                                                        <a href="{{ route('users.invite.create', ['email' => $contact->email, 'role' => 'Contact']) }}" class="btn btn-icon btn_outlined btn_secondary mr-2">
+                                                            <span class="la la-envelope"></span>
+                                                        </a>
+
                                                         <a href="{{ route('contacts.edit', ['client_id' => $client->id, 'id' => $contact->id]) }}" class="btn btn-icon btn_outlined btn_secondary">
                                                             <span class="la la-pen-fancy"></span>
                                                         </a>
                     
-                                                        <a href="{{ route('contacts.detach', ['client_id' => $client->id, 'id' => $contact->id]) }}" class="btn btn-icon btn_outlined btn_danger ltr:ml-2 rtl:mr-2">
+                                                        <a href="{{ route('contacts.detach', ['client_id' => $client->id, 'id' => $contact->id]) }}" class="btn btn-icon btn_outlined btn_danger ml-2">
                                                             <span class="la la-trash-alt"></span>
                                                         </a>
                                                     </div>

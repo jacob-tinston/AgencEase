@@ -11,19 +11,21 @@ use Spatie\Permission\Models\Role;
 
 class InviteController extends Controller
 {
-    public function create()
+    public function create(Request $request)
     {
-        $roles = Role::all()->pluck('name');
+        $roles = $request->role ? array($request->role) : Role::all()->pluck('name');
 
         return view('tenant.settings.users.invite.create')->with([
             'roles' => $roles,
+            'email' => $request->email ?? null,
         ]);
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'email' => 'required|string|email|max:255|unique:users',
+            'role' => 'string|max:255'
         ]);
 
         do {
@@ -31,12 +33,12 @@ class InviteController extends Controller
         } while (Invite::where('token', $token)->first());
 
         $invite = Invite::create([
-            'role' => $request->role,
-            'email' => $request->get('email'),
+            'role' => $data['role'],
+            'email' => $data['email'],
             'token' => $token,
         ]);
 
-        dispatch(new SendInvite($invite, $request->get('email')));
+        dispatch(new SendInvite($invite, $data['email']));
 
         return redirect()->route('users.index')->with('success', 'User Invited Successfully.');
     }

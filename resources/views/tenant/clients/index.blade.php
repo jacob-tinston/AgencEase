@@ -67,7 +67,7 @@
                     <a href="{{ route('clients.edit', ['id' => $client->id]) }}" class="btn btn-icon btn_outlined btn_secondary">
                         <span class="la la-pen-fancy"></span>
                     </a>
-                    <a data-toggle="modal" class="btn btn-icon btn_outlined btn_danger ltr:ml-2 rtl:mr-2">
+                    <a data-toggle="modal" data-target="client-{{ $client->id }}" class="btn btn-icon btn_outlined btn_danger ltr:ml-2 rtl:mr-2">
                         <span class="la la-trash-alt"></span>
                     </a>
                     <div class="dropdown ltr:ml-auto rtl:mr-auto ltr:-mr-3 rtl:-ml-3">
@@ -77,7 +77,27 @@
                         <div class="dropdown-menu">
                             <a href="{{ route('clients.edit', ['id' => $client->id]) }}">Edit Client</a>
                             <hr>
-                            <button class="!text-danger" data-toggle="modal">Remove Client</button>
+                            <button class="!text-danger" data-toggle="modal" data-target="client-{{ $client->id }}">Remove Client</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal client-{{ $client->id }}" data-animations="fadeInDown, fadeOutUp">
+                <div class="modal-dialog modal-dialog_centered max-w-2xl">
+                    <div class="modal-content w-full">
+                        <div class="modal-header">
+                            <h2 class="modal-title">Remove Client</h2>
+                            <button class="close la la-times" data-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            This action is irreversible. Are you sure you want to delete this client?
+                        </div>
+                        <div class="modal-footer">
+                            <div class="flex ltr:ml-auto rtl:mr-auto">
+                                <button class="btn btn_secondary uppercase" data-dismiss="modal">Close</button>
+                                <a href="{{ route('clients.delete', ['id' => $client->id]) }}" class="btn btn_danger ltr:ml-2 rtl:mr-2 uppercase">Remove</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -114,26 +134,6 @@
                     </div>
                 </div>
                 <span>items</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal" data-animations="fadeInDown, fadeOutUp">
-        <div class="modal-dialog modal-dialog_centered max-w-2xl">
-            <div class="modal-content w-full">
-                <div class="modal-header">
-                    <h2 class="modal-title">Remove Client</h2>
-                    <button class="close la la-times" data-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    This action is irreversible. Are you sure you want to delete this client?
-                </div>
-                <div class="modal-footer">
-                    <div class="flex ltr:ml-auto rtl:mr-auto">
-                        <button class="btn btn_secondary uppercase" data-dismiss="modal">Close</button>
-                        <a href="{{ route('clients.delete', ['id' => $client->id]) }}" class="btn btn_danger ltr:ml-2 rtl:mr-2 uppercase">Remove</a>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
