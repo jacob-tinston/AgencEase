@@ -13,7 +13,7 @@ class InviteController extends Controller
 {
     public function create(Request $request)
     {
-        $roles = $request->role ? array($request->role) : Role::all()->pluck('name');
+        $roles = $request->role ? [$request->role] : Role::all()->pluck('name');
 
         return view('tenant.settings.users.invite.create')->with([
             'roles' => $roles,
@@ -25,7 +25,7 @@ class InviteController extends Controller
     {
         $data = $request->validate([
             'email' => 'required|string|email|max:255|unique:users',
-            'role' => 'string|max:255'
+            'role' => 'string|max:255',
         ]);
 
         do {

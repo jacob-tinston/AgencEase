@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Tenant;
 use App\Http\Controllers\Controller;
 use App\Models\Tenant\Client;
 use App\Models\Tenant\Contact;
+use App\Models\Tenant\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 
@@ -28,6 +29,10 @@ class ContactController extends Controller
         $client->contacts()->attach($contact->id, [
             'role' => $data['role'],
         ]);
+
+        if ($user = User::where('email', $data['email'])->first()) {
+            $user->contact()->save($contact);
+        }
 
         return redirect()->back()->with('success', 'Contact Created Successfully');
     }

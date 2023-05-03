@@ -22,7 +22,7 @@ class CreateContactsTable extends Migration
             $table->timestamp('last_contacted', $precision = 0)->nullable();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

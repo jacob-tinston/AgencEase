@@ -91,10 +91,12 @@
                                                 <td class="min-w-[200px]">@if($contact->pivot->role){{ $contact->pivot->role }}@else--@endif</td>
                                                 <td class="min-w-[150px]">@if($contact->last_contacted){{ $contact->last_contacted }}@else--@endif</td>
                                                 <td>
-                                                    <div class="inline-flex ltr:ml-auto rtl:mr-auto">
-                                                        <a href="{{ route('users.invite.create', ['email' => $contact->email, 'role' => 'Contact']) }}" class="btn btn-icon btn_outlined btn_secondary mr-2">
-                                                            <span class="la la-envelope"></span>
-                                                        </a>
+                                                    <div class="inline-flex justify-end w-full ltr:ml-auto rtl:mr-auto">
+                                                        @if(! $contact->user)
+                                                            <a href="{{ route('users.invite.create', ['email' => $contact->email, 'role' => 'Contact']) }}" class="btn btn-icon btn_outlined btn_secondary mr-2">
+                                                                <span class="la la-envelope"></span>
+                                                            </a>
+                                                        @endif
 
                                                         <a href="{{ route('contacts.edit', ['client_id' => $client->id, 'id' => $contact->id]) }}" class="btn btn-icon btn_outlined btn_secondary">
                                                             <span class="la la-pen-fancy"></span>

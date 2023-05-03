@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Tenant;
 
 use App\Http\Controllers\Controller;
 use App\Models\Central\CentralUser;
+use App\Models\Tenant\Contact;
 use App\Models\Tenant\Invite;
 use App\Models\Tenant\User;
-use App\Models\Tenant\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -50,7 +50,7 @@ class UserController extends Controller
 
         $user = User::create($data)->assignRole($invite->role);
 
-        if($contact = Contact::where('email', $data['email'])->first()) {
+        if ($contact = Contact::where('email', $data['email'])->first()) {
             $user->contact()->save($contact);
         }
 
@@ -128,6 +128,11 @@ class UserController extends Controller
 
         if ($user->id == auth()->user()->id || in_array('Super Admin', $user->roles->pluck('name')->toArray())) {
             return redirect()->back()->with('error', 'Cannot delete this user.');
+        }
+
+        if ($contact = $user->contact) {
+            $contact->user_id = null;
+            $contact->push();
         }
 
         $user->delete();
