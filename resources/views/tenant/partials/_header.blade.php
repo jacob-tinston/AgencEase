@@ -116,5 +116,10 @@
                 <span class="title">Clients</span>
             </a>
         @endcan
+
+        <a href="{{ route('chat.index') }}" class="link">
+            <span class="icon la la-comment-dots"></span>
+            <span class="title">Chat</span>
+        </a>
     </div>
 </aside>

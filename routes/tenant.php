@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\InviteController;
 use App\Http\Controllers\Tenant\ClientController;
+use App\Http\Controllers\Tenant\ChatController;
 use App\Http\Controllers\Tenant\ContactController;
 use App\Http\Controllers\Tenant\DashboardController;
 use App\Http\Controllers\Tenant\NotificationsController;
@@ -121,6 +122,16 @@ Route::middleware('tenant')->group(function () {
                 Route::post('/attach', [ClientController::class, 'attachContacts'])->name('attach');
                 Route::get('/{id}/remove', [ClientController::class, 'detachContact'])->name('detach');
             });
+        });
+
+        // Chat
+        Route::group([
+            'prefix' => '/chat',
+            'as' => 'chat.',
+        ], function () {
+            Route::get('/', [ChatController::class, 'index'])->name('index');
+            Route::get('/{id}', [ChatController::class, 'show'])->name('show');
+            Route::post('/{id}/send', [ChatController::class, 'store'])->name('store');
         });
     });
 });
