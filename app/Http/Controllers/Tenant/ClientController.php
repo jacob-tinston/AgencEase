@@ -11,7 +11,7 @@ class ClientController extends Controller
 {
     public function index(Request $request)
     {
-        $clients = Client::all();
+        $clients = Client::paginate(auth()->user()->per_page);
 
         return view('tenant.clients.index')->with([
             'clients' => $clients,

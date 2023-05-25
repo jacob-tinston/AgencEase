@@ -3,8 +3,9 @@
 namespace App\Models\Tenant;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Contracts\Support\Jsonable;
 
-class Client extends Model
+class Client extends Model implements Jsonable
 {
     protected $guarded = [];
 

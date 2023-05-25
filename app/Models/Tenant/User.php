@@ -9,8 +9,9 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Stancl\Tenancy\Contracts\Syncable;
 use Stancl\Tenancy\Database\Concerns\ResourceSyncing;
+use Illuminate\Contracts\Support\Jsonable;
 
-class User extends Authenticatable implements Syncable
+class User extends Authenticatable implements Syncable, Jsonable
 {
     // use HasFactory;
     use HasRoles, ResourceSyncing, Notifiable;
@@ -23,6 +24,7 @@ class User extends Authenticatable implements Syncable
         'email',
         'avatar',
         'password',
+        'per_page',
     ];
 
     protected $hidden = [

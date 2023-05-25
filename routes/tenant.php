@@ -81,6 +81,7 @@ Route::middleware('tenant')->group(function () {
                 Route::get('/', [UserController::class, 'index'])->name('index');
                 Route::get('/{id}/edit', [UserController::class, 'edit'])->name('edit');
                 Route::get('/{id}/delete', [UserController::class, 'destroy'])->name('delete');
+                Route::get('/{id}/pagination', [UserController::class, 'perPage'])->name('per-page');
 
                 Route::group([
                     'prefix' => '/invite',

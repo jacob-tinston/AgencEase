@@ -15,7 +15,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(auth()->user()->per_page);
 
         return view('tenant.settings.users.index')->with([
             'users' => $users,
@@ -139,5 +139,13 @@ class UserController extends Controller
         $central_user->delete();
 
         return redirect()->back()->with('success', 'User Deleted Successfully.');
+    }
+
+    public function perPage(Request $request)
+    {
+        $user = User::find($request->id);
+        $user->per_page = $request->per_page;
+        $user->save();
+        return redirect()->back();
     }
 }
