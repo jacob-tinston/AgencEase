@@ -24,7 +24,6 @@ use Illuminate\Support\Facades\Route;
 | Feel free to customize them however you want. Good luck!
 |
 */
-
 Route::middleware('tenant')->group(function () {
     // Authentication routes
     Route::get('/impersonate/{token}', [AuthController::class, 'impersonate'])->name('impersonate');
@@ -79,9 +78,15 @@ Route::middleware('tenant')->group(function () {
                 'as' => 'users.',
             ], function () {
                 Route::get('/', [UserController::class, 'index'])->name('index');
-                Route::get('/{id}/edit', [UserController::class, 'edit'])->name('edit');
-                Route::get('/{id}/delete', [UserController::class, 'destroy'])->name('delete');
-                Route::get('/{id}/pagination', [UserController::class, 'perPage'])->name('per-page');
+                Route::get('/search', [UserController::class, 'search'])->name('search');
+
+                Route::group([
+                    'prefix' => '/{id}',
+                ], function () {
+                    Route::get('/edit', [UserController::class, 'edit'])->name('edit');
+                    Route::get('/delete', [UserController::class, 'destroy'])->name('delete');
+                    Route::get('/pagination', [UserController::class, 'perPage'])->name('per-page');
+                });
 
                 Route::group([
                     'prefix' => '/invite',
@@ -106,9 +111,15 @@ Route::middleware('tenant')->group(function () {
                 Route::middleware(['can:manage clients'])->group(function () {
                     Route::get('/create', [ClientController::class, 'create'])->name('create');
                     Route::post('/store', [ClientController::class, 'store'])->name('store');
-                    Route::get('/{id}/edit', [ClientController::class, 'edit'])->name('edit');
-                    Route::post('/{id}/edit', [ClientController::class, 'update'])->name('update');
-                    Route::get('/{id}/delete', [ClientController::class, 'destroy'])->name('delete');
+                    Route::get('/search', [ClientController::class, 'search'])->name('search');
+
+                    Route::group([
+                        'prefix' => '/{id}',
+                    ], function () {
+                        Route::get('/edit', [ClientController::class, 'edit'])->name('edit');
+                        Route::post('/edit', [ClientController::class, 'update'])->name('update');
+                        Route::get('/delete', [ClientController::class, 'destroy'])->name('delete');
+                    });
                 });
             });
 
@@ -118,10 +129,15 @@ Route::middleware('tenant')->group(function () {
                 'as' => 'contacts.',
             ], function () {
                 Route::post('/store', [ContactController::class, 'store'])->name('store');
-                Route::get('/{id}/edit', [ContactController::class, 'edit'])->name('edit');
-                Route::post('/{id}/update', [ContactController::class, 'update'])->name('update');
                 Route::post('/attach', [ClientController::class, 'attachContacts'])->name('attach');
-                Route::get('/{id}/remove', [ClientController::class, 'detachContact'])->name('detach');
+
+                Route::group([
+                    'prefix' => '/{id}',
+                ], function () {
+                    Route::get('/edit', [ContactController::class, 'edit'])->name('edit');
+                    Route::post('/update', [ContactController::class, 'update'])->name('update');
+                    Route::get('/remove', [ClientController::class, 'detachContact'])->name('detach');
+                });
             });
         });
 
@@ -131,8 +147,13 @@ Route::middleware('tenant')->group(function () {
             'as' => 'chat.',
         ], function () {
             Route::get('/', [ChatController::class, 'index'])->name('index');
-            Route::get('/{id}', [ChatController::class, 'show'])->name('show');
-            Route::post('/{id}/send', [ChatController::class, 'store'])->name('store');
+
+            Route::group([
+                'prefix' => '/{id}',
+            ], function () {
+                Route::get('/', [ChatController::class, 'show'])->name('show');
+                Route::post('/send', [ChatController::class, 'store'])->name('store');
+            });
         });
     });
 });

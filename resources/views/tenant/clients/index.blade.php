@@ -12,10 +12,10 @@
         </div>
 
         <div class="flex flex-wrap gap-2 items-center ltr:ml-auto rtl:mr-auto mt-5 lg:mt-0">
-            <form class="flex flex-auto">
+            <form action="{{ route('clients.search') }}" method="GET" class="flex flex-auto">
                 <label class="form-control-addon-within rounded-full">
-                    <input class="form-control border-none" placeholder="Search">
-                    <button class="text-gray-300 dark:text-gray-700 text-xl leading-none la la-search ltr:mr-4 rtl:ml-4"></button>
+                    <input name="term" class="form-control border-none" placeholder="Search">
+                    <button type="submit" class="text-gray-300 dark:text-gray-700 text-xl leading-none la la-search ltr:mr-4 rtl:ml-4"></button>
                 </label>
             </form>
 
@@ -26,8 +26,8 @@
                         <span class="ltr:ml-3 rtl:mr-3 la la-caret-down text-xl leading-none"></span>
                     </button>
                     <div class="dropdown-menu">
-                        <a href="#no-link">Ascending</a>
-                        <a href="#no-link">Descending</a>
+                        <a href="?{{ request()->term ? 'term='.request()->term.'&' : '' }}sort=asc">Ascending</a>
+                        <a href="?{{ request()->term ? 'term='.request()->term.'&' : '' }}sort=desc">Descending</a>
                     </div>
                 </div>
 

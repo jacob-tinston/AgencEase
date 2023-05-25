@@ -9,9 +9,13 @@ use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, $search_term = '')
     {
-        $clients = Client::paginate(auth()->user()->per_page);
+        $order_by_col = $request->sort ? 'name' : 'created_at';
+        $order_by = $request->sort ?? 'desc';
+        $clients = Client::where('name', 'LIKE', "%$search_term%")
+                        ->orderBy($order_by_col, $order_by)
+                        ->paginate(auth()->user()->per_page);
 
         return view('tenant.clients.index')->with([
             'clients' => $clients,
@@ -75,6 +79,19 @@ class ClientController extends Controller
         $client->delete();
 
         return redirect()->back()->with('success', 'Client Deleted Successfully.');
+    }
+
+    public function search(Request $request)
+    {
+        $request->validate([
+            'term' => 'string'
+        ]);
+
+        if (! $term = $request->term) {
+            return redirect()->back();
+        }
+
+        return $this->index($request, $term);
     }
 
     public function attachContacts(Request $request, $client_id)

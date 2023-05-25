@@ -13,10 +13,14 @@ use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request, $search_term = '')
     {
-        $users = User::paginate(auth()->user()->per_page);
-
+        $order_by_col = $request->sort ? 'name' : 'created_at';
+        $order_by = $request->sort ?? 'desc';
+        $users = User::where('name', 'LIKE', "%$search_term%")
+                        ->orWhere('email', 'LIKE', "%$search_term%")
+                        ->orderBy($order_by_col, $order_by)
+                        ->paginate(auth()->user()->per_page);
         return view('tenant.settings.users.index')->with([
             'users' => $users,
         ]);
@@ -139,6 +143,19 @@ class UserController extends Controller
         $central_user->delete();
 
         return redirect()->back()->with('success', 'User Deleted Successfully.');
+    }
+
+    public function search(Request $request)
+    {
+        $request->validate([
+            'term' => 'string'
+        ]);
+
+        if (! $term = $request->term) {
+            return redirect()->back();
+        }
+
+        return $this->index($request, $term);
     }
 
     public function perPage(Request $request)
