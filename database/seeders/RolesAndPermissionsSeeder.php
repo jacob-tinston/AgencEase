@@ -26,6 +26,8 @@ class RolesAndPermissionsSeeder extends Seeder
 
         Permission::create(['name' => 'view clients']);
         Permission::create(['name' => 'manage clients']);
+        
+        Permission::create(['name' => 'view tasks']);
 
         // Create Roles
         $superAdmin = Role::create(['name' => 'Super Admin']);
@@ -37,5 +39,6 @@ class RolesAndPermissionsSeeder extends Seeder
         $superAdmin->givePermissionTo(Permission::all());
         $admin->givePermissionTo(Permission::all()->where('name', '!=', 'manage organization'));
         $user->givePermissionTo(['view clients']);
+        $user->givePermissionTo(['view tasks']);
     }
 }

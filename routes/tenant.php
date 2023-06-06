@@ -10,6 +10,7 @@ use App\Http\Controllers\Tenant\ContactController;
 use App\Http\Controllers\Tenant\DashboardController;
 use App\Http\Controllers\Tenant\NotificationsController;
 use App\Http\Controllers\Tenant\TenantController;
+use App\Http\Controllers\Tenant\TaskController;
 use App\Http\Controllers\Tenant\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -153,6 +154,20 @@ Route::middleware('tenant')->group(function () {
             ], function () {
                 Route::get('/', [ChatController::class, 'show'])->name('show');
                 Route::post('/send', [ChatController::class, 'store'])->name('store');
+            });
+        });
+
+        // Tasks
+        Route::group([
+            'prefix' => '/tasks',
+            'as' => 'tasks.',
+        ], function () {
+            Route::get('/', [TaskController::class, 'index'])->name('index');
+
+            Route::group([
+                'prefix' => '/{id}',
+            ], function () {
+                //
             });
         });
     });

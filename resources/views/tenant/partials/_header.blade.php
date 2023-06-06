@@ -111,6 +111,13 @@
         </a>
 
         @can('view clients')
+            <a href="{{ route('tasks.index') }}" class="link">
+                <span class="icon la la-check-circle"></span>
+                <span class="title">Tasks</span>
+            </a>
+        @endcan
+
+        @can('view clients')
             <a href="{{ route('clients.index') }}" class="link">
                 <span class="icon la la-users"></span>
                 <span class="title">Clients</span>
