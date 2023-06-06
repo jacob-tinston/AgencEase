@@ -48,7 +48,7 @@
                 <h5>Theme</h5>
                 <div class="themes">
                     <button v-for="color, theme in themes" @click="toggleTheme(theme)" :class="activeTheme == theme ? 'active' : ''">
-                        <span class="color" :class="'bg-[' + color + ']'"></span>
+                        <span class="color" :style="'background-color:' + color"></span>
                         <span v-text="theme"></span>
                     </button>
                 </div>
@@ -62,7 +62,7 @@
                 </div>
                 <div class="themes">
                     <button v-for="color, gray in grays" @click="toggleGray(gray)" :class="activeGray == gray ? 'active' : ''">
-                        <span class="color" :class="'bg-[' + color + ']'"></span>
+                        <span class="color" :style="'background-color:' + color"></span>
                         <span v-text="gray"></span>
                     </button>
                 </div>

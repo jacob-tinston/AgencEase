@@ -12,6 +12,8 @@ use App\Http\Controllers\Tenant\NotificationsController;
 use App\Http\Controllers\Tenant\TenantController;
 use App\Http\Controllers\Tenant\TaskController;
 use App\Http\Controllers\Tenant\UserController;
+use App\Http\Controllers\Tenant\InvoiceController;
+use App\Http\Controllers\Tenant\NotepadController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -163,12 +165,22 @@ Route::middleware('tenant')->group(function () {
             'as' => 'tasks.',
         ], function () {
             Route::get('/', [TaskController::class, 'index'])->name('index');
+        });
 
-            Route::group([
-                'prefix' => '/{id}',
-            ], function () {
-                //
-            });
+        // Invoices
+        Route::group([
+            'prefix' => '/invoices',
+            'as' => 'invoices.',
+        ], function () {
+            Route::get('/', [InvoiceController::class, 'index'])->name('index');
+        });
+
+        // Notes
+        Route::group([
+            'prefix' => '/notepad',
+            'as' => 'notes.',
+        ], function () {
+            Route::get('/', [NotepadController::class, 'index'])->name('index');
         });
     });
 });

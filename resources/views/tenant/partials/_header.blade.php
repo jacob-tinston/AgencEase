@@ -117,28 +117,44 @@
             <hr class="mx-8 my-4">
         </div>
 
-        <a href="{{ route('dashboard') }}" class="link">
+        <a href="{{ route('dashboard') }}" class="link {{ str_contains(app()->request->url(), route('dashboard')) ? 'active' : '' }}">
             <span class="icon la la-laptop"></span>
             <span class="title">Dashboard</span>
         </a>
 
         @can('view clients')
-            <a href="{{ route('tasks.index') }}" class="link">
-                <span class="icon la la-check-circle"></span>
-                <span class="title">Tasks</span>
-            </a>
-        @endcan
-
-        @can('view clients')
-            <a href="{{ route('clients.index') }}" class="link">
+            <a href="{{ route('clients.index') }}" class="link {{ str_contains(app()->request->url(), route('clients.index')) ? 'active' : '' }}">
                 <span class="icon la la-users"></span>
                 <span class="title">Clients</span>
             </a>
         @endcan
 
-        <a href="{{ route('chat.index') }}" class="link">
-            <span class="icon la la-comment-dots"></span>
-            <span class="title">Chat</span>
-        </a>
+        @can('view chats')
+            <a href="{{ route('chat.index') }}" class="link {{ str_contains(app()->request->url(), route('chat.index')) ? 'active' : '' }}">
+                <span class="icon la la-comment-dots"></span>
+                <span class="title">Chat</span>
+            </a>
+        @endcan
+
+        @can('view tasks')
+            <a href="{{ route('tasks.index') }}" class="link {{ str_contains(app()->request->url(), route('tasks.index')) ? 'active' : '' }}">
+                <span class="icon la la-check-circle"></span>
+                <span class="title">Tasks</span>
+            </a>
+        @endcan
+
+        @can('view invoices')
+            <a href="{{ route('invoices.index') }}" class="link {{ str_contains(app()->request->url(), route('invoices.index')) ? 'active' : '' }}">
+                <span class="icon la la-file-invoice"></span>
+                <span class="title">Invoices</span>
+            </a>
+        @endcan
+
+        @can('view notes')
+            <a href="{{ route('notes.index') }}" class="link {{ str_contains(app()->request->url(), route('notes.index')) ? 'active' : '' }}">
+                <span class="icon la la-sticky-note"></span>
+                <span class="title">Notepad</span>
+            </a>
+        @endcan
     </div>
 </aside>

@@ -6,7 +6,7 @@
         <ul>
             <p>Apps</p>
             <li class="divider la la-arrow-right"></li>
-            <li>Chat Room</li>
+            <li>Chat</li>
         </ul>
     </section>
 @endsection

@@ -22,7 +22,7 @@
                             <div class="status bg-success"></div>
                         </div>
                         <div>
-                            <h5>Potato Bahadur</h5>
+                            <h5>John Doe</h5>
                             <p>Last seen today 2:20PM</p>
                         </div>
                     </a>
@@ -43,7 +43,7 @@
                             <div class="status bg-success"></div>
                         </div>
                         <div>
-                            <h5>Potato Bahadur</h5>
+                            <h5>General</h5>
                             <p>Last seen today 2:20PM</p>
                         </div>
                     </a>

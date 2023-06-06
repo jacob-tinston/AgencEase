@@ -19,26 +19,76 @@ class RolesAndPermissionsSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         // Create Permissions
-        Permission::create(['name' => 'manage organization']);
-
-        Permission::create(['name' => 'view users']);
-        Permission::create(['name' => 'manage users']);
-
-        Permission::create(['name' => 'view clients']);
-        Permission::create(['name' => 'manage clients']);
-        
-        Permission::create(['name' => 'view tasks']);
+        $permissions = [
+            ['name' => 'manage organization'],
+            ['name' => 'view users'],
+            ['name' => 'manage users'],
+            ['name' => 'view clients'],
+            ['name' => 'manage clients'],
+            ['name' => 'view chats'],
+            ['name' => 'view tasks'],
+            ['name' => 'view invoices'],
+            ['name' => 'view notes'],
+        ];
+        $this->createPermissions($permissions);
 
         // Create Roles
-        $superAdmin = Role::create(['name' => 'Super Admin']);
-        $admin = Role::create(['name' => 'Admin']);
-        $user = Role::create(['name' => 'User']);
-        $contact = Role::create(['name' => 'Contact']);
+        $roles = [
+            ['name' => 'Super Admin'],
+            ['name' => 'Admin'],
+            ['name' => 'User'],
+            ['name' => 'Contact'],
+        ];
+        $this->createRoles($roles);
 
         // Give Permissions to Roles
+
+        $superAdmin = Role::findByName('Super Admin');
         $superAdmin->givePermissionTo(Permission::all());
+
+        $admin = Role::findByName('Admin');
         $admin->givePermissionTo(Permission::all()->where('name', '!=', 'manage organization'));
-        $user->givePermissionTo(['view clients']);
-        $user->givePermissionTo(['view tasks']);
+
+        $user = Role::findByName('User');
+        $user->givePermissionTo(['view clients', 'view chats', 'view tasks', 'view notes']);
+
+        $contact = Role::findByName('Contact');
+        $contact->givePermissionTo(['view chats']);
+    }
+
+    protected function permissionExists($name) 
+    {
+        try {
+            return Permission::findByName($name)->get();
+        } catch(\Exception $err) {
+            return false;
+        }
+    }
+
+    protected function roleExists($name) 
+    {
+        try {
+            return Role::findByName($name)->get();
+        } catch(\Exception $err) {
+            return false;
+        }
+    }
+
+    protected function createPermissions($permissions)
+    {
+        foreach($permissions as $permission) {
+            if (! $this->permissionExists($permission['name'])) {
+                Permission::create($permission);
+            }
+        }
+    }
+
+    protected function createRoles($roles)
+    {
+        foreach($roles as $role) {
+            if (! $this->roleExists($role['name'])) {
+                Role::create($role);
+            }
+        }
     }
 }

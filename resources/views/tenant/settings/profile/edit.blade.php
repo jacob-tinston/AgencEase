@@ -83,7 +83,12 @@
 
                         <div class="flex flex-col items-center justify-center">
                             <span class="avatar w-20 h-20 text-4xl">
-                                <span>{{ initials(tenant('organization')) }}</span>
+                                @if($avatar = tenant('avatar'))
+                                    <img src="{{ asset($avatar) }}" alt="">
+                                @else
+                                    <span>{{ initials(tenant('organization')) }}</span>
+                                @endif
+
                                 <img data-avatar-img class="hidden">
                             </span>
     

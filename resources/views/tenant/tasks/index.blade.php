@@ -31,13 +31,13 @@
                     <span class="ltr:ml-3 rtl:mr-3 la la-caret-down text-xl leading-none"></span>
                 </button>
                 <div class="dropdown-menu">
-                    <a href="#no-link">Ascending</a>
-                    <a href="#no-link">Descending</a>
+                    <a href="?{{ request()->term ? 'term='.request()->term.'&' : '' }}sort=asc">Ascending</a>
+                    <a href="?{{ request()->term ? 'term='.request()->term.'&' : '' }}sort=desc">Descending</a>
                 </div>
             </div>
 
             <!-- Add New -->
-            <button class="btn btn_primary uppercase">Add New</button>
+            <button class="btn btn_primary uppercase">Create Tasklist</button>
         </div>
     </section>
 
@@ -63,7 +63,7 @@
                                 <span></span>
                             </label>
                         </th>
-                        <th class="ltr:text-left rtl:text-right uppercase">Potato</th>
+                        <th class="ltr:text-left rtl:text-right uppercase">Design</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -131,7 +131,7 @@
                                 <span></span>
                             </label>
                         </th>
-                        <th class="ltr:text-left rtl:text-right uppercase">Tomato</th>
+                        <th class="ltr:text-left rtl:text-right uppercase">Development</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -208,30 +208,30 @@
             <label class="custom-checkbox">
                 <input type="checkbox">
                 <span></span>
-                <span>Potato</span>
+                <span>Design</span>
                 <span class="badge badge_outlined badge_primary ltr:mr-2 rtl:ml-2 ltr:ml-auto rtl:mr-auto">10</span>
             </label>
             <label class="custom-checkbox">
                 <input type="checkbox">
                 <span></span>
-                <span>Tomato</span>
+                <span>Development</span>
                 <span class="badge badge_outlined badge_primary ltr:mr-2 rtl:ml-2 ltr:ml-auto rtl:mr-auto">20</span>
             </label>
             <label class="custom-checkbox">
                 <input type="checkbox">
                 <span></span>
-                <span>Onion</span>
+                <span>Sales</span>
                 <span class="badge badge_outlined badge_primary ltr:mr-2 rtl:ml-2 ltr:ml-auto rtl:mr-auto">10</span>
             </label>
         </div>
 
         <!-- Tags -->
-        <h2 class="p-5">Tags</h2>
+        <h2 class="p-5">Priority</h2>
         <hr>
         <div class="flex gap-2 p-5">
-            <button class="badge badge_outlined badge_primary">Potato</button>
-            <button class="badge badge_outlined badge_success">Tomato</button>
-            <button class="badge badge_outlined badge_warning">Onion</button>
+            <button class="badge badge_outlined badge_danger">High</button>
+            <button class="badge badge_outlined badge_warning">Medium</button>
+            <button class="badge badge_outlined badge_success">Low</button>
         </div>
     </div>
 

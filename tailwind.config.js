@@ -35,6 +35,12 @@ const withOpacityValue = (variable) => {
 
 module.exports = {
   content: ["resources/**/*.{blade.php,js,vue}"],
+  safelist: [
+    {
+      pattern: /bg-+/, // 👈  This includes bg of all colors and shades
+    },
+  ],
+
   darkMode: "class",
   theme: {
     container: {
