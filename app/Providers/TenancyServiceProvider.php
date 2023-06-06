@@ -102,6 +102,8 @@ class TenancyServiceProvider extends ServiceProvider
 
         $this->makeTenancyMiddlewareHighestPriority();
 
+        \Stancl\Tenancy\Controllers\TenantAssetsController::$tenancyMiddleware = \Stancl\Tenancy\Middleware\InitializeTenancyBySubdomain::class;
+
         \Stancl\Tenancy\Middleware\InitializeTenancyBySubdomain::$onFail = function () {
             return redirect()->route('auth.login');
         };

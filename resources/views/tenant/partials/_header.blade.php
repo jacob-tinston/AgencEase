@@ -62,7 +62,13 @@
         <div class="dropdown">
             <button class="flex items-center ltr:ml-4 rtl:mr-4" data-toggle="custom-dropdown-menu"
                 data-tippy-arrow="true" data-tippy-placement="bottom-end">
-                <span class="avatar">{{ initials(auth()->user()->name) }}</span>
+                <span class="avatar">
+                    @if($avatar = auth()->user()->avatar)
+                        <img src="{{ asset(auth()->user()->avatar) }}" alt="">
+                    @else
+                        <span>{{ initials(auth()->user()->name) }}</span>
+                    @endif
+                </span>
             </button>
             <div class="custom-dropdown-menu w-64">
                 <div class="p-5">
@@ -97,7 +103,13 @@
     <div class="menu-items">
         <div class="menu-header">
             <div class="flex items-center mx-8 mt-8">
-                <span class="avatar w-16 h-16">{{ initials(tenant('organization')) }}</span>
+                <span class="avatar w-16 h-16">
+                    @if($avatar = tenant('avatar'))
+                        <img src="{{ asset(tenant('avatar')) }}" alt="">
+                    @else
+                        <span>{{ initials(tenant('organization')) }}</span>
+                    @endif
+                </span>
                 <div class="ltr:ml-4 rtl:mr-4 ltr:text-left rtl:text-right">
                     <h5>{{ tenant('organization') }}</h5>
                 </div>

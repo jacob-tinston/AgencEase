@@ -86,7 +86,7 @@ class UserController extends Controller
 
         if ($request->hasFile('avatar') && $avatar->isValid()) {
             $fileName = Str::random().'.'.$avatar->extension();
-            $avatarPath = $request->avatar->storeAs('app/public/media', $fileName);
+            $avatarPath = $request->avatar->storeAs('/avatars', $fileName, 'public');
         }
 
         $user = User::find(auth()->user()->id);
@@ -94,7 +94,7 @@ class UserController extends Controller
         $user->update([
             'name' => $data['name'],
             'email' => $data['email'],
-            'avatar' => $avatarPath ?? null,
+            'avatar' => $avatarPath ?? $user->avatar,
         ]);
 
         return back()->with('success', 'Profile Updated Successfully.');

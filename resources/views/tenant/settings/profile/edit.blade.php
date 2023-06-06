@@ -26,7 +26,12 @@
 
                     <div class="flex flex-col items-center justify-center">
                         <span class="avatar w-20 h-20 text-4xl">
-                            <span>{{ initials(auth()->user()->name) }}</span>
+                            @if($avatar = auth()->user()->avatar)
+                                <img src="{{ asset(auth()->user()->avatar) }}" alt="">
+                            @else
+                                <span>{{ initials(auth()->user()->name) }}</span>
+                            @endif
+
                             <img data-avatar-img class="hidden">
                         </span>
 

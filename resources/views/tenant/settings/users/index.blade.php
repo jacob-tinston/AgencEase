@@ -65,7 +65,13 @@
                                 </label>
                             </td>
                             <td>
-                                <span class="avatar">{{ initials($user->name) }}</span>
+                                <span class="avatar">
+                                    @if($avatar = $user->avatar)
+                                        <img src="{{ asset($user->avatar) }}" alt="">
+                                    @else
+                                        <span>{{ initials($user->name) }}</span>
+                                    @endif
+                                </span>
                             </td>
                             <td class="w-1/3">{{ $user->name }}</td>
                             <td class="text-center">{{ $user->email }}</td>
