@@ -32,7 +32,7 @@ class ChatController extends Controller
         $message = [
             'user' => auth()->user()->name,
             'content' => $request->input('content'),
-            'id' => uniqid()
+            'id' => uniqid(),
         ];
 
         auth()->user()->notify(new \App\Notifications\Test('Message Sent'));

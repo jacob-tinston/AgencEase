@@ -56,27 +56,27 @@ class RolesAndPermissionsSeeder extends Seeder
         $contact->givePermissionTo(['view chats']);
     }
 
-    protected function permissionExists($name) 
+    protected function permissionExists($name)
     {
         try {
             return Permission::findByName($name)->get();
-        } catch(\Exception $err) {
+        } catch (\Exception $err) {
             return false;
         }
     }
 
-    protected function roleExists($name) 
+    protected function roleExists($name)
     {
         try {
             return Role::findByName($name)->get();
-        } catch(\Exception $err) {
+        } catch (\Exception $err) {
             return false;
         }
     }
 
     protected function createPermissions($permissions)
     {
-        foreach($permissions as $permission) {
+        foreach ($permissions as $permission) {
             if (! $this->permissionExists($permission['name'])) {
                 Permission::create($permission);
             }
@@ -85,7 +85,7 @@ class RolesAndPermissionsSeeder extends Seeder
 
     protected function createRoles($roles)
     {
-        foreach($roles as $role) {
+        foreach ($roles as $role) {
             if (! $this->roleExists($role['name'])) {
                 Role::create($role);
             }

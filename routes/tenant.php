@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\InviteController;
-use App\Http\Controllers\Tenant\ClientController;
 use App\Http\Controllers\Tenant\ChatController;
+use App\Http\Controllers\Tenant\ClientController;
 use App\Http\Controllers\Tenant\ContactController;
 use App\Http\Controllers\Tenant\DashboardController;
-use App\Http\Controllers\Tenant\NotificationsController;
-use App\Http\Controllers\Tenant\TenantController;
-use App\Http\Controllers\Tenant\TaskController;
-use App\Http\Controllers\Tenant\UserController;
 use App\Http\Controllers\Tenant\InvoiceController;
 use App\Http\Controllers\Tenant\NotepadController;
+use App\Http\Controllers\Tenant\NotificationsController;
+use App\Http\Controllers\Tenant\TaskController;
+use App\Http\Controllers\Tenant\TenantController;
+use App\Http\Controllers\Tenant\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*

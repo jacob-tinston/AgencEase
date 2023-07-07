@@ -3,17 +3,15 @@
 namespace App\Models\Tenant;
 
 use App\Models\Central\CentralUser;
-// use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Contracts\Support\Jsonable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Stancl\Tenancy\Contracts\Syncable;
 use Stancl\Tenancy\Database\Concerns\ResourceSyncing;
-use Illuminate\Contracts\Support\Jsonable;
 
 class User extends Authenticatable implements Syncable, Jsonable
 {
-    // use HasFactory;
     use HasRoles, ResourceSyncing, Notifiable;
 
     public $timestamps = true;

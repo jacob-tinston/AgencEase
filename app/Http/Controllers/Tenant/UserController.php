@@ -18,9 +18,10 @@ class UserController extends Controller
         $order_by_col = $request->sort ? 'name' : 'created_at';
         $order_by = $request->sort ?? 'desc';
         $users = User::where('name', 'LIKE', "%$search_term%")
-                        ->orWhere('email', 'LIKE', "%$search_term%")
-                        ->orderBy($order_by_col, $order_by)
-                        ->paginate(auth()->user()->per_page);
+            ->orWhere('email', 'LIKE', "%$search_term%")
+            ->orderBy($order_by_col, $order_by)
+            ->paginate(auth()->user()->per_page);
+
         return view('tenant.settings.users.index')->with([
             'users' => $users,
         ]);
@@ -148,7 +149,7 @@ class UserController extends Controller
     public function search(Request $request)
     {
         $request->validate([
-            'term' => 'string'
+            'term' => 'string',
         ]);
 
         if (! $term = $request->term) {
@@ -163,6 +164,7 @@ class UserController extends Controller
         $user = User::find($request->id);
         $user->per_page = $request->per_page;
         $user->save();
+
         return redirect()->back();
     }
 }

@@ -14,8 +14,8 @@ class ClientController extends Controller
         $order_by_col = $request->sort ? 'name' : 'created_at';
         $order_by = $request->sort ?? 'desc';
         $clients = Client::where('name', 'LIKE', "%$search_term%")
-                        ->orderBy($order_by_col, $order_by)
-                        ->paginate(auth()->user()->per_page);
+            ->orderBy($order_by_col, $order_by)
+            ->paginate(auth()->user()->per_page);
 
         return view('tenant.clients.index')->with([
             'clients' => $clients,
@@ -84,7 +84,7 @@ class ClientController extends Controller
     public function search(Request $request)
     {
         $request->validate([
-            'term' => 'string'
+            'term' => 'string',
         ]);
 
         if (! $term = $request->term) {
