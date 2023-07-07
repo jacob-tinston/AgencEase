@@ -65,6 +65,11 @@ return [
             'model' => App\Models\Tenant\User::class,
         ],
 
+        'central_users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Central\CentralUser::class,
+        ],
+
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -88,7 +93,7 @@ return [
 
     'passwords' => [
         'users' => [
-            'provider' => 'users',
+            'provider' => 'central_users',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

@@ -19,6 +19,8 @@
             @include('central.partials._header')
     
             @yield('body')
+
+            @include('central.partials._footer')
         </div>
     
         <!-- Scripts -->

@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Central\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +20,17 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('central')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
+    // Password Reset
+    Route::group([
+        'prefix' => '/reset-password',
+        'as' => 'password.',
+    ], function () {
+        Route::get('/', [PasswordResetController::class, 'index'])->name('request');
+        Route::post('/request', [PasswordResetController::class, 'store'])->name('email');
+        Route::get('/{token}', [PasswordResetController::class, 'show'])->name('reset');
+        Route::post('/', [PasswordResetController::class, 'update'])->name('update');
+    });
+
     // Auth
     Route::name('auth.')->group(function () {
         Route::get('/register', [RegisterController::class, 'index'])->name('register');
@@ -27,9 +38,6 @@ Route::middleware('central')->group(function () {
 
         Route::get('/login', [AuthController::class, 'index'])->name('login');
         Route::post('/login', [AuthController::class, 'store'])->name('login-user');
-
-        Route::get('/forgot-password', [ForgotPasswordController::class, 'index'])->name('forgot-password');
-        Route::post('/forgot-password', [ForgotPasswordController::class, 'store'])->name('reset-password');
 
         Route::middleware('auth')->group(function () {
             Route::get('/redirect-user/{globalUserId}/to-tenant/{tenant}', [AuthController::class, 'redirectUserToTenant'])->name('redirect-user-to-tenant');
