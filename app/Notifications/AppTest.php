@@ -13,6 +13,7 @@ class AppTest extends Notification implements ShouldBroadcast, ShouldQueue
     use Queueable;
 
     public string $heading;
+
     public string $message;
 
     /**

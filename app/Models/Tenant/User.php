@@ -72,5 +72,4 @@ class User extends Authenticatable implements Syncable, Jsonable
     {
         return [$this->email => $this->name];
     }
-
 }

@@ -17,6 +17,7 @@ class NotificationsController extends Controller
 
     public function testApp()
     {
+        // php artisan websockets:serve
         auth()->user()->notify(new \App\Notifications\AppTest());
     }
 

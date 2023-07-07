@@ -3,8 +3,8 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class EmailTest extends Notification implements ShouldQueue
@@ -12,6 +12,7 @@ class EmailTest extends Notification implements ShouldQueue
     use Queueable;
 
     public string $heading;
+
     public string $message;
 
     /**
@@ -42,7 +43,7 @@ class EmailTest extends Notification implements ShouldQueue
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->subject($this->heading)
-                    ->line($this->message);
+            ->subject($this->heading)
+            ->line($this->message);
     }
 }
