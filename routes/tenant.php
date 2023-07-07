@@ -52,7 +52,7 @@ Route::middleware('tenant')->group(function () {
             Route::get('/clear/{id?}', [NotificationsController::class, 'destroy'])->name('destroy');
             Route::get('/test/app', [NotificationsController::class, 'testApp'])->name('test.app');
             Route::get('/test/email', [NotificationsController::class, 'testEmail'])->name('test.email');
-            Route::get('/test/SMS', [NotificationsController::class, 'testSMS'])->name('test.sms');
+            // Route::get('/test/SMS', [NotificationsController::class, 'testSMS'])->name('test.sms');
         });
 
         // Settings

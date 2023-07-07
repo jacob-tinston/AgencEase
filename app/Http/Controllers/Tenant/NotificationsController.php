@@ -25,8 +25,8 @@ class NotificationsController extends Controller
         auth()->user()->notify(new \App\Notifications\EmailTest());
     }
 
-    public function testSMS()
-    {
-        // auth()->user()->notify(new \App\Notifications\SMSTest());
-    }
+    // public function testSMS()
+    // {
+    //     auth()->user()->notify(new \App\Notifications\SMSTest());
+    // }
 }
