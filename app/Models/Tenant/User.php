@@ -62,4 +62,15 @@ class User extends Authenticatable implements Syncable, Jsonable
     {
         return 'users.'.$this->id;
     }
+
+    /**
+     * Route notifications for the mail channel.
+     *
+     * @return  array<string, string>|string
+     */
+    public function routeNotificationForMail(): array|string
+    {
+        return [$this->email => $this->name];
+    }
+
 }

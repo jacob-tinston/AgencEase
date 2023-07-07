@@ -22,7 +22,7 @@ class NotificationsController extends Controller
 
     public function testEmail()
     {
-        // auth()->user()->notify(new \App\Notifications\EmailTest());
+        auth()->user()->notify(new \App\Notifications\EmailTest());
     }
 
     public function testSMS()
