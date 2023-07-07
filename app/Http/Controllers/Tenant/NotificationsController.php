@@ -14,4 +14,19 @@ class NotificationsController extends Controller
 
         return redirect()->back();
     }
+
+    public function testApp()
+    {
+        auth()->user()->notify(new \App\Notifications\AppTest());
+    }
+
+    public function testEmail()
+    {
+        // auth()->user()->notify(new \App\Notifications\EmailTest());
+    }
+
+    public function testSMS()
+    {
+        // auth()->user()->notify(new \App\Notifications\SMSTest());
+    }
 }

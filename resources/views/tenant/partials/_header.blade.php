@@ -40,7 +40,7 @@
             </button>
             <div class="custom-dropdown-menu p-5 text-center">
                 <div class="flex justify-around">
-                    <a href="#no-link" class="p-5 text-normal hover:text-primary">
+                    <a href="{{ route('settings.index') }}" class="p-5 text-normal hover:text-primary">
                         <span class="block la la-cog text-5xl leading-none"></span>
                         <span>Settings</span>
                     </a>

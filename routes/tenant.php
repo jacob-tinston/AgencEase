@@ -11,6 +11,7 @@ use App\Http\Controllers\Tenant\DashboardController;
 use App\Http\Controllers\Tenant\InvoiceController;
 use App\Http\Controllers\Tenant\NotepadController;
 use App\Http\Controllers\Tenant\NotificationsController;
+use App\Http\Controllers\Tenant\SettingsController;
 use App\Http\Controllers\Tenant\TaskController;
 use App\Http\Controllers\Tenant\TenantController;
 use App\Http\Controllers\Tenant\UserController;
@@ -49,10 +50,20 @@ Route::middleware('tenant')->group(function () {
             'as' => 'notifications.',
         ], function () {
             Route::get('/clear/{id?}', [NotificationsController::class, 'destroy'])->name('destroy');
+            Route::get('/test/app', [NotificationsController::class, 'testApp'])->name('test.app');
+            Route::get('/test/email', [NotificationsController::class, 'testEmail'])->name('test.email');
+            Route::get('/test/SMS', [NotificationsController::class, 'testSMS'])->name('test.sms');
         });
 
         // Settings
         Route::prefix('settings')->group(function () {
+            Route::group([
+                'as' => 'settings.',
+            ], function () {
+                Route::get('/', [SettingsController::class, 'index'])->name('index');
+                Route::post('/', [SettingsController::class, 'update'])->name('update');
+            });
+
             // Profile
             Route::group([
                 'prefix' => '/profile',

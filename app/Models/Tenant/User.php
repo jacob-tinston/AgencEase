@@ -54,4 +54,12 @@ class User extends Authenticatable implements Syncable, Jsonable
     {
         return $this->hasOne(Contact::class);
     }
+
+    /**
+     * The channels the user receives notification broadcasts on.
+     */
+    public function receivesBroadcastNotificationsOn(): string
+    {
+        return 'users.'.$this->id;
+    }
 }
